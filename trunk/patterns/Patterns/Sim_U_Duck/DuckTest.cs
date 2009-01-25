@@ -1,4 +1,5 @@
-﻿using Sim_U_Duck.Ducks;
+﻿using System;
+using Sim_U_Duck.Ducks;
 
 namespace Sim_U_Duck
 {
@@ -6,11 +7,17 @@ namespace Sim_U_Duck
     {
         public static void Main(string[] args)
         {
-            Duck mallard = new MallardDuck();
-            Duck redhead = new RedHeadDuck();
+            TestDuck(new MallardDuck());
+            TestDuck(new RedHeadDuck());
 
-            mallard.Quack();
-            redhead.Quack();
+            Console.ReadLine();
+        }
+
+        private static void TestDuck(Duck duck)
+        {
+            duck.Quack();
+
+            Console.WriteLine("---");
         }
     }
 }

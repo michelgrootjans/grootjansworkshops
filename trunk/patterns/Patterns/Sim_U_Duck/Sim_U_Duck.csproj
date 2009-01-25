@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Ducks\Duck.cs" />
     <Compile Include="Ducks\MallardDuck.cs" />
+    <Compile Include="Ducks\RubberDuck.cs" />
     <Compile Include="DuckTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ducks\RedHeadDuck.cs" />
