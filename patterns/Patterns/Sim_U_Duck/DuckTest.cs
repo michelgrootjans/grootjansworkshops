@@ -15,6 +15,7 @@ namespace Sim_U_Duck
 
         private static void TestDuck(Duck duck)
         {
+            Console.WriteLine(string.Format("You see a {0}.", duck.GetType().Name));
             duck.Quack();
 
             Console.WriteLine("---");
