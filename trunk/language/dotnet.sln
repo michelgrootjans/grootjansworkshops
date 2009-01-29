@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Tests", "dotnet2\Domain.Tests.csproj", "{3DD52B5B-67E6-4013-A8AB-698B2CE74D2F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{5A212929-4538-4C0D-8A69-AFAB7E715E86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "CommonLibrary\Domain.csproj", "{5A212929-4538-4C0D-8A69-AFAB7E715E86}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Tests", "Domain.Tests\Domain.Tests.csproj", "{3DD52B5B-67E6-4013-A8AB-698B2CE74D2F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,14 +11,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3DD52B5B-67E6-4013-A8AB-698B2CE74D2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3DD52B5B-67E6-4013-A8AB-698B2CE74D2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3DD52B5B-67E6-4013-A8AB-698B2CE74D2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3DD52B5B-67E6-4013-A8AB-698B2CE74D2F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5A212929-4538-4C0D-8A69-AFAB7E715E86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5A212929-4538-4C0D-8A69-AFAB7E715E86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A212929-4538-4C0D-8A69-AFAB7E715E86}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A212929-4538-4C0D-8A69-AFAB7E715E86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DD52B5B-67E6-4013-A8AB-698B2CE74D2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DD52B5B-67E6-4013-A8AB-698B2CE74D2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DD52B5B-67E6-4013-A8AB-698B2CE74D2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DD52B5B-67E6-4013-A8AB-698B2CE74D2F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
