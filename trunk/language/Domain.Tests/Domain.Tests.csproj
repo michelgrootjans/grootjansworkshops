@@ -41,6 +41,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\BoolExtensions.cs" />
+    <Compile Include="Extensions\ObjectExtensions.cs" />
+    <Compile Include="ExtensionTests\IntExtensionTests.cs" />
+    <Compile Include="ExtensionTests\StringExtensionsTests.cs" />
+    <Compile Include="ExtensionTests\TimeSpanExtensionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
