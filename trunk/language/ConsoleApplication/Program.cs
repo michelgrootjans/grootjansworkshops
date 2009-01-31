@@ -10,7 +10,7 @@ namespace ConsoleApplication
         {
             var names = new List<string> {"Albert Einstein", "John Cleese", "George W. Bush"};
             var namePrinter = new NamePrinter();
-            namePrinter.PrintToUppercaseContainingAnL(names);
+            namePrinter.Print(names);
 
             Console.ReadLine();
         }
