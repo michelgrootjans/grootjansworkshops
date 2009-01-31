@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
+using Domain;
 
 namespace WinApplication
 {
@@ -14,6 +10,13 @@ namespace WinApplication
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            var names = new List<string> {"Albert Einstein", "John Cleese", "George W. Bush"};
+            var namePrinter = new NamePrinter();
+            namePrinter.Print(names);
         }
     }
 }

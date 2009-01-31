@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{3DD52B5B-67E6-4013-A8AB-698B2CE74D2F}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -46,7 +46,7 @@
     <Compile Include="ExtensionTests\IntExtensionTests.cs" />
     <Compile Include="ExtensionTests\StringExtensionsTests.cs" />
     <Compile Include="ExtensionTests\TimeSpanExtensionTests.cs" />
-    <Compile Include="GenericListTests.cs" />
+    <Compile Include="NamePrinterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

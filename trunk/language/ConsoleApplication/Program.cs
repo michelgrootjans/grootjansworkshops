@@ -9,8 +9,8 @@ namespace ConsoleApplication
         private static void Main(string[] args)
         {
             var names = new List<string> {"Albert Einstein", "John Cleese", "George W. Bush"};
-            var stringPrinter = new StringPrinter();
-            stringPrinter.Print(names);
+            var namePrinter = new NamePrinter();
+            namePrinter.PrintToUppercaseContainingAnL(names);
 
             Console.ReadLine();
         }
