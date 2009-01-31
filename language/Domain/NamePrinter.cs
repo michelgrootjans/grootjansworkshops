@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Domain
 {
-    public class StringPrinter
+    public class NamePrinter
     {
         public void Print(List<string> names)
         {
@@ -28,6 +28,17 @@ namespace Domain
                 if (name.Contains("l"))
                 {
                     Console.WriteLine(name);
+                }
+            }
+        }
+
+        public void PrintToUppercaseContainingAnL(List<string> names)
+        {
+            foreach (var name in names)
+            {
+                if (name.Contains("l"))
+                {
+                    Console.WriteLine(name.ToUpper());
                 }
             }
         }
