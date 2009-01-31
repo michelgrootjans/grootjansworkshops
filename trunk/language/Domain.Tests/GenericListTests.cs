@@ -12,16 +12,26 @@ namespace Domain.Tests
         [SetUp]
         public void SetUp()
         {
-            names = new List<string> {"Michel", "Koen", "Giovanni"};
+            names = new List<string> { "Albert Einstein", "John Cleese", "George W. Bush" };
             stringPrinter = new StringPrinter();
         }
 
         [Test]
-        public void test_for_each_name()
+        public void test_print()
         {
             stringPrinter.Print(names);
-            stringPrinter.PrintInUppercase(names);
-            stringPrinter.PrintContainingAnE(names);
+        }
+
+        [Test]
+        public void test_print_to_uppercase()
+        {
+            stringPrinter.PrintToUppercase(names);
+        }
+
+        [Test]
+        public void test_print_all_names_containing_an_L()
+        {
+            stringPrinter.PrintContainingAnL(names);
         }
     }
 }
