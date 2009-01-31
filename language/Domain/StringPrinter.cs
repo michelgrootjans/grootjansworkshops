@@ -13,7 +13,7 @@ namespace Domain
             }
         }
 
-        public void PrintInUppercase(List<string> names)
+        public void PrintToUppercase(List<string> names)
         {
             foreach (var name in names)
             {
@@ -21,11 +21,11 @@ namespace Domain
             }
         }
 
-        public void PrintContainingAnE(List<string> names)
+        public void PrintContainingAnL(List<string> names)
         {
             foreach (var name in names)
             {
-                if (name.Contains("e"))
+                if (name.Contains("l"))
                 {
                     Console.WriteLine(name);
                 }
