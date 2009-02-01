@@ -46,6 +46,7 @@
     <Compile Include="ExtensionTests\IntExtensionTests.cs" />
     <Compile Include="ExtensionTests\StringExtensionsTests.cs" />
     <Compile Include="ExtensionTests\TimeSpanExtensionTests.cs" />
+    <Compile Include="EuroTest.cs" />
     <Compile Include="NamePrinterTests.cs" />
     <Compile Include="NumberPrinterTests.cs" />
     <Compile Include="OrganiserTests.cs" />
