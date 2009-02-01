@@ -42,8 +42,7 @@ namespace Domain.Tests
         [Test]
         public void covariance_and_contravariance()
         {
-            var employees = new List<Employee>();
-            //List<Person> people = employees;
+            //List<Person> people = new List<Employee>();
         }
     }
 }
