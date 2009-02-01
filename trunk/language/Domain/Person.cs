@@ -23,10 +23,13 @@ namespace Domain
         {
             get
             {
+                TimeSpan age;
                 if (DateOfDeath.HasValue)
-                    return (DateOfDeath.Value - DateOfBirth);
+                    age = DateOfDeath.Value - DateOfBirth;
+                else
+                    age = DateTime.Now - DateOfBirth;
 
-                return (DateTime.Now - DateOfBirth);
+                return age;
             }
         }
     }
