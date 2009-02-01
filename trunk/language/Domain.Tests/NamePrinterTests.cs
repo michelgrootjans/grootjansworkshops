@@ -6,7 +6,7 @@ namespace Domain.Tests
     [TestFixture]
     public class NamePrinterTests
     {
-        private List<string> names;
+        private IEnumerable<string> names;
         private NamePrinter namePrinter;
 
         [SetUp]

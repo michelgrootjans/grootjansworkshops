@@ -5,7 +5,7 @@ namespace Domain
 {
     public class NamePrinter
     {
-        public void Print(List<string> names)
+        public void Print(IEnumerable<string> names)
         {
             foreach (var name in names)
             {
@@ -13,7 +13,7 @@ namespace Domain
             }
         }
 
-        public void PrintToUppercase(List<string> names)
+        public void PrintToUppercase(IEnumerable<string> names)
         {
             foreach (var name in names)
             {
@@ -21,7 +21,7 @@ namespace Domain
             }
         }
 
-        public void PrintContainingAnL(List<string> names)
+        public void PrintContainingAnL(IEnumerable<string> names)
         {
             foreach (var name in names)
             {
@@ -32,7 +32,7 @@ namespace Domain
             }
         }
 
-        public void PrintToUppercaseContainingAnL(List<string> names)
+        public void PrintToUppercaseContainingAnL(IEnumerable<string> names)
         {
             foreach (var name in names)
             {

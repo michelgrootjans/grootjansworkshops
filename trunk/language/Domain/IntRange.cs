@@ -1,14 +1,29 @@
+using System.Collections;
+using System.Collections.Generic;
+
 namespace Domain
 {
-    public class IntRange : Range<int>
+    public class IntRange : IEnumerable<int>
     {
-        public IntRange(int from, int to) : base(from, to)
+        private readonly List<int> items;
+
+        public IntRange(int from, int to)
         {
+            items = new List<int>();
+            for (var i = from; i <= to; i++)
+            {
+                items.Add(i);
+            }
         }
 
-        protected override int GetNextValue(int value)
+        public IEnumerator<int> GetEnumerator()
         {
-            return value + 1;
+            return items.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }
