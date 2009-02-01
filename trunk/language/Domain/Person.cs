@@ -5,8 +5,8 @@ namespace Domain
     public class Person
     {
         public string Name { get; private set; }
-        public DateTime DateOfBirth { get; private set; }
-        public DateTime? DateOfDeath { get; private set; }
+        internal DateTime DateOfBirth { get; private set; }
+        internal DateTime? DateOfDeath { get; private set; }
 
         public Person(string name, DateTime dateOfBirth) : this(name, dateOfBirth, null)
         {
