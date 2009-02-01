@@ -41,6 +41,7 @@
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TimeSpanExtensions.cs" />
+    <Compile Include="NumberManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NamePrinter.cs" />
   </ItemGroup>
