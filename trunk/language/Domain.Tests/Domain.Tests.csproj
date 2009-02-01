@@ -48,6 +48,7 @@
     <Compile Include="ExtensionTests\TimeSpanExtensionTests.cs" />
     <Compile Include="NamePrinterTests.cs" />
     <Compile Include="NumberPrinterTests.cs" />
+    <Compile Include="OrganiserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
