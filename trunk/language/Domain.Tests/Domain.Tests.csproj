@@ -42,12 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CSharp2Trivia.cs" />
+    <Compile Include="CSharp3Trivia.cs" />
     <Compile Include="Extensions\BoolExtensions.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="ExtensionTests\IntExtensionTests.cs" />
     <Compile Include="ExtensionTests\StringExtensionsTests.cs" />
     <Compile Include="ExtensionTests\TimeSpanExtensionTests.cs" />
     <Compile Include="EuroTest.cs" />
+    <Compile Include="IteratorsTests.cs" />
     <Compile Include="NamePrinterTests.cs" />
     <Compile Include="NumberPrinterTests.cs" />
     <Compile Include="OrganiserTests.cs" />
