@@ -1,9 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Domain
 {
-    public class IntRange : IEnumerable<int>
+    public class IntRange
     {
         private readonly List<int> items;
 
@@ -14,16 +13,6 @@ namespace Domain
             {
                 items.Add(i);
             }
-        }
-
-        public IEnumerator<int> GetEnumerator()
-        {
-            return items.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
         }
     }
 }
