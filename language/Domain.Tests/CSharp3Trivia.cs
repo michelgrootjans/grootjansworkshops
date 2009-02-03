@@ -7,19 +7,19 @@ namespace Domain.Tests
     public class CSharp3Trivia
     {
         // - automatic properties
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
         // - implicitly typed local variables
         [Test]
         public void just_checking_what_works_on_implicit_local_variables()
         {
             var a = "Michel";
+            //Console.WriteLine(a.ToUpper());
+            //a = 5;
+
             //var b;
             //b = 5;
-
-            //Console.WriteLine(a.ToUpper());
-
-            //a = 5;
+            //b = a;
         }
 
         // - object initializers
