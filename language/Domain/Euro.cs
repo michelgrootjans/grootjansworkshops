@@ -2,7 +2,7 @@ namespace Domain
 {
     public class Euro
     {
-        public double Amount { get; private set; }
+        public readonly double Amount;
 
         public Euro(double amount)
         {
