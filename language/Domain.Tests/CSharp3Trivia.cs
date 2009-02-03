@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using NUnit.Framework;
 
@@ -44,7 +43,7 @@ namespace Domain.Tests
         {
             var michel = new {FirstName = "Michel", LastName = "Grootjans"};
             var danny = new {FirstName = "Danny", LastName = "Gladines"};
-            
+
             //Console.WriteLine("{0} {1}", michel.FirstName, michel.LastName);
             //Console.WriteLine("{0} {1}", danny.FirstName, danny.LastName);
 
@@ -74,12 +73,12 @@ namespace Domain.Tests
         public void lets_take_it_one_step_further()
         {
             var cats = new List<Cat>
-                              {
-                                  new Cat {Name = "Garfield", Age = 8},
-                                  new Cat {Name = "Felix", Age = 50},
-                                  new Cat {Name = "Tom", Age = 3},
-                                  new Cat {Name = "Lucifer", Age = 4}
-                              };
+                           {
+                               new Cat {Name = "Garfield", Age = 8},
+                               new Cat {Name = "Felix", Age = 50},
+                               new Cat {Name = "Tom", Age = 3},
+                               new Cat {Name = "Lucifer", Age = 4}
+                           };
 
             //var converted = cats.ConvertAll(a => new {a.Name, IsAdult = (a.Age >= 5)});
             //foreach (var animal in converted)
