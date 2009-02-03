@@ -4,27 +4,53 @@ namespace Domain
 {
     public class Organiser
     {
-        public IMeeting SetupMeeting(string attendee1, string attendee2, DateTime time)
+        public ICalendarItem SetupMeeting(string attendee)
         {
-            var meeting = new TimedMeeting {Attendee1 = attendee1, Attendee2 = attendee2, Date = time};
+            return new TodoItem {Attendee1 = attendee};
+        }
 
-            return meeting;
+        public ICalendarItem SetupMeeting(string attendee1, string attendee2)
+        {
+            return new UntimedMeeting { Attendee1 = attendee1,  Attendee2 = attendee2};
+        }
+
+        public ICalendarItem SetupMeeting(string attendee1, string attendee2, DateTime time)
+        {
+            return new TimedMeeting {Attendee1 = attendee1, Attendee2 = attendee2, Date = time};
         }
     }
 
-    internal class TimedMeeting : IMeeting
+    public interface ICalendarItem
+    {
+    }
+
+    internal class TodoItem : ICalendarItem
+    {
+        public string Attendee1 { get; internal set; }
+
+        public override string ToString()
+        {
+            return string.Format("Todo for {0}", Attendee1);
+        }
+    }
+
+    internal class UntimedMeeting : TodoItem
+    {
+        public string Attendee2 { get; internal set; }
+
+        public override string ToString()
+        {
+            return string.Format("Meeting between: {0}, {1}", Attendee1, Attendee2);
+        }
+    }
+
+    internal class TimedMeeting : UntimedMeeting
     {
         public DateTime Date { get; internal set; }
-        public string Attendee1 { get; internal set; }
-        public string Attendee2 { get; internal set; }
 
         public override string ToString()
         {
             return string.Format("Meeting at {0} between: {1}, {2}", Date, Attendee1, Attendee2);
         }
-    }
-
-    public interface IMeeting
-    {
     }
 }
