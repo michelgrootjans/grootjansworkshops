@@ -4,7 +4,7 @@ namespace Domain
 {
     public class NumberManager
     {
-        public List<int> PrintFromTo(int from, int to)
+        public List<int> GetNumbers(int from, int to)
         {
             var results = new List<int>();
             for (var i = from; i <= to; i++)
@@ -14,7 +14,7 @@ namespace Domain
             return results;
         }
 
-        public List<int> PrintEvenNumbersFromTo(int from, int to)
+        public List<int> GetEvenNumbers(int from, int to)
         {
             var results = new List<int>();
             for (var i = from; i <= to; i++)
@@ -27,7 +27,7 @@ namespace Domain
             return results;
         }
 
-        public List<int> PrintEvenNumbersInReverseOrder(int from, int to)
+        public List<int> GetEvenNumbersInReverseOrder(int from, int to)
         {
             var results = new List<int>();
             for (var i = to; i >= from; i--)
