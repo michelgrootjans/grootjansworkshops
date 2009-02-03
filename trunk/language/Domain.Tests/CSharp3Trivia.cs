@@ -26,7 +26,6 @@ namespace Domain.Tests
         [Test]
         public void test_object_initializers()
         {
-            // Without constructor arguments
             var garfield = new Cat {Name = "Garfield"};
         }
 
