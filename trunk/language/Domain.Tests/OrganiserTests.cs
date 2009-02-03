@@ -15,10 +15,10 @@ namespace Domain.Tests
         }
 
         [Test]
-        public void setup_solo_meeting_for_michel()
+        public void setup_todo_for_michel()
         {
-            var meeting = organiser.SetupMeeting("Michel");
-            Console.WriteLine(meeting);
+            var todo = organiser.SetupMeeting("Michel");
+            Console.WriteLine(todo);
         }
 
         [Test]

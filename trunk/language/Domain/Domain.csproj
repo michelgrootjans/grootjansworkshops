@@ -44,6 +44,7 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TimeSpanExtensions.cs" />
     <Compile Include="Euro.cs" />
+    <Compile Include="ICalendarItem.cs" />
     <Compile Include="IntRange.cs" />
     <Compile Include="NumberManager.cs" />
     <Compile Include="Organiser.cs" />
