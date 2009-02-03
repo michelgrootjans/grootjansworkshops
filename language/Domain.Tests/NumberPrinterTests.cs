@@ -19,7 +19,7 @@ namespace Domain.Tests
         [Test]
         public void print_numbers_from_1_to_10()
         {
-            results = numberManager.PrintFromTo(1, 10);
+            results = numberManager.GetNumbers(1, 10);
 
             foreach (var i in results)
                 Console.WriteLine(i);
@@ -28,7 +28,7 @@ namespace Domain.Tests
         [Test]
         public void print_even_numbers_from_1_to_10()
         {
-            results = numberManager.PrintEvenNumbersFromTo(1, 10);
+            results = numberManager.GetEvenNumbers(1, 10);
 
             foreach (var i in results)
                 Console.WriteLine(i);
@@ -37,7 +37,7 @@ namespace Domain.Tests
         [Test]
         public void print_even_numbers_in_reverse_order()
         {
-            results = numberManager.PrintEvenNumbersInReverseOrder(1, 10);
+            results = numberManager.GetEvenNumbersInReverseOrder(1, 10);
 
             foreach (var i in results)
                 Console.WriteLine(i);
