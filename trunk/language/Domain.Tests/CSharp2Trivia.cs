@@ -32,7 +32,7 @@ namespace Domain.Tests
         }
 
         [Test]
-        public void I_would_like_to_readch_a_class_that_has_no_namespace()
+        public void I_would_like_to_reach_a_class_that_has_no_namespace()
         {
             var myClass = new MyClass();
             Console.WriteLine(myClass);
