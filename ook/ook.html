@@ -1,0 +1,76 @@
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="keywords" content="esoteric programming, Ook, Ook#, Ook!, Brainf*ck, .NET, Mono, mod_wiki, wiki, openwiki, ASP, IIS, XML, XHTML, RSS, dotnet, Laurens Pit, LaurensPit">
+<meta name="description" content="BlueSorcerer.Net">
+<meta name="ROBOTS" content="INDEX,FOLLOW">
+<meta name="MSSmartTagsPreventParsing" content="true">
+<title>BlueSorcerer.Net - Ook# .Net Compiler -  Esoteric Programming Languages</title>
+<link rel="stylesheet" type="text/css" href="ook_files/style.css">
+</head><body>
+<h2><u>Ook# .NET Compiler</u></h2>
+
+<h3>Overview</h3>
+
+Specially for orang-utans an Ook# .NET Compiler v1.0 
+has been developed. The syntax only contains one word, namely Ook,
+but pronounced in different tones and emotions it can have a different 
+effect. Quite some effort went into making sure the word "monkey" 
+isn't mentioned anywhere in the sources.
+<p>
+Ook# is not for the faint of heart, so if you haven't progressed much 
+beyond basic banana-fetching you might want to try out learning 
+<a href="http://bluesorcerer.net/esoteric/bf.html">Brainf*ck</a> first.
+</p><p>
+Any similarities with the Ook! programming language are purely 
+intended. For more information on Ook! see the original syntax 
+design at <a href="http://www.dangermouse.net/esoteric/ook.html">Ook!</a>.
+
+</p>
+<h3>Converting Ook! to Ook#</h3>
+
+<li><a href="http://bluesorcerer.net/esoteric/cat.ook">cat.ook</a> : reads in an Ook! file and prints it out in Ook# format 
+(yeah, yeah, it <i>looks</i> the same, but it's all in the intonation ... )</li>
+
+<h3>Language Specification</h3>
+An Ook# program uses a data structure that is an array of integer values, 
+initially all set to zero. It also has a pointer which initially points to the 
+beginning of the array. It has eight instructions, each represented by 
+apish expressions.
+
+<pre>&nbsp;&nbsp;&nbsp; Ook. Ook? &nbsp; Increment the pointer 
+&nbsp;&nbsp;&nbsp; Ook? Ook. &nbsp; Decrement the pointer 
+&nbsp;&nbsp;&nbsp; Ook. Ook. &nbsp; Increment the value at the pointer 
+&nbsp;&nbsp;&nbsp; Ook! Ook! &nbsp; Decrement the value at the pointer 
+&nbsp;&nbsp;&nbsp; Ook! Ook. &nbsp; Write the value at the pointer to standard output 
+&nbsp;&nbsp;&nbsp; Ook. Ook! &nbsp; Read a value from standard input and store it at the pointer 
+&nbsp;&nbsp;&nbsp; Ook! Ook? &nbsp; If the value at the pointer is zero, jump past the matching Ook? Ook! 
+&nbsp;&nbsp;&nbsp; Ook? Ook! &nbsp; Jump to the matching Ook! Ook? 
+</pre>
+
+
+<h3>Coming soon...</h3>
+
+Coming soon is the book titled "Ook# for dummies".
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr bgcolor="#ffffff"><td><img src="ook_files/1x1.gif" alt="" width="1" height="40"></td></tr>
+<tr bgcolor="#999999"><td><img src="ook_files/1x1.gif" alt="" width="1" height="3"></td></tr>
+<tr bgcolor="#ffffff"><td><img src="ook_files/1x1.gif" alt="" width="1" height="5"></td></tr>
+</tbody></table>
+© 2002 BlueSorcerer.Net
+<br>
+<a href="mailto:lawrence.pit@gmail.com?subject=Oook%21" class="mailto">mailto: Lawrence Pit</a>
+
+
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="ook_files/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-6961652-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+</body></html>
