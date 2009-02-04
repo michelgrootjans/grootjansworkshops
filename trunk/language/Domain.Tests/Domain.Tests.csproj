@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="CSharp2Trivia.cs" />
     <Compile Include="CSharp3Trivia.cs" />
+    <Compile Include="DelegateTests.cs" />
     <Compile Include="Extensions\BoolExtensions.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="ExtensionTests\IntExtensionTests.cs" />
