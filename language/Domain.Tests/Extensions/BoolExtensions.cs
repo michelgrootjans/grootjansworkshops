@@ -1,8 +1,3 @@
-/*
- * Created by: 
- * Created: zaterdag 31 januari 2009
- */
-
 using NUnit.Framework;
 
 namespace Domain.Tests.Extensions
