@@ -26,14 +26,14 @@ namespace Domain.Tests
         [Test]
         public void test_object_initializers()
         {
-            var garfield = new Cat {Name = "Garfield"};
+            Cat garfield = new Cat { Name = "Garfield" };
         }
 
         // - collection initializers
         [Test]
         public void test_collection_initializers()
         {
-            var animals = new List<Animal> {new Cat(), new Dog(), new Dragon()};
+            List<Animal> animals = new List<Animal> {new Cat(), new Dog(), new Dragon()};
         }
 
         // - anonymous types
@@ -71,7 +71,7 @@ namespace Domain.Tests
         [Test]
         public void lets_take_it_one_step_further()
         {
-            var cats = new List<Cat>
+            List<Cat> cats = new List<Cat>
                            {
                                new Cat {Name = "Garfield", Age = 8},
                                new Cat {Name = "Felix", Age = 50},
