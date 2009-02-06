@@ -1,46 +1,41 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Domain.Extensions;
 
 namespace Domain
 {
     public class NamePrinter
     {
+        private readonly Action<string> output;
+        private readonly Converter<string, string> toUpperCase;
+        private Func<string, bool> isGenius;
+
+        public NamePrinter(Action<string> output)
+        {
+            this.output = output;
+            toUpperCase = (input => input.ToUpper());
+            isGenius = (input => input.Contains("l"));
+        }
+
         public void Print(IEnumerable<string> names)
         {
-            foreach (var name in names)
-            {
-                Console.WriteLine(name);
-            }
+            names.ForEach(output);
         }
 
         public void PrintToUppercase(IEnumerable<string> names)
         {
-            foreach (var name in names)
-            {
-                Console.WriteLine(name.ToUpper());
-            }
+            names.ConvertAll(toUpperCase).ForEach(output);
         }
 
-        public void PrintContainingAnL(IEnumerable<string> names)
+        public void PrintGenius(IEnumerable<string> names)
         {
-            foreach (var name in names)
-            {
-                if (name.Contains("l"))
-                {
-                    Console.WriteLine(name);
-                }
-            }
+            names.Where(isGenius).ForEach(output);
         }
 
-        public void PrintToUppercaseContainingAnL(IEnumerable<string> names)
+        public void PrintGeniusToUpperCase(IEnumerable<string> names)
         {
-            foreach (var name in names)
-            {
-                if (name.Contains("l"))
-                {
-                    Console.WriteLine(name.ToUpper());
-                }
-            }
+            names.Where(isGenius).ConvertAll(toUpperCase).ForEach(output);
         }
     }
 }

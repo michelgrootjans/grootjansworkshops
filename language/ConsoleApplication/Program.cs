@@ -9,7 +9,7 @@ namespace ConsoleApplication
         private static void Main(string[] args)
         {
             var names = new List<string> {"Albert Einstein", "John Cleese", "George W. Bush"};
-            var namePrinter = new NamePrinter();
+            var namePrinter = new NamePrinter(Console.WriteLine);
             namePrinter.Print(names);
 
             Console.ReadLine();
