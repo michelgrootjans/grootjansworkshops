@@ -10,7 +10,7 @@ namespace WebApplication
         protected void Page_Load(object sender, EventArgs e)
         {
             var names = new List<string> { "Albert Einstein", "John Cleese", "George W. Bush" };
-            var namePrinter = new NamePrinter();
+            var namePrinter = new NamePrinter(n => Response.Write(n + "<br/>"));
             namePrinter.Print(names);
         }
     }
