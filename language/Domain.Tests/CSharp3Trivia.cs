@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using NUnit.Framework;
 
@@ -14,7 +15,7 @@ namespace Domain.Tests
         public void just_checking_what_works_on_implicit_local_variables()
         {
             var a = "Michel";
-            //Console.WriteLine(a.ToUpper());
+            Console.WriteLine(a.ToUpper());
             //a = 5;
 
             //var b;
@@ -43,14 +44,14 @@ namespace Domain.Tests
             var michel = new {FirstName = "Michel", LastName = "Grootjans"};
             var danny = new {FirstName = "Danny", LastName = "Gladines"};
 
-            //Console.WriteLine("{0} {1}", michel.FirstName, michel.LastName);
-            //Console.WriteLine("{0} {1}", danny.FirstName, danny.LastName);
+            Console.WriteLine("{0} {1}", michel.FirstName, michel.LastName);
+            Console.WriteLine("{0} {1}", danny.FirstName, danny.LastName);
 
-            //var employees = new[] {michel, danny};
-            //foreach (var employee in employees)
-            //{
-            //    Console.WriteLine("{0} {1}", employee.FirstName, employee.LastName);
-            //}
+            var employees = new[] { michel, danny };
+            foreach (var employee in employees)
+            {
+                Console.WriteLine("{0} {1}", employee.FirstName, employee.LastName);
+            }
         }
 
         [Test]
@@ -62,10 +63,10 @@ namespace Domain.Tests
                                     new {FirstName = "Danny", LastName = "Gladines"}
                                 };
 
-            //foreach (var employee in employees)
-            //{
-            //    Console.WriteLine("{0} {1}", employee.FirstName, employee.LastName);
-            //}
+            foreach (var employee in employees)
+            {
+                Console.WriteLine("{0} {1}", employee.FirstName, employee.LastName);
+            }
         }
 
         [Test]
@@ -79,15 +80,15 @@ namespace Domain.Tests
                                new Cat {Name = "Lucifer", Age = 4}
                            };
 
-            //var converted = cats.ConvertAll(a => new {a.Name, IsAdult = (a.Age >= 5)});
-            //foreach (var animal in converted)
-            //{
-            //    Console.WriteLine("Name: {0}, Adult: {1}", animal.Name, animal.IsAdult);
-            //}
+            var converted = cats.ConvertAll(a => new { a.Name, IsAdult = (a.Age >= 5) });
+            foreach (var animal in converted)
+            {
+                Console.WriteLine("Name: {0}, Adult: {1}", animal.Name, animal.IsAdult);
+            }
         }
 
         //what doesn't work:
-        // - var as a return type
+        // - var as a return type or parameter for a method
         // - var as a field or property
     }
 }
