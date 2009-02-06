@@ -1,43 +1,23 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Domain
 {
     public class NumberManager
     {
-        public List<int> GetNumbers(int from, int to)
+        public IEnumerable<int> GetNumbers(int from, int to)
         {
-            var results = new List<int>();
-            for (var i = from; i <= to; i++)
-            {
-                results.Add(i);
-            }
-            return results;
+            return Enumerable.Range(from, to);
         }
 
-        public List<int> GetEvenNumbers(int from, int to)
+        public IEnumerable<int> GetEvenNumbers(int from, int to)
         {
-            var results = new List<int>();
-            for (var i = from; i <= to; i++)
-            {
-                if (i%2 == 0)
-                {
-                    results.Add(i);
-                }
-            }
-            return results;
+            return GetNumbers(from, to).Where(n => n%2 == 0);
         }
 
-        public List<int> GetEvenNumbersInReverseOrder(int from, int to)
+        public IEnumerable<int> GetEvenNumbersInReverseOrder(int from, int to)
         {
-            var results = new List<int>();
-            for (var i = to; i >= from; i--)
-            {
-                if (i%2 == 0)
-                {
-                    results.Add(i);
-                }
-            }
-            return results;
+            return GetEvenNumbers(from, to).Reverse();
         }
     }
 }
