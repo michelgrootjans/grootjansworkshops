@@ -19,7 +19,7 @@ namespace Domain
             Name = name;
         }
 
-        public TimeSpan Age
+        public TimeSpan AgeTheOldWay
         {
             get
             {
@@ -31,6 +31,11 @@ namespace Domain
 
                 return age;
             }
+        }
+
+        public TimeSpan Age
+        {
+            get { return (DateOfDeath ?? DateTime.Now) - DateOfBirth; }
         }
     }
 }

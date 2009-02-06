@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 
 public class MyClass
@@ -28,20 +30,32 @@ namespace Domain.Tests
         public void I_would_like_to_reach_internals()
         {
             var michel = new Person("Michel", new DateTime(1988, 12, 9));
-            //Console.WriteLine(michel.DateOfBirth);
+            Console.WriteLine(michel.DateOfBirth);
+            // DateOfBirth is internal, but is available to this assembly
+            // because of the property [assembly: InternalsVisibleTo("Domain.Tests")]
         }
 
         [Test]
         public void I_would_like_to_reach_a_class_that_has_no_namespace()
         {
-            var myClass = new MyClass();
-            Console.WriteLine(myClass);
+            var myClass1 = new MyClass();
+            var myClass2 = new global::MyClass();
+            var myClass3 = new global::Domain.Tests.MyClass();
+            Console.WriteLine(myClass1);
+            Console.WriteLine(myClass2);
+            Console.WriteLine(myClass3);
         }
 
         [Test]
         public void covariance_and_contravariance()
         {
             //List<Person> people = new List<Employee>();
+
+            List<Person> list1 = new List<Employee>().ConvertAll(e => e as Person);
+
+            //alternatief met LINQ
+            IEnumerable<Person> list2 = new List<Employee>().Cast<Person>();
+            IList<Person> list3 = new List<Employee>().Cast<Person>().ToList();
         }
     }
 }
