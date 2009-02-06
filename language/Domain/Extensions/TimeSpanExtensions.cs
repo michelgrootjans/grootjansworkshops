@@ -18,5 +18,15 @@ namespace Domain.Extensions
         {
             return DateTime.Now + time;
         }
+
+        public static DateTime Today(this TimeSpan time)
+        {
+            return DateTime.Now.Date + time;
+        }
+
+        public static DateTime Tomorrow(this TimeSpan time)
+        {
+            return time.Today().AddDays(1);
+        }
     }
 }
