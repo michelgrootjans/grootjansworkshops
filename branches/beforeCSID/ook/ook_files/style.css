@@ -1,0 +1,38 @@
+body        {margin-right:40px; margin-left:40px; font-size:10pt; font-family:courier new,verdana,arial,helvetica,Sans-Serif; color:#000000; background-color:#ffffff;}
+p, .n       {font-size:10pt; font-family:courier new,verdana,arial,helvetica,Sans-Serif; color:#000000; background-color:#ffffff;}
+h1          {font-size:22pt; color:#999999; background-color:#ffffff;}
+h2          {font-size:16pt; color:#000080; background-color:#ffffff;}
+h3          {font-family:Arial,Helvetica; font-size:12pt; font-weight:bold; color:#000080; background-color:#ffffff;}
+h4          {font-family:Arial,Helvetica; font-size:10pt; font-weight:bold; color:#000000; background-color:#ffffff;}
+h5          {font-family:Verdana,Arial,Helvetica; font-size:10pt; font-weight:bold; color:#000000;  background-color:#ffffff; margin-bottom: 0;}
+form        {margin-bottom:-5px;}
+textarea    {color:#333333;  background-color:#ffffff; width:100%;}
+table       {font-size:10pt;}
+dl,ul,ol    {margin-top: 7pt; margin-bottom: 7pt;}
+u.diff      {color:#0000ff; background-color:#ffffff;}
+strike.diff {color:#ff0000; background-color:#ffffff;}
+tt          {font-family:Lucida Console,Courier New,Courier,monospace; color:#666666; background-color:#ffffff;} /* margin-bottom: 0;}*/
+pre.code {
+    margin-top: 8pt;
+    margin-bottom: 8pt;
+    background-color: #ffffee;
+    white-space:pre;
+    border-style:solid;
+    border-width:1px;
+    border-color:#999999;
+    color:#333333;
+    padding:10px;
+    width:100%;
+}
+#linkroll {display:none;}
+
+a:link      {color:#000080; background-color: #ffffff;}
+a:visited   {color:#000080; background-color: #ffffff;}
+a:active    {color:#000080; background-color: #ffffff;}
+a:hover     {background:#ffffff;}
+
+.mailto            {font-family:Verdana,Aria,Helvetica; font-size:8pt; color:#888888; background-color: #ffffff;}
+a.mailto           {font-family:Verdana,Aria,Helvetica; font-size:8pt; color:#888888; background-color: #ffffff;}
+a.mailto:Visited   {font-family:Verdana,Aria,Helvetica; font-size:8pt; color:#888888; background-color: #ffffff;}
+a.mailto:Active    {font-family:Verdana,Aria,Helvetica; font-size:8pt; color:#888888; background-color: #ffffff;}
+a.mailto:Hover     {font-family:Verdana,Aria,Helvetica; font-size:8pt; color:#000000; background-color: #ffffff;}
