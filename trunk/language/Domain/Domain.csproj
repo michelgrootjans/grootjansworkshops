@@ -48,11 +48,13 @@
     <Compile Include="Euro.cs" />
     <Compile Include="ICalendarItem.cs" />
     <Compile Include="IntRange.cs" />
+    <Compile Include="Meeting.cs" />
     <Compile Include="NumberManager.cs" />
     <Compile Include="Organiser.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NamePrinter.cs" />
+    <Compile Include="ToDo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
