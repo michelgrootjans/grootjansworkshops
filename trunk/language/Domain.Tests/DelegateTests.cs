@@ -9,7 +9,9 @@ namespace Domain.Tests
         public void Lets_have_a_simple_test()
         {
             var script = new BuildScript();
-            script.Run("compile", "test");
+            script.Run("get");
+            script.Run("build", "test");
+            //script.Run("compile", "deployToProduction"); //will fail
         }
     }
 }
