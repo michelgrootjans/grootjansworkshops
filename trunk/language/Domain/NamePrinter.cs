@@ -9,7 +9,7 @@ namespace Domain
     {
         private readonly Action<string> output;
         private readonly Converter<string, string> toUpperCase;
-        private Func<string, bool> isGenius;
+        private readonly Func<string, bool> isGenius;
 
         public NamePrinter(Action<string> output)
         {
