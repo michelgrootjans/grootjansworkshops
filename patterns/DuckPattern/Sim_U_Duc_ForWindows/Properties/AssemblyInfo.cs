@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Sim_U_Duck")]
+[assembly: AssemblyTitle("Sim_U_Duc_ForWindows")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("4C")]
-[assembly: AssemblyProduct("Sim_U_Duck")]
-[assembly: AssemblyCopyright("Copyright © 4C 2009")]
+[assembly: AssemblyCompany("Home")]
+[assembly: AssemblyProduct("Sim_U_Duc_ForWindows")]
+[assembly: AssemblyCopyright("Copyright © Home 2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("0e679e96-8726-439d-9654-27176a9854b3")]
+[assembly: Guid("adf29c59-2b38-4749-a566-7512f183be31")]
 
 // Version information for an assembly consists of the following four values:
 //

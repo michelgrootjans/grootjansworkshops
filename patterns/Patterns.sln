@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sim_U_Duck", "Sim_U_Duck\Sim_U_Duck.csproj", "{9C30F46B-27FF-4B4D-9EE0-05952D398C76}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sim_U_Duck", "DuckPattern\Sim_U_Duck\Sim_U_Duck.csproj", "{9C30F46B-27FF-4B4D-9EE0-05952D398C76}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
