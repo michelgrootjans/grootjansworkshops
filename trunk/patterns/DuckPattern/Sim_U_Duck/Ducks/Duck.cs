@@ -8,5 +8,7 @@ namespace Sim_U_Duck.Ducks
         {
             Console.WriteLine("Quack!");
         }
+
+        public abstract void Display();
     }
 }
