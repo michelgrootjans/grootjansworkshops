@@ -18,7 +18,7 @@ namespace Sim_U_Duc_ForWindows
             Test(new RubberDuck());
         }
 
-        private static void Test(Duck duck)
+        private void Test(Duck duck)
         {
             duck.Quack();
         }
