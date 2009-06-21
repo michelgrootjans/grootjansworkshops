@@ -3,8 +3,8 @@
 <%@ Import Namespace="WarOfWorldcraft.Utilities.Extensions"%>
 <%@ Import Namespace="WarOfWorldcraft.Domain.Services"%>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	All characters available in this game
+<asp:Content ID="Content1" ContentPlaceHolderID="titleContent" runat="server">
+	All characters in this game
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -17,15 +17,23 @@
         <thead>
         <tr>
             <th>Name</th>
+            <th>HP</th>
+            <th>XP</th>
+            <th>Gold</th>
         </tr>       
         </thead>
         <tbody>
 <% foreach (var character in Model) { %>
             <tr>
                 <td><%= Html.ActionLink(character.Name, "detail", character.Id.ToIdRoute())%></td>
+                <td><%= character.StatsMaxHitPoints%></td>
+                <td><%= character.Experience%></td>
+                <td><%= character.Gold%></td>
             </tr>        
 <% } %>
         </tbody>
     </table>
 <% } %>
+
+<%= Html.ActionLink("Create new...", "new") %>
 </asp:Content>

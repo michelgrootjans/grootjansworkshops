@@ -1,0 +1,17 @@
+Preparing an application to be profiled
+==================================
+Add a reference to HibernatingRhinos.NHibernate.Profiler.Appender.dll assembly (located in the downloadable zip).
+In the application startup (Application_Start in web applications, Program.Main in windows / console applications or the App constructor for WPF applications), make the following call:
+HibernatingRhinos.NHibernate.Profiler.Appender.NHibernateProfiler.Initialize();
+
+
+Profiling the application
+=====================
+Open the HibernatingRhinos.NHibernate.Profiler.Client.exe
+Start using the application.
+You should see the results immediately in the UI.
+
+Notes
+=====
+This will work only on the current machines
+For any issues that you run into, please inform me at ayende@ayende.com, and use the subject: NH Prof Beta Test Report

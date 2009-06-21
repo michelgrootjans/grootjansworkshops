@@ -3,6 +3,7 @@ using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using HibernatingRhinos.NHibernate.Profiler.Appender;
 using MvcContrib.ControllerFactories;
 using MvcContrib.Services;
 using MvcContrib.Spring;
@@ -48,6 +49,7 @@ namespace WarOfWorldcraft.Web
         private void InitNHibernate()
         {
             Utilities.NHibernate.Context.Current = new WebContext();
+            NHibernateProfiler.Initialize();
         }
     }
 

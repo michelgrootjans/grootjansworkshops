@@ -3,8 +3,33 @@
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                 xsi:schemaLocation="http://www.springframework.net http://www.springframework.net/xsd/spring-objects.xsd">
 
-  <object id="HomeController" type="WarOfWorldcraft.Web.Controllers.HomeController, WarOfWorldcraft.Web" />
-  <object id="AccountController" type="WarOfWorldcraft.Web.Controllers.AccountController, WarOfWorldcraft.Web" autowire="autodetect" />
-  <object id="CharacterController" type="WarOfWorldcraft.Web.Controllers.CharacterController, WarOfWorldcraft.Web" autowire="autodetect" />
+  <object id="HomeController" type="WarOfWorldcraft.Web.Controllers.HomeController, WarOfWorldcraft.Web"
+          singleton="false" />
+  <object id="AccountController" type="WarOfWorldcraft.Web.Controllers.AccountController, WarOfWorldcraft.Web"
+          autowire="autodetect"
+          singleton="false" />
+  <object id="CharacterController" type="WarOfWorldcraft.Web.Controllers.CharacterController, WarOfWorldcraft.Web"
+          autowire="autodetect"
+          singleton="false" />
+  
+  <object id="AuthenticationService" type="WarOfWorldcraft.Web.Controllers.FormsAuthenticationService, WarOfWorldcraft.Web" />
+  <object id="MembershipService" type="WarOfWorldcraft.Web.Controllers.HardcodedMembershipService, WarOfWorldcraft.Web" />
+
+  <!-- Apply transactions to every service call -->
+  <object id="transactionAdvice" type="WarOfWorldcraft.Utilities.NHibernate.NHibernateTransactionInterceptor, WarOfWorldcraft.Utilities" />
+  
+  <object type="Spring.Aop.Framework.AutoProxy.ObjectNameAutoProxyCreator, Spring.Aop">
+    <property name="ObjectNames">
+      <list>
+        <value>*Controller</value>
+      </list>
+    </property>
+    <property name="InterceptorNames">
+      <list>
+        <value>transactionAdvice</value>
+      </list>
+    </property>
+  </object>
+
 </objects>
 

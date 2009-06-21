@@ -1,6 +1,6 @@
 ﻿<%@Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
 
-<asp:Content ID="changePasswordTitle" ContentPlaceHolderID="TitleContent" runat="server">
+<asp:Content ID="changePasswordTitle" ContentPlaceHolderID="titleContent" runat="server">
     Change Password
 </asp:Content>
 
