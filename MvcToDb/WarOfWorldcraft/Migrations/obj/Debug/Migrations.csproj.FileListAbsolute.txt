@@ -1,0 +1,6 @@
+I:\projects\workshops\MvcToDb\WarOfWorldcraft\Migrations\bin\Debug\Migrations.dll
+I:\projects\workshops\MvcToDb\WarOfWorldcraft\Migrations\bin\Debug\Migrations.pdb
+I:\projects\workshops\MvcToDb\WarOfWorldcraft\Migrations\bin\Debug\Migrator.Framework.dll
+I:\projects\workshops\MvcToDb\WarOfWorldcraft\Migrations\obj\Debug\ResolveAssemblyReference.cache
+I:\projects\workshops\MvcToDb\WarOfWorldcraft\Migrations\obj\Debug\Migrations.dll
+I:\projects\workshops\MvcToDb\WarOfWorldcraft\Migrations\obj\Debug\Migrations.pdb

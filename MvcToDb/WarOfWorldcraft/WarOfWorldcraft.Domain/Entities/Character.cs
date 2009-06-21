@@ -1,20 +1,20 @@
 namespace WarOfWorldcraft.Domain.Entities
 {
-    internal class Character
+    public class Character
     {
-        public Character(long id, string name)
+        protected Character() {} //Necessary for NHibernate
+
+        public Character(string name)
         {
-            Id = id;
             Name = name;
+            Stats = new Statistics();
         }
 
-        public long Id { get; private set; }
-        public string Name { get; private set; }
-        internal string Password { get; private set; }
+        public virtual long Id { get; protected set; }
+        public virtual string Name { get; protected set; }
+        public virtual int Gold { get; protected set; }
+        public virtual int Experience { get; protected set; }
+        public virtual Statistics Stats { get; protected set; }
 
-        public void SetPassword(string password)
-        {
-            Password = password;
-        }
     }
 }

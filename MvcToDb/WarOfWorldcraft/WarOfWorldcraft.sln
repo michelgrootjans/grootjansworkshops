@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarOfWorldcraft.Domain", "W
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarOfWorldcraft.Utilities", "WarOfWorldcraft.Utilities\WarOfWorldcraft.Utilities.csproj", "{908334D0-D9CF-4C07-BB58-91A427D0AE51}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Migrations", "Migrations\Migrations.csproj", "{80A538CA-6B74-43F7-A74C-8588041AF188}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{908334D0-D9CF-4C07-BB58-91A427D0AE51}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{908334D0-D9CF-4C07-BB58-91A427D0AE51}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{908334D0-D9CF-4C07-BB58-91A427D0AE51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80A538CA-6B74-43F7-A74C-8588041AF188}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80A538CA-6B74-43F7-A74C-8588041AF188}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80A538CA-6B74-43F7-A74C-8588041AF188}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80A538CA-6B74-43F7-A74C-8588041AF188}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
