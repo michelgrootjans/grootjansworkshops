@@ -14,8 +14,14 @@ namespace WarOfWorldcraft.Web.Controllers
 
         public ActionResult Index()
         {
-            var ennemies = batlleService.GetAllEnemies();
-            return View(ennemies);
+            var enemies = batlleService.GetAllMonsters();
+            return View(enemies);
+        }
+
+        public ActionResult Challenge(string id)
+        {
+            var challenge = batlleService.Challenge(id);
+            return View(challenge);
         }
     }
 }

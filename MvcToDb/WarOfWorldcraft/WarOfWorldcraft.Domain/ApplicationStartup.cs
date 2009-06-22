@@ -14,8 +14,8 @@ namespace WarOfWorldcraft.Domain
         private static void InitializeMappers()
         {
             Mapper.CreateMap<long, string>().ConvertUsing(l => l.ToString());
-            Mapper.CreateMap<Character, ViewCharacterInfoDto>();
-            Mapper.CreateMap<Character, ViewCharacterDto>();
+            Mapper.CreateMap<Player, ViewPlayerInfoDto>();
+            Mapper.CreateMap<Player, ViewPlayerDto>();
 
             Mapper.AssertConfigurationIsValid();
         }

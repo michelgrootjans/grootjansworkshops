@@ -4,27 +4,27 @@ using WarOfWorldcraft.Web.Helpers;
 
 namespace WarOfWorldcraft.Web.Controllers
 {
-    public class CharacterController : Controller
+    public class PlayerController : Controller
     {
-        private readonly ICharacterService characterService;
+        private readonly IPlayerService playerService;
 
-        public CharacterController(ICharacterService characterService)
+        public PlayerController(IPlayerService playerService)
         {
-            this.characterService = characterService;
+            this.playerService = playerService;
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Index()
         {
-            var characters = characterService.GetAllCharacters();
-            return View(characters);
+            var players = playerService.GetAllCharacters();
+            return View(players);
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Detail(string id)
         {
-            var character = characterService.GetCharacter(id);
-            return View(character);
+            var player = playerService.GetPlayer(id);
+            return View(player);
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
@@ -34,9 +34,9 @@ namespace WarOfWorldcraft.Web.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Create(CreateCharacterDto character)
+        public ActionResult Create(CreatePlayerDto player)
         {
-            var id = characterService.CreateCharacter(character);
+            var id = playerService.CreateCharacter(player);
             return RedirectToAction("Detail", id.ToIdRoute());
         }
     }

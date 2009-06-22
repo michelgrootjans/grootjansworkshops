@@ -15,6 +15,7 @@ namespace Migrations
             columns = new List<Column>
                           {
                               new Column("Id", DbType.Int64, ColumnProperty.PrimaryKey),
+                              new Column("Type", DbType.String, ColumnProperty.NotNull),
                               new Column("Name", DbType.String, ColumnProperty.NotNull),
                               new Column("Gold", DbType.Int32, ColumnProperty.NotNull),
                               new Column("Experience", DbType.Int32, ColumnProperty.NotNull),

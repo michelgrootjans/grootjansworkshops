@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{C9A9C976-786D-4650-8EC3-45EEF37AF2D0}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -55,14 +55,18 @@
   <ItemGroup>
     <Compile Include="ApplicationStartup.cs" />
     <Compile Include="Entities\Character.cs" />
+    <Compile Include="Entities\Monster.cs" />
+    <Compile Include="Entities\Player.cs" />
     <Compile Include="Entities\Roll.cs" />
     <Compile Include="Entities\Statistics.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\EnnemyDto.cs" />
+    <Compile Include="Services\MonsterDto.cs" />
     <Compile Include="Services\IBattleService.cs" />
-    <Compile Include="Services\ICharacterService.cs" />
-    <Compile Include="Services\CharacterDto.cs" />
+    <Compile Include="Services\IPlayerService.cs" />
+    <Compile Include="Services\PlayerDto.cs" />
+    <Compile Include="Services\IStatsGenerator.cs" />
     <Compile Include="Services\ServiceBase.cs" />
+    <Compile Include="Services\ChallengeDto.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="objects.xml" />
