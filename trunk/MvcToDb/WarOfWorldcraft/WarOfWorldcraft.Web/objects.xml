@@ -8,7 +8,7 @@
   <object id="AccountController" type="WarOfWorldcraft.Web.Controllers.AccountController, WarOfWorldcraft.Web"
           autowire="autodetect"
           singleton="false" />
-  <object id="CharacterController" type="WarOfWorldcraft.Web.Controllers.CharacterController, WarOfWorldcraft.Web"
+  <object id="PlayerController" type="WarOfWorldcraft.Web.Controllers.PlayerController, WarOfWorldcraft.Web"
           autowire="autodetect"
           singleton="false" />
   <object id="BattleController" type="WarOfWorldcraft.Web.Controllers.BattleController, WarOfWorldcraft.Web"

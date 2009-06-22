@@ -1,6 +1,6 @@
 namespace WarOfWorldcraft.Domain.Services
 {
-    public class ViewCharacterInfoDto
+    public class ViewPlayerInfoDto
     {
         public string Id { get; set; }
         public string Name { get; set; }
@@ -9,14 +9,14 @@ namespace WarOfWorldcraft.Domain.Services
         public string Gold { get; set; }
     }
 
-    public class ViewCharacterDto : ViewCharacterInfoDto
+    public class ViewPlayerDto : ViewPlayerInfoDto
     {
         public string StatsHitPoints { get; set; }
         public string StatsAttack { get; set; }
         public string StatsDefence { get; set; }
     }
 
-    public class CreateCharacterDto 
+    public class CreatePlayerDto 
     {
         public string Name { get; set; }
     }

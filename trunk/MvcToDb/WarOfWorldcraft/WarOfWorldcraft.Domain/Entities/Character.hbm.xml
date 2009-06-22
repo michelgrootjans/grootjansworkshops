@@ -10,9 +10,9 @@
       <generator class="hilo"/>
     </id>
 
+    <discriminator column="type" />
+
     <property name="Name" />
-    <property name="Experience" />
-    <property name="Gold" />
     
     <component class="Statistics" name="Stats">
       <property name="HitPoints" />
@@ -20,6 +20,12 @@
       <property name="Attack" />
       <property name="Defence" />
     </component>
+
+    <subclass name="Player" discriminator-value="player">
+      <property name="Experience" />
+      <property name="Gold" />
+    </subclass>
+    
   </class>
 
 </hibernate-mapping>

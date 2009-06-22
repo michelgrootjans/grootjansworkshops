@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="ViewPage<IEnumerable<ViewEnemyInfoDto>>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="ViewPage<IEnumerable<ViewMonsterInfoDto>>" %>
 <%@ Import Namespace="MvcContrib.UI.Grid"%>
 <%@ Import Namespace="WarOfWorldcraft.Web.Helpers"%>
 <%@ Import Namespace="WarOfWorldcraft.Utilities.Extensions"%>
@@ -9,32 +9,13 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>All available enemies</h2>
+    <h2>Battle arena</h2>
 
-<% if (Model.HasNoItems()) { %>
-    This game doesn't have any enemies at the moment.
-<% } else { %>
-    <table>
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>HP</th>
-        </tr>       
-        </thead>
-        <tbody>
-<% foreach (var ennemy in Model) { %>
-            <tr>
-                <td><%= Html.ActionLink(ennemy.Name, "detail", ennemy.Id.ToIdRoute())%></td>
-                <td><%= ennemy.StatsMaxHitPoints%></td>
-            </tr>        
-<% } %>
-        </tbody>
-    </table>
-<% } %>
-
+<h3>Choose an enemy to challenge:</h3>
 <%=
     Html.Grid(Model).Columns(column => {
-            column.For(x => Html.ActionLink(x.Name, "detail", x.Id.ToIdRoute())).Named("Name").DoNotEncode();
+            column.For(x => Html.ActionLink(x.Name, "challenge", x.Id.ToIdRoute()))
+                  .Named("Name").DoNotEncode();
      		column.For(x => x.StatsMaxHitPoints).Named("HP");
      	})
      	.Empty("There are no ennemies.")

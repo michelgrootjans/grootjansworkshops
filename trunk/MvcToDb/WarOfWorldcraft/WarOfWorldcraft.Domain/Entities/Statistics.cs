@@ -1,20 +1,17 @@
-using System;
+using WarOfWorldcraft.Domain.Services;
 
 namespace WarOfWorldcraft.Domain.Entities
 {
     public class Statistics
     {
-        public int HitPoints { get; protected set; }
-        public int MaxHitPoints { get; protected set; }
-        public int Attack { get; protected set; }
-        public int Defence { get; protected set; }
+        public int HitPoints { get; protected internal set; }
+        public int MaxHitPoints { get; protected internal set; }
+        public int Attack { get; protected internal set; }
+        public int Defence { get; protected internal set; }
 
-        public void Randomize()
+        public void Randomize(IStatsGenerator generator)
         {
-            MaxHitPoints = 10 + Roll.SixSidedDice().Twice();
-            HitPoints = MaxHitPoints;
-            Attack = Roll.SixSidedDice().Twice();
-            Defence = Roll.SixSidedDice().Twice();
+            generator.GenerateStatsFor(this);
         }
     }
 
