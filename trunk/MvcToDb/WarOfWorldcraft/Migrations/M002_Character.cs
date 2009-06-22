@@ -4,13 +4,13 @@ using Migrator.Framework;
 
 namespace Migrations
 {
-    [Migration(001)]
-    public class M001_Character : Migration
+    [Migration(002)]
+    public class M002_Character : Migration
     {
         private readonly List<Column> columns;
         private const string TABLE_NAME = "Character";
 
-        public M001_Character()
+        public M002_Character()
         {
             columns = new List<Column>
                           {

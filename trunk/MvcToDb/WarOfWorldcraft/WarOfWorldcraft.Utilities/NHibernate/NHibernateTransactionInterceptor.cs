@@ -9,18 +9,27 @@ namespace WarOfWorldcraft.Utilities.NHibernate
 
         public NHibernateTransactionInterceptor()
         {
-            methodsToIgnore = new List<string>{"Dispose", "Scripts"};
+            methodsToIgnore = new List<string> {"Dispose", "Scripts"};
         }
 
         public object Invoke(IMethodInvocation invocation)
         {
-            if (methodsToIgnore.Contains(invocation.Method.Name)) 
+            if (methodsToIgnore.Contains(invocation.Method.Name))
                 return invocation.Proceed();
 
-            using (var session = NHibernateHelper.GetCurrentSession())
-            using (session.BeginTransaction())
+            try
             {
-                return invocation.Proceed();
+                var session = NHibernateHelper.GetCurrentSession();
+                using (var transaction = session.BeginTransaction())
+                {
+                    var result = invocation.Proceed();
+                    transaction.Commit();
+                    return result;
+                }
+            }
+            finally
+            {
+                NHibernateHelper.CloseSession();
             }
         }
     }
