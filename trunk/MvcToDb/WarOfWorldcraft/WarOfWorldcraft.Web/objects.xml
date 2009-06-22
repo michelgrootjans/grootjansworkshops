@@ -11,6 +11,9 @@
   <object id="CharacterController" type="WarOfWorldcraft.Web.Controllers.CharacterController, WarOfWorldcraft.Web"
           autowire="autodetect"
           singleton="false" />
+  <object id="BattleController" type="WarOfWorldcraft.Web.Controllers.BattleController, WarOfWorldcraft.Web"
+          autowire="autodetect"
+          singleton="false" />
   
   <object id="AuthenticationService" type="WarOfWorldcraft.Web.Controllers.FormsAuthenticationService, WarOfWorldcraft.Web" />
   <object id="MembershipService" type="WarOfWorldcraft.Web.Controllers.HardcodedMembershipService, WarOfWorldcraft.Web" />
