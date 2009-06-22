@@ -1,3 +1,5 @@
+using System;
+
 namespace WarOfWorldcraft.Domain.Entities
 {
     public class Character
@@ -16,5 +18,9 @@ namespace WarOfWorldcraft.Domain.Entities
         public virtual int Experience { get; protected set; }
         public virtual Statistics Stats { get; protected set; }
 
+        protected internal virtual void RandomizeStats()
+        {
+            Stats.Randomize();
+        }
     }
 }

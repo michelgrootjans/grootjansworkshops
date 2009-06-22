@@ -6,8 +6,7 @@ namespace WarOfWorldcraft.Utilities.NHibernate
     public sealed class NHibernateHelper
     {
         private const string CurrentSessionKey = "nhibernate.current_session";
-        public static readonly ISessionFactory SessionFactory;
-        private static IInterceptor sessionInterceptor;
+        private static readonly ISessionFactory SessionFactory;
 
         static NHibernateHelper()
         {
@@ -45,14 +44,9 @@ namespace WarOfWorldcraft.Utilities.NHibernate
                 SessionFactory.Close();
         }
 
-        public static void RegisterInterceptor(IInterceptor interceptor)
+        private static ISession GetNewSession()
         {
-            sessionInterceptor = interceptor;
-        }
-
-        public static ISession GetNewSession()
-        {
-            return SessionFactory.OpenSession(sessionInterceptor ?? new EmptyInterceptor());
+            return SessionFactory.OpenSession();
         }
     }
 }

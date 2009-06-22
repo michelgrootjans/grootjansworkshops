@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -56,7 +55,6 @@ namespace WarOfWorldcraft.Web.Controllers
 
             return ModelState.IsValid;
         }
-
     }
 
     public interface IMembershipService
