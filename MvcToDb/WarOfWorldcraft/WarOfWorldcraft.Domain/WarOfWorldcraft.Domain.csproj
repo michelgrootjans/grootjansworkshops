@@ -58,6 +58,8 @@
     <Compile Include="Entities\Roll.cs" />
     <Compile Include="Entities\Statistics.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\EnnemyDto.cs" />
+    <Compile Include="Services\IBattleService.cs" />
     <Compile Include="Services\ICharacterService.cs" />
     <Compile Include="Services\CharacterDto.cs" />
     <Compile Include="Services\ServiceBase.cs" />

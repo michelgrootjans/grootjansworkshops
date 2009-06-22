@@ -77,6 +77,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CharacterController.cs" />
+    <Compile Include="Controllers\BattleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -99,6 +100,7 @@
     <Content Include="Scripts\jquery-ui-1.7.2.custom.min.js" />
     <Content Include="Scripts\jquery.tablesorter.min.js" />
     <Content Include="Scripts\listify.js" />
+    <Content Include="Views\Battle\Index.aspx" />
     <Content Include="Views\Character\CharacterDetails.ascx" />
     <Content Include="Views\Character\Detail.aspx" />
     <Content Include="Views\Character\Index.aspx" />

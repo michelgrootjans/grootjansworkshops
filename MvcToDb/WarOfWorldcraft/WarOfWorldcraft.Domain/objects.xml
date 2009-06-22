@@ -4,5 +4,6 @@
                 xsi:schemaLocation="http://www.springframework.net http://www.springframework.net/xsd/spring-objects.xsd">
 
   <object id="CharacterService" type="WarOfWorldcraft.Domain.Services.CharacterService, WarOfWorldcraft.Domain" autowire="autodetect" />
+  <object id="BattleService" type="WarOfWorldcraft.Domain.Services.BattleService, WarOfWorldcraft.Domain" autowire="autodetect" />
 </objects>
 
