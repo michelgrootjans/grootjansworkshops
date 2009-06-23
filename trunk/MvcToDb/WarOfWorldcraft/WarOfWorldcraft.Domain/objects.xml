@@ -3,7 +3,9 @@
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                 xsi:schemaLocation="http://www.springframework.net http://www.springframework.net/xsd/spring-objects.xsd">
 
-  <object id="PlayerService" type="WarOfWorldcraft.Domain.Services.PlayerService, WarOfWorldcraft.Domain" autowire="autodetect" />
-  <object id="BattleService" type="WarOfWorldcraft.Domain.Services.BattleService, WarOfWorldcraft.Domain" autowire="autodetect" />
+  <object id="PlayerService" 
+          type="WarOfWorldcraft.Domain.Services.PlayerService, WarOfWorldcraft.Domain" autowire="autodetect" />
+  <object id="BattleService" 
+          type="WarOfWorldcraft.Domain.Services.BattleService, WarOfWorldcraft.Domain" autowire="autodetect" />
 </objects>
 

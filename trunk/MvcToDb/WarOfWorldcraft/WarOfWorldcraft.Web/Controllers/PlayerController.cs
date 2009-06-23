@@ -1,6 +1,6 @@
 using System.Web.Mvc;
+using MvcContrib;
 using WarOfWorldcraft.Domain.Services;
-using WarOfWorldcraft.Web.Helpers;
 
 namespace WarOfWorldcraft.Web.Controllers
 {
@@ -16,7 +16,7 @@ namespace WarOfWorldcraft.Web.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Index()
         {
-            var players = playerService.GetAllCharacters();
+            var players = playerService.GetAllPlayers();
             return View(players);
         }
 
@@ -36,8 +36,8 @@ namespace WarOfWorldcraft.Web.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create(CreatePlayerDto player)
         {
-            var id = playerService.CreateCharacter(player);
-            return RedirectToAction("Detail", id.ToIdRoute());
+            var id = playerService.CreatePlayer(player);
+            return this.RedirectToAction(c => c.Detail(id));
         }
     }
 }

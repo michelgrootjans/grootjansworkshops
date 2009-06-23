@@ -4,7 +4,7 @@
 	Log on to your account
 </asp:Content>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
     <h2>Log On</h2>
     <p>
         Please enter your user information.

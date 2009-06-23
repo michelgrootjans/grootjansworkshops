@@ -38,7 +38,7 @@
         </div>
 
         <div id="main">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+            <asp:ContentPlaceHolder ID="mainContent" runat="server" />
 
             <div id="footer">
             </div>

@@ -38,9 +38,8 @@ namespace WarOfWorldcraft.Web
         private void ConfigureIoC()
         {
             var context = new XmlApplicationContext(
-                "assembly://WarOfWorldcraft.Web/WarOfWorldcraft.Web/objects.xml",
-                "assembly://WarOfWorldcraft.Domain/WarOfWorldcraft.Domain/objects.xml"
-                );
+                "assembly://WarOfWorldcraft.Domain/WarOfWorldcraft.Domain/objects.xml", 
+                "assembly://WarOfWorldcraft.Web/WarOfWorldcraft.Web/objects.xml");
             Container.Initialize(new SpringContainer(context));
             DependencyResolver.InitializeWith(new SpringDependencyResolver(context));
             ControllerBuilder.Current.SetControllerFactory(typeof (IoCControllerFactory));

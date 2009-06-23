@@ -8,7 +8,7 @@
 	Show all enemies
 </asp:Content>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
     <h2>Battle arena</h2>
 
 <h3>Choose an enemy to challenge:</h3>

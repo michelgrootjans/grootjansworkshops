@@ -4,7 +4,7 @@
     Home Page
 </asp:Content>
 
-<asp:Content ID="indexContent" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="indexContent" ContentPlaceHolderID="mainContent" runat="server">
     <h2>Welcome to War of Worldcraft</h2>
     <p>
         The open-source alternative to the 'other' WoW.
