@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Web.Mvc;
 using System.Web.Security;
+using MvcContrib;
+using WarOfWorldcraft.Domain.Services;
 
 namespace WarOfWorldcraft.Web.Controllers
 {
     [HandleError]
     public class AccountController : Controller
     {
-        public AccountController(IFormsAuthentication formsAuth, IMembershipService service)
-        {
-            FormsAuth = formsAuth ?? new FormsAuthenticationService();
-            MembershipService = service ?? new HardcodedMembershipService();
-        }
+        private readonly IAuthenticationService authenticationService;
+        private readonly IMembershipService membershipService;
 
-        public IFormsAuthentication FormsAuth { get; private set; }
-        public IMembershipService MembershipService { get; private set; }
+        public AccountController(IAuthenticationService authenticationService, IMembershipService membershipService)
+        {
+            this.authenticationService = authenticationService ;
+            this.membershipService = membershipService;
+        }
 
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult LogOn()
@@ -31,24 +33,24 @@ namespace WarOfWorldcraft.Web.Controllers
                 return View();
             }
 
-            FormsAuth.SignIn(userName, rememberMe);
+            authenticationService.SignIn(userName, rememberMe);
             if (!String.IsNullOrEmpty(returnUrl))
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return this.RedirectToAction<HomeController>(c => c.Index());
         }
 
         public ActionResult LogOff()
         {
-            FormsAuth.SignOut();
+            authenticationService.SignOut();
 
             return RedirectToAction("Index", "Home");
         }
 
         private bool ValidateLogOn(string userName, string password)
         {
-            if (!MembershipService.ValidateUser(userName, password))
+            if (!membershipService.ValidateUser(userName, password))
             {
                 ModelState.AddModelError("_FORM", "De gebruikersnaam/paswoord combinatie is niet gekend.");
             }
@@ -57,26 +59,7 @@ namespace WarOfWorldcraft.Web.Controllers
         }
     }
 
-    public interface IMembershipService
-    {
-        bool ValidateUser(string userName, string password);
-    }
-
-    public class HardcodedMembershipService : IMembershipService
-    {
-        public bool ValidateUser(string userName, string password)
-        {
-            return true;
-        }
-    }
-
-    public interface IFormsAuthentication
-    {
-        void SignIn(string userName, bool createPersistentCookie);
-        void SignOut();
-    }
-
-    public class FormsAuthenticationService : IFormsAuthentication
+    public class FormsAuthenticationService : IAuthenticationService
     {
         public void SignIn(string userName, bool createPersistentCookie)
         {
@@ -86,6 +69,15 @@ namespace WarOfWorldcraft.Web.Controllers
         public void SignOut()
         {
             FormsAuthentication.SignOut();
+        }
+    }
+
+
+    public class HardcodedMembershipService : IMembershipService
+    {
+        public bool ValidateUser(string userName, string password)
+        {
+            return true;
         }
     }
 }

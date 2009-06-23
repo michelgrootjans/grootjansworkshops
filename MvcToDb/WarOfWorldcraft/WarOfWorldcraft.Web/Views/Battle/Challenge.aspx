@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="titleContent" runat="server">
 </asp:Content>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="mainContent" runat="server">
 
     <h2>Challenge</h2>
     

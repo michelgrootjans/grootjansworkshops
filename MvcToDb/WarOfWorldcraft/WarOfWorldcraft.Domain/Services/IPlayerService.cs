@@ -7,31 +7,31 @@ namespace WarOfWorldcraft.Domain.Services
 {
     public interface IPlayerService
     {
-        IEnumerable<ViewPlayerInfoDto> GetAllCharacters();
-        ViewPlayerDto GetPlayer(string characterId);
-        string CreateCharacter(CreatePlayerDto player);
+        IEnumerable<ViewPlayerInfoDto> GetAllPlayers();
+        ViewPlayerDto GetPlayer(string player);
+        string CreatePlayer(CreatePlayerDto player);
     }
 
     internal class PlayerService : ServiceBase, IPlayerService
     {
-        public IEnumerable<ViewPlayerInfoDto> GetAllCharacters()
+        public IEnumerable<ViewPlayerInfoDto> GetAllPlayers()
         {
             var player = session.CreateCriteria<Player>().List<Player>();
             return Map.These(player).ToAListOf<ViewPlayerInfoDto>();
         }
 
-        public ViewPlayerDto GetPlayer(string characterId)
+        public ViewPlayerDto GetPlayer(string playerId)
         {
-            var player = session.Load<Player>(characterId.ToLong());
+            var player = session.Load<Player>(playerId.ToLong());
             return Map.This(player).ToA<ViewPlayerDto>();
         }
 
-        public string CreateCharacter(CreatePlayerDto playerDto)
+        public string CreatePlayer(CreatePlayerDto playerDto)
         {
-            var character = new Player(playerDto.Name);
-            character.GenerateStats(new PlayerStatsGenerator());
-            session.Save(character);
-            return character.Id.ToString();
+            var player = new Player(playerDto.Name);
+            player.GenerateStats(new PlayerStatsGenerator());
+            session.Save(player);
+            return player.Id.ToString();
         }
     }
 }

@@ -4,7 +4,7 @@
     Register
 </asp:Content>
 
-<asp:Content ID="registerContent" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="registerContent" ContentPlaceHolderID="mainContent" runat="server">
     <h2>Create a New Account</h2>
     <p>
         Use the form below to create a new account. 

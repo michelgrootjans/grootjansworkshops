@@ -4,7 +4,7 @@
     Change Password
 </asp:Content>
 
-<asp:Content ID="changePasswordSuccessContent" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="changePasswordSuccessContent" ContentPlaceHolderID="mainContent" runat="server">
     <h2>Change Password</h2>
     <p>
         Your password has been changed successfully.
