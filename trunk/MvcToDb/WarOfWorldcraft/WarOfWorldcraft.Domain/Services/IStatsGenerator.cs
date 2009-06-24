@@ -24,7 +24,7 @@ namespace WarOfWorldcraft.Domain.Services
 
         public MonsterStatsGenerator(int level)
         {
-            this.level = level;
+            this.level = level > 0 ? level : 1;
         }
 
         public void GenerateStatsFor(IStatsHolder statistics)

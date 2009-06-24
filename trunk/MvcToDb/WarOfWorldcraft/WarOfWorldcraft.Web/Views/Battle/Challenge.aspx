@@ -10,7 +10,19 @@
     <h3>TODO: show progress bar instead of numbers</h3>
     <div id="player">
     <%= Model.Player.Name %>
-    <%= Model.Player.HitPoints %> / <%= Model.Player.MaxHitPoints %>
+    	<div id="progressbar"></div><%= Model.Player.HitPoints %> / <%= Model.Player.MaxHitPoints %>
+    <script type="text/javascript">
+    $(function() {
+        $("#progressbar").progressbar({value: <%= Model.Player.PercentHitPoints %>});
+    });
+    </script>
+
+
+
+<div class="demo">
+
+
+</div><!-- End demo -->
     </div>
     <div id="monster">
     <%= Model.Monster.Name %>

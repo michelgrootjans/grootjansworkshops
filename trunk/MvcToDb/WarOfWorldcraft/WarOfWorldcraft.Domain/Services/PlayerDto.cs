@@ -14,9 +14,11 @@ namespace WarOfWorldcraft.Domain.Services
         public string HitPoints { get; set; }
         public string Attack { get; set; }
         public string Defence { get; set; }
+        public bool IsDead { get; set; }
+        public string PercentHitPoints { get; set; }
     }
 
-    public class CreatePlayerDto 
+    public class CreatePlayerDto
     {
         public string Name { get; set; }
     }

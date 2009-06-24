@@ -22,9 +22,12 @@ namespace WarOfWorldcraft.Domain.Services
         public Player GetCurrentPlayer()
         {
             var account = membershipService.CurrentAccount;
-            var player = session.CreateCriteria<Player>().Add(Restrictions.Eq("Account", account)).UniqueResult<Player>();
+            var player = session.CreateCriteria<Player>()
+                .Add(Restrictions.Eq("Account", account))
+                .Add(Restrictions.Gt("HitPoints", 0))
+                .UniqueResult<Player>();
             if (player.IsNull())
-                throw new ArgumentException("You didn't create a player yet.");
+                throw new ArgumentException("You don't have a player.");
             return player;
         }
     }
