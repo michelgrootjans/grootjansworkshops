@@ -43,12 +43,13 @@ namespace WarOfWorldcraft.Domain.Entities
 
         private void LevelUp()
         {
-            if (Level*50 < Experience)
-            {
-                Level++;
-                Attack += Roll.SixSidedDice().Once();
-                Defence += Roll.SixSidedDice().Once();
-            }
+            if (Level*50 > Experience) return;
+            
+            Level++;
+            Attack += Roll.SixSidedDice().Once();
+            Defence += Roll.SixSidedDice().Once();
+            MaxHitPoints += Roll.SixSidedDice().Once();
+            HitPoints = MaxHitPoints;
         }
 
         private void TakeAllGoldFrom(Character character)
