@@ -16,7 +16,7 @@
     Html.Grid(Model).Columns(column => {
             column.For(x => Html.ActionLink(x.Name, "challenge", x.Id.ToIdRoute()))
                   .Named("Name").DoNotEncode();
-     		column.For(x => x.MaxHitPoints).Named("HP");
+     		column.For(x => x.Level);
      	})
      	.Empty("There are no monsters right now.")
 %>

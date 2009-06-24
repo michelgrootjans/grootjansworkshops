@@ -15,15 +15,18 @@ namespace WarOfWorldcraft.Domain.Entities
         public virtual int Gold { get; protected set; }
         public virtual int Experience { get; protected set; }
 
-        public virtual void Attack(Character enemy)
+        public virtual void Fight(Character enemy)
         {
             enemy.AddDamage(CalculateDamage(this, enemy));
-            AddDamage(CalculateDamage(enemy, this));
 
             if (enemy.IsDead)
             {
                 AddExperienceForKilling(enemy);
                 TakeAllGoldFrom(enemy);
+            }
+            else
+            {
+                AddDamage(CalculateDamage(enemy, this));
             }
         }
 
@@ -35,6 +38,17 @@ namespace WarOfWorldcraft.Domain.Entities
         private void AddExperienceForKilling(Character character)
         {
             Experience += character.Level;
+            LevelUp();
+        }
+
+        private void LevelUp()
+        {
+            if (Level*50 < Experience)
+            {
+                Level++;
+                Attack += Roll.SixSidedDice().Once();
+                Defence += Roll.SixSidedDice().Once();
+            }
         }
 
         private void TakeAllGoldFrom(Character character)

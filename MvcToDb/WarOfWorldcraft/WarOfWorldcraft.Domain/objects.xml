@@ -9,5 +9,10 @@
           type="WarOfWorldcraft.Domain.Services.InternalPlayerService, WarOfWorldcraft.Domain" autowire="autodetect" />
   <object id="BattleService" 
           type="WarOfWorldcraft.Domain.Services.BattleService, WarOfWorldcraft.Domain" autowire="autodetect" />
+
+  <object id="Randomizer" 
+          type="WarOfWorldcraft.Domain.Services.Randomizer, WarOfWorldcraft.Domain" autowire="autodetect" />
+  <object id="MonsterGenerator" 
+          type="WarOfWorldcraft.Domain.Services.MonsterGenerator, WarOfWorldcraft.Domain" autowire="autodetect" />
 </objects>
 

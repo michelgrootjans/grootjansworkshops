@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using NHibernate.Criterion;
 using WarOfWorldcraft.Domain.Entities;
 using WarOfWorldcraft.Utilities.Extensions;
 using WarOfWorldcraft.Utilities.Mapping;
@@ -23,7 +24,8 @@ namespace WarOfWorldcraft.Domain.Services
 
         public IEnumerable<ViewPlayerInfoDto> GetAllPlayers()
         {
-            var player = session.CreateCriteria<Player>().List<Player>();
+            var player = session.CreateCriteria<Player>()
+                .List<Player>();
             return Map.These(player).ToAListOf<ViewPlayerInfoDto>();
         }
 

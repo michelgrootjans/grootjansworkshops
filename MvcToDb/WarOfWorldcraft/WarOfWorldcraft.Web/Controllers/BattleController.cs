@@ -25,6 +25,8 @@ namespace WarOfWorldcraft.Web.Controllers
             
             if(challenge.Monster.IsDead)
                 return View("Win", challenge);
+            if(challenge.Player.IsDead)
+                return View("Dead", challenge);
 
             return View(challenge);
         }

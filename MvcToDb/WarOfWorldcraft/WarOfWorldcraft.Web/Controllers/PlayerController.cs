@@ -4,7 +4,12 @@ using WarOfWorldcraft.Domain.Services;
 
 namespace WarOfWorldcraft.Web.Controllers
 {
-    public class PlayerController : Controller
+    public interface IPlayerController
+    {
+        ActionResult Index();
+    }
+
+    public class PlayerController : Controller, IPlayerController
     {
         private readonly IPlayerService playerService;
 

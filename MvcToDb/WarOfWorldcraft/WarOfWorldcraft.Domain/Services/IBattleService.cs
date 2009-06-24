@@ -16,22 +16,26 @@ namespace WarOfWorldcraft.Domain.Services
     internal class BattleService : ServiceBase, IBattleService
     {
         private readonly IInternalPlayerService playerService;
+        private readonly IMonsterGenerator monsterGenerator;
 
-        public BattleService(IInternalPlayerService playerService)
+        public BattleService(IInternalPlayerService playerService, IMonsterGenerator monsterGenerator)
         {
             this.playerService = playerService;
+            this.monsterGenerator = monsterGenerator;
         }
 
         public IEnumerable<ViewMonsterInfoDto> GetAllMonsters()
         {
             var monsters = session.CreateCriteria<Monster>().Add(Restrictions.Gt("HitPoints", 0)).List<Monster>();
-            if (monsters.HasNoItems())
+            if (monsters.Count < 10)
             {
-                var monster = new Monster("Rabbit");
-                monster.GenerateStats(new MonsterStatsGenerator(1));
-                session.Save(monster);
-                monsters.Add(monster);
-            }
+                var newmonsters = GenerateMonsters(monsters);
+                foreach (var monster in newmonsters)
+                {
+                    session.Save(monster);
+                    monsters.Add(monster);
+                }
+            }            
             return Map.These(monsters).ToAListOf<ViewMonsterInfoDto>();
         }
 
@@ -52,7 +56,13 @@ namespace WarOfWorldcraft.Domain.Services
         {
             var player = playerService.GetCurrentPlayer();
             var monster = session.Load<Monster>(monsterId.ToLong());
-            player.Attack(monster);
+            player.Fight(monster);
+        }
+
+        private IEnumerable<Monster> GenerateMonsters(IList<Monster> monsters)
+        {
+            var player = playerService.GetCurrentPlayer();
+            return monsterGenerator.GenerateMonstersAroundLevel(player.Level);
         }
     }
 }

@@ -1,4 +1,5 @@
-using System;
+using WarOfWorldcraft.Domain.Services;
+using WarOfWorldcraft.Utilities.IoC;
 
 namespace WarOfWorldcraft.Domain.Entities
 {
@@ -24,17 +25,18 @@ namespace WarOfWorldcraft.Domain.Entities
 
     internal class DieRoll : IRoll
     {
-        private static readonly Random Random = new Random();
         private readonly int numberOfEyes;
+        private readonly IRandomizer randomizer;
 
         public DieRoll(int numberOfEyes)
         {
             this.numberOfEyes = numberOfEyes;
+            randomizer = Container.GetImplementationOf<IRandomizer>();
         }
 
         public int Once()
         {
-            return Random.Next(1, numberOfEyes + 1);
+            return randomizer.GetNumberBetween(1, numberOfEyes);
         }
 
         public int Twice()
