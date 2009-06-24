@@ -15,7 +15,7 @@
     Html.Grid(Model).Columns(column => {
             column.For(x => Html.ActionLink(x.Name, "detail", x.Id.ToIdRoute()))
                   .Named("Name").DoNotEncode();
-     		column.For(x => x.StatsMaxHitPoints).Named("HP");
+     		column.For(x => x.MaxHitPoints).Named("HP");
             column.For(x => x.Experience).Named("XP");
             column.For(x => x.Gold);
      	})

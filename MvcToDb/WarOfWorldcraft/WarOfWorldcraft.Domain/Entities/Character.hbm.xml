@@ -13,17 +13,19 @@
     <discriminator column="type" />
 
     <property name="Name" />
+    <property name="Level" />
+    <property name="HitPoints" />
+    <property name="MaxHitPoints" />
+    <property name="Attack" />
+    <property name="Defence" />
+    <property name="Gold" />
     
-    <component class="Statistics" name="Stats">
-      <property name="HitPoints" />
-      <property name="MaxHitPoints" />
-      <property name="Attack" />
-      <property name="Defence" />
-    </component>
-
     <subclass name="Player" discriminator-value="player">
+      <property name="Account" unique="true" />
       <property name="Experience" />
-      <property name="Gold" />
+    </subclass>
+    
+    <subclass name="Monster" discriminator-value="monster">
     </subclass>
     
   </class>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Web.Mvc;
 using System.Web.Security;
 using MvcContrib;
@@ -78,6 +79,11 @@ namespace WarOfWorldcraft.Web.Controllers
         public bool ValidateUser(string userName, string password)
         {
             return true;
+        }
+
+        public string CurrentAccount
+        {
+            get { return Thread.CurrentPrincipal.Identity.Name; }
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using AopAlliance.Intercept;
+using NHibernate;
 
 namespace WarOfWorldcraft.Utilities.NHibernate
 {
@@ -17,15 +18,19 @@ namespace WarOfWorldcraft.Utilities.NHibernate
             if (methodsToIgnore.Contains(invocation.Method.Name))
                 return invocation.Proceed();
 
+            ITransaction transaction = null;
             try
             {
-                var session = NHibernateHelper.GetCurrentSession();
-                using (var transaction = session.BeginTransaction())
-                {
-                    var result = invocation.Proceed();
-                    transaction.Commit();
-                    return result;
-                }
+                transaction = NHibernateHelper.GetCurrentSession().BeginTransaction();
+                var result = invocation.Proceed();
+                transaction.Commit();
+                return result;
+            }
+            catch
+            {
+                if (transaction != null)
+                    transaction.Rollback();
+                throw;
             }
             finally
             {

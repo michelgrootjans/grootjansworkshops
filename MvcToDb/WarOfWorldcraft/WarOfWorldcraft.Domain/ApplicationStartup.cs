@@ -16,6 +16,8 @@ namespace WarOfWorldcraft.Domain
             Mapper.CreateMap<long, string>().ConvertUsing(l => l.ToString());
             Mapper.CreateMap<Player, ViewPlayerInfoDto>();
             Mapper.CreateMap<Player, ViewPlayerDto>();
+            Mapper.CreateMap<Monster, ViewMonsterInfoDto>();
+            Mapper.CreateMap<Monster, ViewMonsterDto>();
 
             Mapper.AssertConfigurationIsValid();
         }

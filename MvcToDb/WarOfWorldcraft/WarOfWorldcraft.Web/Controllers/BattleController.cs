@@ -1,4 +1,5 @@
 using System.Web.Mvc;
+using MvcContrib;
 using WarOfWorldcraft.Domain.Services;
 
 namespace WarOfWorldcraft.Web.Controllers
@@ -21,7 +22,17 @@ namespace WarOfWorldcraft.Web.Controllers
         public ActionResult Challenge(string id)
         {
             var challenge = batlleService.Challenge(id);
+            
+            if(challenge.Monster.IsDead)
+                return View("Win", challenge);
+
             return View(challenge);
+        }
+
+        public ActionResult Attack(string monsterId)
+        {
+            batlleService.Attack(monsterId);
+            return this.RedirectToAction(c => c.Challenge(monsterId));
         }
     }
 }

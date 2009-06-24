@@ -5,6 +5,8 @@
 
   <object id="PlayerService" 
           type="WarOfWorldcraft.Domain.Services.PlayerService, WarOfWorldcraft.Domain" autowire="autodetect" />
+  <object id="InternalPlayerService" 
+          type="WarOfWorldcraft.Domain.Services.InternalPlayerService, WarOfWorldcraft.Domain" autowire="autodetect" />
   <object id="BattleService" 
           type="WarOfWorldcraft.Domain.Services.BattleService, WarOfWorldcraft.Domain" autowire="autodetect" />
 </objects>
