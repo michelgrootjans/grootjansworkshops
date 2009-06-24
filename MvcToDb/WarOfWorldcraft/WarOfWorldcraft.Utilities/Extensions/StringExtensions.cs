@@ -8,5 +8,10 @@ namespace WarOfWorldcraft.Utilities.Extensions
             long.TryParse(value, out result);
             return result;
         }
+
+        public static bool IsEmpty(this string target)
+        {
+            return string.Empty.Equals(target);
+        }
     }
 }
