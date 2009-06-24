@@ -8,12 +8,18 @@ namespace WarOfWorldcraft.Domain.Entities
         {
             return new DieRoll(6);
         }
+
+        public static IRoll TenSidedDice()
+        {
+            return new DieRoll(10);
+        }
     }
 
     internal interface IRoll
     {
         int Once();
         int Twice();
+        int Times(int times);
     }
 
     internal class DieRoll : IRoll
@@ -34,6 +40,16 @@ namespace WarOfWorldcraft.Domain.Entities
         public int Twice()
         {
             return Once() + Once();
+        }
+
+        public int Times(int times)
+        {
+            var roll = 0;
+            for (var i = 0; i < times; i++)
+            {
+                roll += Once();
+            }
+            return roll;
         }
     }
 }

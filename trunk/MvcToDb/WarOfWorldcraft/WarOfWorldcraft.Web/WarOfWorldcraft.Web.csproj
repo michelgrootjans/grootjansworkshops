@@ -109,6 +109,7 @@
     <Content Include="Scripts\jquery.tablesorter.min.js" />
     <Content Include="Scripts\listify.js" />
     <Content Include="Views\Battle\Challenge.aspx" />
+    <Content Include="Views\Battle\Win.aspx" />
     <Content Include="Views\Battle\Index.aspx" />
     <Content Include="Views\Player\PlayerDetails.ascx" />
     <Content Include="Views\Player\Detail.aspx" />

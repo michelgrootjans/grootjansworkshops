@@ -4,12 +4,12 @@ namespace WarOfWorldcraft.Domain.Services
     {
         public string Id { get; set; }
         public string Name { get; set; }
-        public string StatsMaxHitPoints { get; set; }
+        public string MaxHitPoints { get; set; }
     }
 
     public class ViewMonsterDto : ViewMonsterInfoDto
     {
-        public string StatsHitPoints { get; set; }
+        public string HitPoints { get; set; }
+        public bool IsDead { get; set; }
     }
-
 }
