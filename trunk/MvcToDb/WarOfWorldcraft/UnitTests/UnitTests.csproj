@@ -44,6 +44,9 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Routing">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -55,8 +58,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestUtilities\Extensions\ActionResultExtensions.cs" />
     <Compile Include="TestUtilities\Extensions\BoolExtensions.cs" />
     <Compile Include="TestUtilities\Extensions\ObjectExtensions.cs" />
+    <Compile Include="TestUtilities\Extensions\StringExtensions.cs" />
     <Compile Include="TestUtilities\InstanceContextSpecification.cs" />
     <Compile Include="Web\Controllers\PlayerControllerTests.cs" />
   </ItemGroup>
@@ -64,6 +69,10 @@
     <ProjectReference Include="..\WarOfWorldcraft.Domain\WarOfWorldcraft.Domain.csproj">
       <Project>{C9A9C976-786D-4650-8EC3-45EEF37AF2D0}</Project>
       <Name>WarOfWorldcraft.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WarOfWorldcraft.Utilities\WarOfWorldcraft.Utilities.csproj">
+      <Project>{908334D0-D9CF-4C07-BB58-91A427D0AE51}</Project>
+      <Name>WarOfWorldcraft.Utilities</Name>
     </ProjectReference>
     <ProjectReference Include="..\WarOfWorldcraft.Web\WarOfWorldcraft.Web.csproj">
       <Project>{1C25FBDB-7392-40A3-B9D0-9D9D3878FED7}</Project>

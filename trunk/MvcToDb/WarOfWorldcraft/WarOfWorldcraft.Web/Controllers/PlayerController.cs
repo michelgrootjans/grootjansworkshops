@@ -7,6 +7,9 @@ namespace WarOfWorldcraft.Web.Controllers
     public interface IPlayerController
     {
         ActionResult Index();
+        ActionResult Detail(string id);
+        ActionResult New();
+        ActionResult Create(CreatePlayerDto playerDto);
     }
 
     public class PlayerController : Controller, IPlayerController
