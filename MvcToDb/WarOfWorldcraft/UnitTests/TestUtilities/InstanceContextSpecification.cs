@@ -7,20 +7,39 @@ using Rhino.Mocks.Interfaces;
 namespace UnitTests.TestUtilities
 {
     [TestFixture]
-    public abstract class InstanceContextSpecification<SUT>
+    public abstract class StaticContextSpecification
     {
-        protected SUT sut;
-
         [SetUp]
-        public void SetUp()
+        public virtual void SetUp()
         {
             Arrange();
-            sut = CreateSystemUnderTest();
-            Act();
         }
 
         protected virtual void Arrange()
         {
+        }
+
+        protected T Dependency<T>() where T : class
+        {
+            return MockRepository.GenerateStub<T>();
+        }
+
+        protected IStubSpecification<Target> When<Target>(Target target) where Target : class
+        {
+            return new StubSpecification<Target>(target);
+        }
+    }
+
+    public abstract class InstanceContextSpecification<SUT> : StaticContextSpecification
+    {
+        protected SUT sut;
+
+        [SetUp]
+        public virtual void SetUp()
+        {
+            base.SetUp();
+            sut = CreateSystemUnderTest();
+            Act();
         }
 
         protected virtual SUT CreateSystemUnderTest()
@@ -30,15 +49,6 @@ namespace UnitTests.TestUtilities
 
         protected virtual void Act()
         {
-        }
-
-        protected T Dependency<T>() where T : class
-        {
-            return MockRepository.GenerateStub<T>();
-        }
-        protected IStubSpecification<Target> When<Target>(Target target) where Target : class
-        {
-            return new StubSpecification<Target>(target);
         }
     }
 
