@@ -4,6 +4,13 @@ namespace WarOfWorldcraft.Utilities.Mapping
 {
     public static class Map
     {
+        internal static IMapperLocator locator;
+
+        public static void Initialize(IMapperLocator mapperLocator)
+        {
+            locator = mapperLocator;
+        }
+
         public static Mapper<From> This<From>(From itemToMap)
         {
             return new Mapper<From>(itemToMap);
@@ -26,7 +33,7 @@ namespace WarOfWorldcraft.Utilities.Mapping
 
         public To ToA<To>()
         {
-            var mapper = new GenericMapper<From, To>();
+            var mapper = Map.locator.GetMapperFor<From, To>();
             return mapper.Map(from);
         }
     }
