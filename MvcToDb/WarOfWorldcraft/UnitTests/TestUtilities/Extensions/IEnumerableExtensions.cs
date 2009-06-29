@@ -9,7 +9,13 @@ namespace UnitTests.TestUtilities.Extensions
     {
         public static IEnumerable<T> ShouldContain<T>(this IEnumerable<T> list, Func<T, bool> predicate)
         {
-            Assert.IsTrue(list.Any<T>(predicate));
+            Assert.IsTrue(list.Any(predicate));
+            return list;
+        }
+
+        public static IEnumerable<T> ShouldContain<T>(this IEnumerable<T> list, T t)
+        {
+            Assert.IsTrue(list.Contains(t));
             return list;
         }
     }

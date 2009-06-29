@@ -78,6 +78,7 @@
     <Compile Include="IoC\SpringContainer.cs" />
     <Compile Include="Mapping\GenericMapper.cs" />
     <Compile Include="Mapping\IMapper.cs" />
+    <Compile Include="Mapping\IMapperLocator.cs" />
     <Compile Include="Mapping\IMerger.cs" />
     <Compile Include="Mapping\Map.cs" />
     <Compile Include="Mapping\Merge.cs" />

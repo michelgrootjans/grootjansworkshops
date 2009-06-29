@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using NHibernate.Criterion;
 using WarOfWorldcraft.Domain.Entities;
 using WarOfWorldcraft.Utilities.Extensions;
 using WarOfWorldcraft.Utilities.Mapping;
@@ -15,7 +14,7 @@ namespace WarOfWorldcraft.Domain.Services
 
     internal class PlayerService : ServiceBase, IPlayerService
     {
-        private IMembershipService svc;
+        private readonly IMembershipService svc;
 
         public PlayerService(IMembershipService svc)
         {
@@ -37,7 +36,7 @@ namespace WarOfWorldcraft.Domain.Services
 
         public string CreatePlayer(CreatePlayerDto playerDto)
         {
-            string account = svc.CurrentAccount;
+            var account = svc.CurrentAccount;
             var player = new Player(playerDto.Name, account);
             player.GenerateStats(new PlayerStatsGenerator());
             session.Save(player);

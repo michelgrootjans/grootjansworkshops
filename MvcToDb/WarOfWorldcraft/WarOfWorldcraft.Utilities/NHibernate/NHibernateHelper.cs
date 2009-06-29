@@ -3,9 +3,9 @@ using NHibernate.Cfg;
 
 namespace WarOfWorldcraft.Utilities.NHibernate
 {
-    public sealed class NHibernateHelper
+    public static class NHibernateHelper
     {
-        private const string CurrentSessionKey = "nhibernate.current_session";
+        public const string CurrentSessionKey = "nhibernate.current_session";
         private static readonly ISessionFactory SessionFactory;
 
         static NHibernateHelper()
@@ -38,11 +38,13 @@ namespace WarOfWorldcraft.Utilities.NHibernate
             context.Items.Remove(CurrentSessionKey);
         }
 
+/*
         public static void CloseSessionFactory()
         {
             if (SessionFactory != null)
                 SessionFactory.Close();
         }
+*/
 
         private static ISession GetNewSession()
         {
