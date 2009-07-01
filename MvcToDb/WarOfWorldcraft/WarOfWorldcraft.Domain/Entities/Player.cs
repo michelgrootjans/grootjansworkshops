@@ -11,7 +11,7 @@ namespace WarOfWorldcraft.Domain.Entities
             Account = account;
         }
 
-        protected virtual string Account { get; set; }
+        public virtual string Account { get; set; }
         public virtual int Gold { get; protected set; }
         public virtual int Experience { get; protected set; }
 

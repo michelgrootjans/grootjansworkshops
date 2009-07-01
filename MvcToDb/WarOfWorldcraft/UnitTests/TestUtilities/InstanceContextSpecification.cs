@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using AutoMapper;
 using NHibernate;
 using NUnit.Framework;
 using Rhino.Mocks;
 using Rhino.Mocks.Interfaces;
 using Utilities.Mapping;
 using WarOfWorldcraft.Utilities.Mapping;
-using WarOfWorldcraft.Utilities.NHibernate;
+using WarOfWorldcraft.Utilities.Repository;
 
 namespace UnitTests.TestUtilities
 {
@@ -19,6 +20,7 @@ namespace UnitTests.TestUtilities
         [SetUp]
         public virtual void SetUp()
         {
+            Mapper.Reset();
             Context.Current = new StaticContext();
             mappers = new List<object>();
             PrepareMapper();
@@ -64,7 +66,7 @@ namespace UnitTests.TestUtilities
         protected SUT sut;
 
         [SetUp]
-        public virtual void SetUp()
+        public override void SetUp()
         {
             base.SetUp();
             sut = CreateSystemUnderTest();

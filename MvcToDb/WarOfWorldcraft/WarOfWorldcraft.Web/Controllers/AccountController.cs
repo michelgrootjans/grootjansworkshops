@@ -1,14 +1,25 @@
 ﻿using System;
-using System.Threading;
 using System.Web.Mvc;
-using System.Web.Security;
 using MvcContrib;
 using WarOfWorldcraft.Domain.Services;
+using WarOfWorldcraft.Utilities.Extensions;
 
 namespace WarOfWorldcraft.Web.Controllers
 {
+    public interface IAccountController
+    {
+        [AcceptVerbs(HttpVerbs.Get)]
+        ActionResult LogOn();
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        ActionResult LogOn(string userName, string password, bool rememberMe, string returnUrl);
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        ActionResult LogOff();
+    }
+
     [HandleError]
-    public class AccountController : Controller
+    public class AccountController : Controller, IAccountController
     {
         private readonly IAuthenticationService authenticationService;
         private readonly IMembershipService membershipService;
@@ -35,7 +46,7 @@ namespace WarOfWorldcraft.Web.Controllers
             }
 
             authenticationService.SignIn(userName, rememberMe);
-            if (!String.IsNullOrEmpty(returnUrl))
+            if (returnUrl.IsNotNullOrEmpty())
             {
                 return Redirect(returnUrl);
             }
@@ -46,7 +57,7 @@ namespace WarOfWorldcraft.Web.Controllers
         {
             authenticationService.SignOut();
 
-            return RedirectToAction("Index", "Home");
+            return this.RedirectToAction<HomeController>(c => c.Index());
         }
 
         private bool ValidateLogOn(string userName, string password)
@@ -57,33 +68,6 @@ namespace WarOfWorldcraft.Web.Controllers
             }
 
             return ModelState.IsValid;
-        }
-    }
-
-    public class FormsAuthenticationService : IAuthenticationService
-    {
-        public void SignIn(string userName, bool createPersistentCookie)
-        {
-            FormsAuthentication.SetAuthCookie(userName, createPersistentCookie);
-        }
-
-        public void SignOut()
-        {
-            FormsAuthentication.SignOut();
-        }
-    }
-
-
-    public class HardcodedMembershipService : IMembershipService
-    {
-        public bool ValidateUser(string userName, string password)
-        {
-            return true;
-        }
-
-        public string CurrentAccount
-        {
-            get { return Thread.CurrentPrincipal.Identity.Name; }
         }
     }
 }

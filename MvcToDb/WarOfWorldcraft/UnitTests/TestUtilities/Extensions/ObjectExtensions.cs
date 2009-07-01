@@ -6,7 +6,11 @@ namespace UnitTests.TestUtilities.Extensions
     {
         public static T ShouldBeOfType<T>(this object target)
         {
-            typeof (T).IsAssignableFrom(target.GetType()).ShouldBeTrue();
+            if (! typeof (T).IsAssignableFrom(target.GetType()))
+            {
+                throw new AssertionException(string.Format("{0} is not of expected type {1}",
+                    target, typeof (T)));
+            }
             return (T) target;
         }
 

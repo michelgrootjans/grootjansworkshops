@@ -1,22 +1,43 @@
-using System;
 using System.Collections.Generic;
-using NHibernate;
+using System.Linq;
 using NUnit.Framework;
+using Rhino.Mocks;
 using UnitTests.TestUtilities;
+using UnitTests.TestUtilities.Extensions;
 using Utilities.Mapping;
 using WarOfWorldcraft.Domain.Entities;
 using WarOfWorldcraft.Domain.Services;
-using Rhino.Mocks;
-using UnitTests.TestUtilities.Extensions;
-using System.Linq;
+using WarOfWorldcraft.Utilities.Repository;
 
 namespace UnitTests.Domain.Services
 {
-    public class when_PlayerService_is_told_to_GetAllPlayers : InstanceContextSpecification<IPlayerService>
+    public abstract class PlayerServiceTest : InstanceContextSpecification<IPlayerService>
     {
-        private ISession session;
-        private IMembershipService membershipService;
-        private ICriteria criteria;
+        protected IMembershipService membershipService;
+        protected IRepository repository;
+        protected IPlayerStatsGenerator statsGenerator;
+
+        protected override void Arrange()
+        {
+            repository = Dependency<IRepository>();
+            membershipService = Dependency<IMembershipService>();
+            statsGenerator = Dependency<IPlayerStatsGenerator>();
+        }
+
+        protected override IPlayerService CreateSystemUnderTest()
+        {
+            return new PlayerService(repository, membershipService, statsGenerator);
+        }
+
+        protected Player PlayerWith(string playerName, string account)
+        {
+            return Arg<Player>.Matches(p => p.Name.Equals(playerName) && p.Account.Equals(account));
+        }
+    }
+
+    public class when_PlayerService_is_told_to_GetAllPlayers
+        : PlayerServiceTest
+    {
         private IEnumerable<ViewPlayerInfoDto> result;
         private IList<Player> players;
         private IMapper<Player, ViewPlayerInfoDto> mapper;
@@ -25,22 +46,14 @@ namespace UnitTests.Domain.Services
 
         protected override void Arrange()
         {
-            session = CreateSession();
-            criteria = Dependency<ICriteria>();
-            membershipService = Dependency<IMembershipService>();
+            base.Arrange();
             mapper = RegisterMapper<Player, ViewPlayerInfoDto>();
-            player = new Player("testplayer", "michel");
-            players = new List<Player>{player};
+            player = new Player("Michel", "MGR");
+            players = new List<Player> { player };
             playerDto = new ViewPlayerInfoDto();
 
-            When(session).IsToldTo(s => s.CreateCriteria<Player>()).Return(criteria);
-            When(criteria).IsToldTo(c => c.List<Player>()).Return(players);
+            When(repository).IsToldTo(r => r.FindAll<Player>()).Return(players);
             When(mapper).IsToldTo(m => m.Map(player)).Return(playerDto);
-        }
-
-        protected override IPlayerService CreateSystemUnderTest()
-        {
-            return new PlayerService(membershipService);
         }
 
         protected override void Act()
@@ -51,14 +64,98 @@ namespace UnitTests.Domain.Services
         [Test]
         public void should_get_all_players_from_the_session()
         {
-            criteria.AssertWasCalled(c => c.List<Player>());
+            repository.AssertWasCalled(r => r.FindAll<Player>());
         }
 
         [Test]
         public void should_map_the_player_to_a_playerdto()
         {
-            result.ShouldContain(playerDto);
+            mapper.AssertWasCalled(m => m.Map(player));
         }
 
+        [Test]
+        public void should_put_the_mapped_dto_in_the_result()
+        {
+            result.ShouldContain(playerDto);
+        }
     }
+
+    public class when_PlayerService_is_told_to_GetPlayer : PlayerServiceTest
+    {
+        private readonly long playerId = 564;
+        private Player player;
+        private ViewPlayerDto result;
+        private ViewPlayerDto playerDto;
+        private IMapper<Player, ViewPlayerDto> mapper;
+
+        protected override void Arrange()
+        {
+            base.Arrange();
+            player = new Player("Michel", "MGR");
+            playerDto = new ViewPlayerDto();
+            mapper = RegisterMapper<Player, ViewPlayerDto>();
+
+            When(repository).IsToldTo(r => r.Load<Player>(playerId)).Return(player);
+            When(mapper).IsToldTo(m => m.Map(player)).Return(playerDto);
+        }
+
+        protected override void Act()
+        {
+            result = sut.GetPlayer(playerId.ToString());
+        }
+
+        [Test]
+        public void should_get_the_player_from_the_repository()
+        {
+            repository.AssertWasCalled(r => r.Load<Player>(playerId));
+        }
+
+        [Test]
+        public void should_return_a_player_dto()
+        {
+            result.ShouldBeSameAs(playerDto);
+        }
+    }
+
+    public class when_PlayerService_is_told_to_CreatePlayer : PlayerServiceTest
+    {
+        private string name;
+        private CreatePlayerDto createPlayerDto;
+        private string playerId;
+        private string account;
+
+        protected override void Arrange()
+        {
+            base.Arrange();
+            name = "test name";
+            account = "test account";
+            createPlayerDto = new CreatePlayerDto {Name = name};
+
+            When(membershipService).IsToldTo(s => s.CurrentAccount).Return(account);
+        }
+
+        protected override void Act()
+        {
+            playerId = sut.CreatePlayer(createPlayerDto);
+        }
+
+        [Test]
+        public void should_Save_a_new_player_to_the_repository()
+        {
+            repository.AssertWasCalled(r => r.Save(PlayerWith(name, account)));
+        }
+
+        [Test]
+        public void should_generate_stats_for_the_player()
+        {
+            statsGenerator.AssertWasCalled(g => g.GenerateStatsFor(PlayerWith(name, account)));
+        }
+
+        [Test]
+        public void should_return_a_0_id()
+        {
+            playerId.ShouldBeEqualTo("0");
+        }
+    }
+
 }

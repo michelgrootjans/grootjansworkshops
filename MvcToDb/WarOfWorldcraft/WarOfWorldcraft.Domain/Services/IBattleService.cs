@@ -3,6 +3,7 @@ using NHibernate.Criterion;
 using WarOfWorldcraft.Domain.Entities;
 using WarOfWorldcraft.Utilities.Extensions;
 using WarOfWorldcraft.Utilities.Mapping;
+using WarOfWorldcraft.Utilities.Repository;
 
 namespace WarOfWorldcraft.Domain.Services
 {
@@ -13,26 +14,28 @@ namespace WarOfWorldcraft.Domain.Services
         void Attack(string monsterId);
     }
 
-    internal class BattleService : ServiceBase, IBattleService
+    internal class BattleService : IBattleService
     {
+        private readonly IRepository repository;
         private readonly IInternalPlayerService playerService;
         private readonly IMonsterGenerator monsterGenerator;
 
-        public BattleService(IInternalPlayerService playerService, IMonsterGenerator monsterGenerator)
+        public BattleService(IRepository repository, IInternalPlayerService playerService, IMonsterGenerator monsterGenerator)
         {
+            this.repository = repository;
             this.playerService = playerService;
             this.monsterGenerator = monsterGenerator;
         }
 
         public IEnumerable<ViewMonsterInfoDto> GetAllMonsters()
         {
-            var monsters = session.CreateCriteria<Monster>().Add(Restrictions.Gt("HitPoints", 0)).List<Monster>();
-            if (monsters.Count < 10)
+            var monsters = repository.CreateCriteria<Monster>().Add(Restrictions.Gt("HitPoints", 0)).List<Monster>();
+            if (monsters.Count < 5)
             {
-                var newmonsters = GenerateMonsters(monsters);
+                var newmonsters = GenerateMonsters();
                 foreach (var monster in newmonsters)
                 {
-                    session.Save(monster);
+                    repository.Save(monster);
                     monsters.Add(monster);
                 }
             }            
@@ -42,7 +45,7 @@ namespace WarOfWorldcraft.Domain.Services
         public ViewChallengeDto Challenge(string monsterId)
         {
             var player = playerService.GetCurrentPlayer();
-            var monster = session.Load<Monster>(monsterId.ToLong());
+            var monster = repository.Load<Monster>(monsterId.ToLong());
 
             var challenge = new ViewChallengeDto();
             challenge.Player = Map.This(player).ToA<ViewPlayerDto>();
@@ -55,11 +58,11 @@ namespace WarOfWorldcraft.Domain.Services
         public void Attack(string monsterId)
         {
             var player = playerService.GetCurrentPlayer();
-            var monster = session.Load<Monster>(monsterId.ToLong());
+            var monster = repository.Load<Monster>(monsterId.ToLong());
             player.Fight(monster);
         }
 
-        private IEnumerable<Monster> GenerateMonsters(IList<Monster> monsters)
+        private IEnumerable<Monster> GenerateMonsters()
         {
             var player = playerService.GetCurrentPlayer();
             return monsterGenerator.GenerateMonstersAroundLevel(player.Level);

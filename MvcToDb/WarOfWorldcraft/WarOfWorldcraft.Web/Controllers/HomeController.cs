@@ -2,8 +2,13 @@
 
 namespace WarOfWorldcraft.Web.Controllers
 {
+    public interface IHomeController
+    {
+        ActionResult Index();
+    }
+
     [HandleError]
-    public class HomeController : Controller
+    public class HomeController : Controller, IHomeController
     {
         public ActionResult Index()
         {

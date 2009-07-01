@@ -70,7 +70,6 @@
     <Compile Include="Services\IPlayerService.cs" />
     <Compile Include="Services\PlayerDto.cs" />
     <Compile Include="Services\IStatsGenerator.cs" />
-    <Compile Include="Services\ServiceBase.cs" />
     <Compile Include="Services\ChallengeDto.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,3 @@
-using WarOfWorldcraft.Domain.Services;
-
 namespace WarOfWorldcraft.Domain.Entities
 {
     public abstract class Character : IStatsHolder
@@ -31,11 +29,6 @@ namespace WarOfWorldcraft.Domain.Entities
         public virtual bool IsDead
         {
             get { return HitPoints <= 0; }
-        }
-
-        protected internal virtual void GenerateStats(IStatsGenerator generator)
-        {
-            generator.GenerateStatsFor(this);
         }
 
         protected internal virtual void AddDamage(int damage)

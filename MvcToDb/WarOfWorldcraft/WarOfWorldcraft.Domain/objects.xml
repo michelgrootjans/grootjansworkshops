@@ -12,7 +12,11 @@
 
   <object id="Randomizer" 
           type="WarOfWorldcraft.Domain.Services.Randomizer, WarOfWorldcraft.Domain" autowire="autodetect" />
-  <object id="MonsterGenerator" 
+  <object id="MonsterGenerator"
           type="WarOfWorldcraft.Domain.Services.MonsterGenerator, WarOfWorldcraft.Domain" autowire="autodetect" />
+  <object id="MonsterStatsGenerator"
+          type="WarOfWorldcraft.Domain.Services.MonsterStatsGenerator, WarOfWorldcraft.Domain" autowire="autodetect" />
+  <object id="PlayerStatsGenerator"
+          type="WarOfWorldcraft.Domain.Services.PlayerStatsGenerator, WarOfWorldcraft.Domain" autowire="autodetect" />
 </objects>
 
