@@ -1,6 +1,7 @@
 using AutoMapper;
 using WarOfWorldcraft.Domain.Entities;
 using WarOfWorldcraft.Domain.Services;
+using WarOfWorldcraft.Utilities.Mapping;
 
 namespace WarOfWorldcraft.Domain
 {
@@ -21,6 +22,8 @@ namespace WarOfWorldcraft.Domain
             Mapper.CreateMap<Monster, ViewMonsterDto>();
 
             Mapper.AssertConfigurationIsValid();
+
+            Map.Initialize(new GenericMapperLocator());
         }
     }
 }

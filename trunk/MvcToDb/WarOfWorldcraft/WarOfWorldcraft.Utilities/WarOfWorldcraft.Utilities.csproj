@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
+    <Compile Include="Extensions\IntExtensions.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="IoC\Container.cs" />
@@ -82,11 +83,12 @@
     <Compile Include="Mapping\IMerger.cs" />
     <Compile Include="Mapping\Map.cs" />
     <Compile Include="Mapping\Merge.cs" />
-    <Compile Include="NHibernate\Context.cs" />
-    <Compile Include="NHibernate\IContext.cs" />
-    <Compile Include="NHibernate\NHibernateHelper.cs" />
-    <Compile Include="NHibernate\NHibernateTransactionInterceptor.cs" />
-    <Compile Include="NHibernate\StaticContext.cs" />
+    <Compile Include="Repository\Context.cs" />
+    <Compile Include="Repository\IContext.cs" />
+    <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Repository\NHibernateHelper.cs" />
+    <Compile Include="Repository\NHibernateTransactionInterceptor.cs" />
+    <Compile Include="Repository\StaticContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

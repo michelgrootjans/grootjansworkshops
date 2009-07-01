@@ -1,21 +1,24 @@
 using System.Collections.Generic;
 using WarOfWorldcraft.Domain.Entities;
+using WarOfWorldcraft.Utilities.Extensions;
 
 namespace WarOfWorldcraft.Domain.Services
 {
-    internal interface IMonsterGenerator
+    public interface IMonsterGenerator
     {
         IEnumerable<Monster> GenerateMonstersAroundLevel(int level);
     }
 
     internal class MonsterGenerator : IMonsterGenerator
     {
-        private IRandomizer randomizer;
-        private IList<string> names;
+        private readonly IRandomizer randomizer;
+        private readonly IList<string> names;
+        private readonly IMonsterStatsGenerator statsGenerator;
 
-        public MonsterGenerator(IRandomizer randomizer)
+        public MonsterGenerator(IRandomizer randomizer, IMonsterStatsGenerator statsGenerator)
         {
             this.randomizer = randomizer;
+            this.statsGenerator = statsGenerator;
             names = InitializeNames();
         }
 
@@ -25,8 +28,8 @@ namespace WarOfWorldcraft.Domain.Services
             {
                 var name = PickName();
                 var monster = new Monster(name);
-                level += randomizer.GetNumberBetween(-3, 3);
-                monster.GenerateStats(new MonsterStatsGenerator(level));
+                monster.Level = randomizer.GetNumberBetween(-3, 3).Minimum(1);
+                statsGenerator.GenerateStatsFor(monster);
 
                 yield return monster;
             }

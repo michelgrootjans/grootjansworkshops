@@ -4,7 +4,19 @@ using WarOfWorldcraft.Domain.Services;
 
 namespace WarOfWorldcraft.Web.Controllers
 {
-    public class BattleController : Controller
+    public interface IBattleController
+    {
+        [AcceptVerbs(HttpVerbs.Get)]
+        ActionResult Index();
+        
+        [AcceptVerbs(HttpVerbs.Get)]
+        ActionResult Challenge(string id);
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        ActionResult Attack(string monsterId);
+    }
+
+    public class BattleController : Controller, IBattleController
     {
         private readonly IBattleService batlleService;
 

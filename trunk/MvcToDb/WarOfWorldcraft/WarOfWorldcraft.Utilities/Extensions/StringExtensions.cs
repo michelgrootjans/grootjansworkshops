@@ -13,5 +13,20 @@ namespace WarOfWorldcraft.Utilities.Extensions
         {
             return string.Empty.Equals(target);
         }
+
+        public static bool IsNotEmpty(this string target)
+        {
+            return !target.IsEmpty();
+        }
+
+        public static bool IsNullOrEmpty(this string target)
+        {
+            return string.IsNullOrEmpty(target);
+        }
+
+        public static bool IsNotNullOrEmpty(this string target)
+        {
+            return !target.IsNullOrEmpty();
+        }
     }
 }

@@ -10,13 +10,13 @@ using MvcContrib.Spring;
 using Spring.Context.Support;
 using WarOfWorldcraft.Domain;
 using WarOfWorldcraft.Utilities.IoC;
-using WarOfWorldcraft.Utilities.NHibernate;
+using WarOfWorldcraft.Utilities.Repository;
 
 namespace WarOfWorldcraft.Web
 {
     public class MvcApplication : HttpApplication
     {
-        protected void Application_Start()
+        internal void Application_Start()
         {
             RegisterRoutes(RouteTable.Routes);
             ConfigureIoC();
@@ -47,7 +47,7 @@ namespace WarOfWorldcraft.Web
 
         private void InitNHibernate()
         {
-            Utilities.NHibernate.Context.Current = new WebContext();
+            Utilities.Repository.Context.Current = new WebContext();
             NHibernateProfiler.Initialize();
         }
     }

@@ -7,7 +7,15 @@ namespace WarOfWorldcraft.Domain.Services
         void GenerateStatsFor(IStatsHolder statistics);
     }
 
-    internal class PlayerStatsGenerator : IStatsGenerator
+    public interface IPlayerStatsGenerator : IStatsGenerator
+    {
+    }
+
+    public interface IMonsterStatsGenerator : IStatsGenerator
+    {
+    }
+
+    internal class PlayerStatsGenerator : IPlayerStatsGenerator
     {
         public void GenerateStatsFor(IStatsHolder statistics)
         {
@@ -18,18 +26,11 @@ namespace WarOfWorldcraft.Domain.Services
         }
     }
 
-    internal class MonsterStatsGenerator : IStatsGenerator
+    internal class MonsterStatsGenerator : IMonsterStatsGenerator
     {
-        private readonly int level;
-
-        public MonsterStatsGenerator(int level)
-        {
-            this.level = level > 0 ? level : 1;
-        }
-
         public void GenerateStatsFor(IStatsHolder statistics)
         {
-            statistics.Level = level;
+            var level = statistics.Level;
             statistics.MaxHitPoints = Roll.SixSidedDice().Times(level);
             statistics.HitPoints = statistics.MaxHitPoints;
             statistics.Attack = Roll.SixSidedDice().Times(level);
