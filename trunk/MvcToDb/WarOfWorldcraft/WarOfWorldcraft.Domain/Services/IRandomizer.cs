@@ -2,7 +2,7 @@ using System;
 
 namespace WarOfWorldcraft.Domain.Services
 {
-    internal interface IRandomizer
+    public interface IRandomizer
     {
         int GetNumberBetween(int from, int to);
     }

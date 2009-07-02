@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using NHibernate.Criterion;
 using WarOfWorldcraft.Domain.Entities;
 using WarOfWorldcraft.Utilities.Extensions;
 using WarOfWorldcraft.Utilities.Mapping;
@@ -13,7 +15,12 @@ namespace WarOfWorldcraft.Domain.Services
         string CreatePlayer(CreatePlayerDto player);
     }
 
-    internal class PlayerService : IPlayerService
+    public interface IInternalPlayerService
+    {
+        Player GetCurrentPlayer();
+    }
+
+    internal class PlayerService : IPlayerService, IInternalPlayerService
     {
         private readonly IRepository repository;
         private readonly IMembershipService membershipService;
@@ -45,6 +52,20 @@ namespace WarOfWorldcraft.Domain.Services
             statsGenerator.GenerateStatsFor(player);
             repository.Save(player);
             return player.Id.ToString();
+        }
+
+        public Player GetCurrentPlayer()
+        {
+            var account = membershipService.CurrentAccount;
+
+            var player = repository.CreateCriteria<Player>()
+                .Add(Restrictions.Eq("Account", account))
+                .Add(Restrictions.Gt("HitPoints", 0))
+                .UniqueResult<Player>();
+
+            if (player.IsNull())
+                throw new ArgumentException("You don't have a player.");
+            return player;
         }
     }
 }

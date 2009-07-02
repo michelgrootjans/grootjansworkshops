@@ -5,8 +5,8 @@ using AutoMapper;
 using NHibernate;
 using NUnit.Framework;
 using Rhino.Mocks;
-using Rhino.Mocks.Interfaces;
 using Utilities.Mapping;
+using WarOfWorldcraft.Utilities.IoC;
 using WarOfWorldcraft.Utilities.Mapping;
 using WarOfWorldcraft.Utilities.Repository;
 
@@ -16,15 +16,28 @@ namespace UnitTests.TestUtilities
     public abstract class StaticContextSpecification
     {
         private IList<object> mappers;
+        private Dictionary<Type, object> container;
 
         [SetUp]
         public virtual void SetUp()
         {
-            Mapper.Reset();
             Context.Current = new StaticContext();
-            mappers = new List<object>();
-            PrepareMapper();
+            InitMappers();
+            InitContainer();
             Arrange();
+        }
+
+        private void InitMappers()
+        {
+            Mapper.Reset();
+            mappers = new List<object>();
+            Map.Initialize(new StubMapperLocator(mappers));
+        }
+
+        private void InitContainer()
+        {
+            container = new Dictionary<Type, object>();
+            Container.Initialize(new InMemoryContainer(container));
         }
 
         protected virtual void Arrange()
@@ -39,11 +52,6 @@ namespace UnitTests.TestUtilities
         protected IStubSpecification<Target> When<Target>(Target target) where Target : class
         {
             return new StubSpecification<Target>(target);
-        }
-
-        private void PrepareMapper()
-        {
-            Map.Initialize(new StubMapperLocator(mappers));
         }
 
         protected IMapper<From, To> RegisterMapper<From, To>()
@@ -63,6 +71,13 @@ namespace UnitTests.TestUtilities
         protected IRepeatableAction Repeat(Action action)
         {
             return new RepeatableAction(action);
+        }
+
+        protected T RegisterDependencyInContainer<T>() where T : class
+        {
+            var dependency = Dependency<T>();
+            container.Add(typeof(T), dependency);
+            return dependency;
         }
     }
 
@@ -88,26 +103,6 @@ namespace UnitTests.TestUtilities
         }
     }
 
-    internal class StubSpecification<Target> : IStubSpecification<Target> where Target : class
-    {
-        private readonly Target target;
-
-        public StubSpecification(Target target)
-        {
-            this.target = target;
-        }
-
-        public IMethodOptions<Result> IsToldTo<Result>(Function<Target, Result> function)
-        {
-            return target.Stub(function);
-        }
-    }
-
-    public interface IStubSpecification<Target>
-    {
-        IMethodOptions<Result> IsToldTo<Result>(Function<Target, Result> function);
-    }
-
     public abstract class ControllerSpecification<SUT> :
         InstanceContextSpecification<SUT> where SUT : class
     {
@@ -119,26 +114,5 @@ namespace UnitTests.TestUtilities
         }
 
         protected abstract Func<SUT, ActionResult> When();
-    }
-
-    internal class StubMapperLocator : IMapperLocator
-    {
-        private readonly IList<object> mappers;
-
-        public StubMapperLocator(IList<object> mappers)
-        {
-            this.mappers = mappers;
-        }
-
-        public IMapper<From, To> GetMapperFor<From, To>()
-        {
-            foreach (var mapper in mappers)
-            {
-                if (typeof (IMapper<From, To>).IsAssignableFrom(mapper.GetType()))
-                    return (IMapper<From, To>) mapper;
-            }
-            throw new ArgumentException(string.Format("Could't find a mapper from {0} to {1}", typeof (From),
-                                                      typeof (To)));
-        }
     }
 }

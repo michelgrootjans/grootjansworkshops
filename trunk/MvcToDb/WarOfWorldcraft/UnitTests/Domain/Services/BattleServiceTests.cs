@@ -1,15 +1,15 @@
 using System.Collections.Generic;
+using System.Linq;
 using NHibernate;
 using NHibernate.Criterion;
 using NUnit.Framework;
+using Rhino.Mocks;
 using UnitTests.TestUtilities;
+using UnitTests.TestUtilities.Extensions;
 using Utilities.Mapping;
 using WarOfWorldcraft.Domain.Entities;
 using WarOfWorldcraft.Domain.Services;
 using WarOfWorldcraft.Utilities.Repository;
-using Rhino.Mocks;
-using System.Linq;
-using UnitTests.TestUtilities.Extensions;
 
 namespace UnitTests.Domain.Services
 {
@@ -26,13 +26,13 @@ namespace UnitTests.Domain.Services
             monsterGenerator = Dependency<IMonsterGenerator>();
         }
 
-        protected sealed override IBattleService CreateSystemUnderTest()
+        protected override sealed IBattleService CreateSystemUnderTest()
         {
             return new BattleService(repository, playerService, monsterGenerator);
         }
     }
 
-    public class BatlleService_GetAllMonsters_Test 
+    public class BatlleService_GetAllMonsters_Test
         : BattleServiceTest
     {
         protected ICriteria criteria;
@@ -63,7 +63,8 @@ namespace UnitTests.Domain.Services
         }
     }
 
-    public class when_BattleService_is_told_to_GetAllMonsters_with_enough_monsters_in_db : BatlleService_GetAllMonsters_Test
+    public class when_BattleService_is_told_to_GetAllMonsters_with_enough_monsters_in_db :
+        BatlleService_GetAllMonsters_Test
     {
         protected override void Arrange()
         {
@@ -91,7 +92,7 @@ namespace UnitTests.Domain.Services
         }
     }
 
-    public class when_BattleService_is_told_to_GetAllMonsters_with_insufficient_monsters_in_db 
+    public class when_BattleService_is_told_to_GetAllMonsters_with_insufficient_monsters_in_db
         : BatlleService_GetAllMonsters_Test
     {
         private Player player;
@@ -105,9 +106,9 @@ namespace UnitTests.Domain.Services
             base.Arrange();
 
             playerLevel = 54;
-            player = new Player("Michel", "mgr"){Level = playerLevel};
+            player = new Player("Michel", "mgr") {Level = playerLevel};
             casper = new Monster("Casper");
-            generatedMonsters = new List<Monster> { casper };
+            generatedMonsters = new List<Monster> {casper};
 
             When(playerService).IsToldTo(s => s.GetCurrentPlayer()).Return(player);
             When(monsterGenerator).IsToldTo(g => g.GenerateMonstersAroundLevel(playerLevel)).Return(generatedMonsters);
@@ -136,7 +137,6 @@ namespace UnitTests.Domain.Services
         [Test]
         public void should_return_the_mapped_monsters()
         {
-
         }
     }
 
@@ -144,7 +144,7 @@ namespace UnitTests.Domain.Services
         : BattleServiceTest
     {
         private ViewChallengeDto result;
-        private long monsterId = 6541846;
+        private readonly long monsterId = 6541846;
         private Player player;
         private IMapper<Player, ViewPlayerDto> playerMapper;
         private IMapper<Monster, ViewMonsterDto> monsterMapper;
@@ -206,4 +206,38 @@ namespace UnitTests.Domain.Services
         }
     }
 
+    public class when_BattleService_is_told_to_Attack_a_monster
+        : BattleServiceTest
+    {
+        private readonly long monsterId = 654132;
+        private Player player;
+        private Monster monster;
+
+        protected override void Arrange()
+        {
+            base.Arrange();
+            player = new Player("Michel", "mgr");
+            monster = new Monster("Horrible monster");
+            RegisterDependencyInContainer<IRandomizer>();
+            When(playerService).IsToldTo(s => s.GetCurrentPlayer()).Return(player);
+            When(repository).IsToldTo(r => r.Load<Monster>(monsterId)).Return(monster);
+        }
+
+        protected override void Act()
+        {
+            sut.Attack(monsterId.ToString());
+        }
+
+        [Test]
+        public void should_get_the_current_player()
+        {
+            playerService.AssertWasCalled(s => s.GetCurrentPlayer());
+        }
+
+        [Test]
+        public void should_get_the_monster_from_the_repository()
+        {
+            repository.AssertWasCalled(r => r.Load<Monster>(monsterId));
+        }
+    }
 }
