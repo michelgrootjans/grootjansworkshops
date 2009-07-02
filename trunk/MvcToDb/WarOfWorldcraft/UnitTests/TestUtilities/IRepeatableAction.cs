@@ -1,8 +1,8 @@
 using System;
 
-namespace UnitTests.Domain.Services
+namespace UnitTests.TestUtilities
 {
-    internal interface IRepeatableAction
+    public interface IRepeatableAction
     {
         void Times(int i);
     }
