@@ -12,7 +12,7 @@ namespace WarOfWorldcraft.Domain
             InitializeMappers();
         }
 
-        private static void InitializeMappers()
+        internal static void InitializeMappers()
         {
             Mapper.CreateMap<long, string>().ConvertUsing(l => l.ToString());
             Mapper.CreateMap<Player, ViewPlayerInfoDto>();
