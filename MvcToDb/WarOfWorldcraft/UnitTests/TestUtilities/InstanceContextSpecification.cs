@@ -59,6 +59,11 @@ namespace UnitTests.TestUtilities
             Context.Current.Items[NHibernateHelper.CurrentSessionKey] = session;
             return session;
         }
+
+        protected IRepeatableAction Repeat(Action action)
+        {
+            return new RepeatableAction(action);
+        }
     }
 
     public abstract class InstanceContextSpecification<SUT> : StaticContextSpecification
@@ -129,10 +134,11 @@ namespace UnitTests.TestUtilities
         {
             foreach (var mapper in mappers)
             {
-                if (typeof(IMapper<From, To>).IsAssignableFrom(mapper.GetType()))
+                if (typeof (IMapper<From, To>).IsAssignableFrom(mapper.GetType()))
                     return (IMapper<From, To>) mapper;
             }
-            throw new ArgumentException(string.Format("Could't find a mapper from {0} to {1}", typeof(From), typeof(To)));
+            throw new ArgumentException(string.Format("Could't find a mapper from {0} to {1}", typeof (From),
+                                                      typeof (To)));
         }
     }
 }
