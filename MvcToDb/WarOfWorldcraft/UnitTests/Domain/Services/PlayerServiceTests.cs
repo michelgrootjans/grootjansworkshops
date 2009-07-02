@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using NHibernate;
+using NHibernate.Criterion;
 using NUnit.Framework;
 using Rhino.Mocks;
 using UnitTests.TestUtilities;
@@ -11,7 +14,8 @@ using WarOfWorldcraft.Utilities.Repository;
 
 namespace UnitTests.Domain.Services
 {
-    public abstract class PlayerServiceTest : InstanceContextSpecification<IPlayerService>
+    public abstract class PlayerServiceTest
+        : InstanceContextSpecification<IPlayerService>
     {
         protected IMembershipService membershipService;
         protected IRepository repository;
@@ -49,7 +53,7 @@ namespace UnitTests.Domain.Services
             base.Arrange();
             mapper = RegisterMapper<Player, ViewPlayerInfoDto>();
             player = new Player("Michel", "MGR");
-            players = new List<Player> { player };
+            players = new List<Player> {player};
             playerDto = new ViewPlayerInfoDto();
 
             When(repository).IsToldTo(r => r.FindAll<Player>()).Return(players);
@@ -80,7 +84,8 @@ namespace UnitTests.Domain.Services
         }
     }
 
-    public class when_PlayerService_is_told_to_GetPlayer : PlayerServiceTest
+    public class when_PlayerService_is_told_to_GetPlayer
+        : PlayerServiceTest
     {
         private readonly long playerId = 564;
         private Player player;
@@ -158,4 +163,104 @@ namespace UnitTests.Domain.Services
         }
     }
 
+    public class when_PlayerService_is_told_to_GetCurrentPlayer
+        : InstanceContextSpecification<IInternalPlayerService>
+    {
+        private IRepository repository;
+        private IMembershipService membershipService;
+        private IPlayerStatsGenerator statsGenerator;
+        private ICriteria criteria;
+        private Player player;
+        private Player result;
+
+        protected override void Arrange()
+        {
+            player = new Player("Michel", "mgr");
+
+            repository = Dependency<IRepository>();
+            membershipService = Dependency<IMembershipService>();
+            statsGenerator = Dependency<IPlayerStatsGenerator>();
+            criteria = Dependency<ICriteria>();
+
+            When(membershipService).IsToldTo(s => s.CurrentAccount).Return("mgr");
+            When(repository).IsToldTo(r => r.CreateCriteria<Player>()).Return(criteria);
+            When(criteria).IsToldTo(c => c.Add(Arg<ICriterion>.Is.Anything)).Return(criteria).Repeat.Any();
+            When(criteria).IsToldTo(c => c.UniqueResult<Player>()).Return(player);
+        }
+
+        protected override IInternalPlayerService CreateSystemUnderTest()
+        {
+            return new PlayerService(repository, membershipService, statsGenerator);
+        }
+
+        protected override void Act()
+        {
+            result = sut.GetCurrentPlayer();
+        }
+
+        [Test]
+        public void should_have_account_criteria()
+        {
+            var accountCriteria = Arg<SimpleExpression>.Matches(c => c.PropertyName.Equals("Account") && c.Value.Equals("mgr"));
+            criteria.AssertWasCalled(c => c.Add(accountCriteria));
+        }
+
+        [Test]
+        public void should_have_hitpoint_criteria()
+        {
+            var accountCriteria = Arg<SimpleExpression>.Matches(c => c.PropertyName.Equals("HitPoints") && c.Value.Equals(0));
+            criteria.AssertWasCalled(c => c.Add(accountCriteria));
+        }
+
+        [Test]
+        public void should_get_the_current_player_from_the_repository()
+        {
+            criteria.AssertWasCalled(r => r.UniqueResult<Player>());
+        }
+
+        [Test]
+        public void should_return_the_player()
+        {
+            result.ShouldBeSameAs(player);
+        }
+    }
+
+    public class when_PlayerService_is_told_to_GetCurrentPlayer_when_player_doesnt_exist
+        : InstanceContextSpecification<IInternalPlayerService>
+    {
+        private IRepository repository;
+        private IMembershipService membershipService;
+        private IPlayerStatsGenerator statsGenerator;
+        private ICriteria criteria;
+        private Action getPlayer;
+
+        protected override void Arrange()
+        {
+            repository = Dependency<IRepository>();
+            membershipService = Dependency<IMembershipService>();
+            statsGenerator = Dependency<IPlayerStatsGenerator>();
+            criteria = Dependency<ICriteria>();
+
+            When(membershipService).IsToldTo(s => s.CurrentAccount).Return("mgr");
+            When(repository).IsToldTo(r => r.CreateCriteria<Player>()).Return(criteria);
+            When(criteria).IsToldTo(c => c.Add(Arg<ICriterion>.Is.Anything)).Return(criteria).Repeat.Any();
+        }
+
+        protected override IInternalPlayerService CreateSystemUnderTest()
+        {
+            return new PlayerService(repository, membershipService, statsGenerator);
+        }
+
+        protected override void Act()
+        {
+            getPlayer = () => sut.GetCurrentPlayer();
+        }
+
+        [Test]
+        public void shoul_throw_an_argument_exception()
+        {
+            getPlayer.ShouldThrowAn<ArgumentException>()
+                .Message.ShouldBeEqualTo("You don't have a player.");
+        }
+    }
 }

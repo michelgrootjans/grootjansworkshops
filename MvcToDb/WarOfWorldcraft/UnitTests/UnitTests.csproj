@@ -72,7 +72,9 @@
   <ItemGroup>
     <Compile Include="Domain\Services\BattleServiceTests.cs" />
     <Compile Include="Domain\Services\PlayerServiceTests.cs" />
+    <Compile Include="Domain\Services\RandomizerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestUtilities\Extensions\ActionExtensions.cs" />
     <Compile Include="TestUtilities\Extensions\ActionResultExtensions.cs" />
     <Compile Include="TestUtilities\Extensions\BoolExtensions.cs" />
     <Compile Include="TestUtilities\Extensions\IEnumerableExtensions.cs" />
@@ -80,6 +82,8 @@
     <Compile Include="TestUtilities\Extensions\StringExtensions.cs" />
     <Compile Include="TestUtilities\InstanceContextSpecification.cs" />
     <Compile Include="TestUtilities\IRepeatableAction.cs" />
+    <Compile Include="TestUtilities\IStubSpecification.cs" />
+    <Compile Include="TestUtilities\StubMapperLocator.cs" />
     <Compile Include="Web\ApplicationTest.cs" />
     <Compile Include="Web\Controllers\AccountControllerTests.cs" />
     <Compile Include="Web\Controllers\BatlleControllerTests.cs" />

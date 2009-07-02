@@ -7,9 +7,9 @@ namespace WarOfWorldcraft.Utilities.IoC
     {
         private readonly Dictionary<Type, object> components;
 
-        public InMemoryContainer()
+        public InMemoryContainer(Dictionary<Type, object> implementations)
         {
-            components = new Dictionary<Type, object>();
+            components = implementations;
         }
 
         public void Register<T>(T t)
