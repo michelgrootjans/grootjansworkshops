@@ -70,6 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Mapping\PlayerMapperTests.cs" />
     <Compile Include="Domain\Services\BattleServiceTests.cs" />
     <Compile Include="Domain\Services\PlayerServiceTests.cs" />
     <Compile Include="Domain\Services\RandomizerTests.cs" />
@@ -106,7 +107,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Domain\Entities\" />
-    <Folder Include="Domain\Mapping\" />
     <Folder Include="Utilities\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
