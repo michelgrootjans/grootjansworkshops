@@ -14,9 +14,9 @@
 <h3>Choose an enemy to challenge:</h3>
 <%=
     Html.Grid(Model).Columns(column => {
-            column.For(x => Html.ActionLink(x.Name, "challenge", x.Id.ToIdRoute()))
+            column.For(monster => Html.ActionLink(monster.Name, "challenge", monster.Id.ToIdRoute()))
                   .Named("Name").DoNotEncode();
-     		column.For(x => x.Level);
+     		column.For(monster => monster.Level);
      	})
      	.Empty("There are no monsters right now.")
 %>

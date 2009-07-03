@@ -10,8 +10,8 @@ namespace WarOfWorldcraft.Domain.Services
 {
     public interface IPlayerService
     {
-        IEnumerable<ViewPlayerInfoDto> GetAllPlayers();
-        ViewPlayerDto GetPlayer(string player);
+        IEnumerable<T> GetAllPlayers<T>();
+        T GetPlayer<T>(string player);
         string CreatePlayer(CreatePlayerDto player);
     }
 
@@ -33,16 +33,16 @@ namespace WarOfWorldcraft.Domain.Services
             this.statsGenerator = statsGenerator;
         }
 
-        public IEnumerable<ViewPlayerInfoDto> GetAllPlayers()
+        public IEnumerable<PlayerDto> GetAllPlayers<PlayerDto>()
         {
             var players = repository.FindAll<Player>();
-            return Map.These(players).ToAListOf<ViewPlayerInfoDto>();
+            return Map.These(players).ToAListOf<PlayerDto>();
         }
 
-        public ViewPlayerDto GetPlayer(string playerId)
+        public PlayerDto GetPlayer<PlayerDto>(string playerId)
         {
             var player = repository.Load<Player>(playerId.ToLong());
-            return Map.This(player).ToA<ViewPlayerDto>();
+            return Map.This(player).ToA<PlayerDto>();
         }
 
         public string CreatePlayer(CreatePlayerDto playerDto)

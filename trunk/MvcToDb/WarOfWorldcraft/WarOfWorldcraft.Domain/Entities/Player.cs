@@ -43,7 +43,7 @@ namespace WarOfWorldcraft.Domain.Entities
 
         private void LevelUp()
         {
-            if (Level*50 > Experience) return;
+            if (Level*10 > Experience) return;
             
             Level++;
             Attack += Roll.SixSidedDice().Once();
@@ -65,4 +65,9 @@ namespace WarOfWorldcraft.Domain.Entities
             return attack - defense;
         }
     }
+
+    public class NullPlayer : Player
+    {
+    }
+
 }

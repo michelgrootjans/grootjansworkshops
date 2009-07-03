@@ -1,14 +1,16 @@
 namespace WarOfWorldcraft.Domain.Services
 {
-    public class ViewChallengeDto
+    public class ViewChallengeDto<PlayerDto, MonsterDto>
+        where PlayerDto : new() 
+        where MonsterDto : new()
     {
         public ViewChallengeDto()
         {
-            Player = new ViewPlayerDto();
-            Monster = new ViewMonsterDto();
+            Player = new PlayerDto();
+            Monster = new MonsterDto();
         }
 
-        public ViewPlayerDto Player { get; set; }
-        public ViewMonsterDto Monster { get; set; }
+        public PlayerDto Player { get; set; }
+        public MonsterDto Monster { get; set; }
     }
 }

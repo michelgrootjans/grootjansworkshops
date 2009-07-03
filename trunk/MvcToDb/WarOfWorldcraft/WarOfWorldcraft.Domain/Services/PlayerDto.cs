@@ -18,6 +18,16 @@ namespace WarOfWorldcraft.Domain.Services
         public string PercentHitPoints { get; set; }
     }
 
+    public class ViewCurrentPlayerDto
+    {
+        
+    }
+
+    public class ViewCurrentNullPlayerDto : ViewCurrentPlayerDto
+    {
+        
+    }
+
     public class CreatePlayerDto
     {
         public string Name { get; set; }

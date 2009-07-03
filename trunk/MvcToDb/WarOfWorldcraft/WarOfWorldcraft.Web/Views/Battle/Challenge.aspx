@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="ViewPage<ViewChallengeDto>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="ViewPage<ViewChallengeDto<ViewPlayerDto, ViewMonsterDto>>" %>
 <%@ Import Namespace="WarOfWorldcraft.Domain.Services"%>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="titleContent" runat="server">

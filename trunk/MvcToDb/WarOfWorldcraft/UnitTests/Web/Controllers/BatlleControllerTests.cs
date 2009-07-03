@@ -35,7 +35,7 @@ namespace UnitTests.Web.Controllers
         {
             base.Arrange();
             monsters = new List<ViewMonsterInfoDto>();
-            When(battleService).IsToldTo(s => s.GetAllMonsters()).Return(monsters);
+            When(battleService).IsToldTo(s => s.GetAllMonsters<ViewMonsterInfoDto>()).Return(monsters);
         }
 
         protected override Func<IBattleController, ActionResult> When()
@@ -46,7 +46,7 @@ namespace UnitTests.Web.Controllers
         [Test]
         public void should_get_all_monsters()
         {
-            battleService.AssertWasCalled(s => s.GetAllMonsters());   
+            battleService.AssertWasCalled(s => s.GetAllMonsters<ViewMonsterInfoDto>());   
         }
 
         [Test]
@@ -68,13 +68,13 @@ namespace UnitTests.Web.Controllers
         : BattleControllerTest
     {
         private string monsterId = "654";
-        private ViewChallengeDto challenge;
+        private ViewChallengeDto<ViewPlayerDto, ViewMonsterDto> challenge;
 
         protected override void Arrange()
         {
             base.Arrange();
-            challenge = new ViewChallengeDto();
-            When(battleService).IsToldTo(s => s.Challenge(monsterId)).Return(challenge);
+            challenge = new ViewChallengeDto<ViewPlayerDto, ViewMonsterDto>();
+            When(battleService).IsToldTo(s => s.Challenge<ViewPlayerDto, ViewMonsterDto>(monsterId)).Return(challenge);
         }
 
         protected override Func<IBattleController, ActionResult> When()
@@ -85,7 +85,7 @@ namespace UnitTests.Web.Controllers
         [Test]
         public void should_tell_the_service_to_get_the_challenge()
         {
-            battleService.AssertWasCalled(s => s.Challenge(monsterId));
+            battleService.AssertWasCalled(s => s.Challenge<ViewPlayerDto, ViewMonsterDto>(monsterId));
         }
 
         [Test]
@@ -108,13 +108,13 @@ namespace UnitTests.Web.Controllers
         : BattleControllerTest
     {
         private string monsterId = "654";
-        private ViewChallengeDto challenge;
+        private ViewChallengeDto<ViewPlayerDto, ViewMonsterDto> challenge;
 
         protected override void Arrange()
         {
             base.Arrange();
-            challenge = new ViewChallengeDto{Monster = new ViewMonsterDto(){IsDead = true}};
-            When(battleService).IsToldTo(s => s.Challenge(monsterId)).Return(challenge);
+            challenge = new ViewChallengeDto<ViewPlayerDto, ViewMonsterDto> { Monster = new ViewMonsterDto() { IsDead = true } };
+            When(battleService).IsToldTo(s => s.Challenge<ViewPlayerDto, ViewMonsterDto>(monsterId)).Return(challenge);
         }
 
         protected override Func<IBattleController, ActionResult> When()
@@ -125,7 +125,7 @@ namespace UnitTests.Web.Controllers
         [Test]
         public void should_tell_the_service_to_get_the_challenge()
         {
-            battleService.AssertWasCalled(s => s.Challenge(monsterId));
+            battleService.AssertWasCalled(s => s.Challenge<ViewPlayerDto, ViewMonsterDto>(monsterId));
         }
 
         [Test]
@@ -148,13 +148,13 @@ namespace UnitTests.Web.Controllers
         : BattleControllerTest
     {
         private string monsterId = "654";
-        private ViewChallengeDto challenge;
+        private ViewChallengeDto<ViewPlayerDto, ViewMonsterDto> challenge;
 
         protected override void Arrange()
         {
             base.Arrange();
-            challenge = new ViewChallengeDto { Player = new ViewPlayerDto() { IsDead = true } };
-            When(battleService).IsToldTo(s => s.Challenge(monsterId)).Return(challenge);
+            challenge = new ViewChallengeDto<ViewPlayerDto, ViewMonsterDto> { Player = new ViewPlayerDto() { IsDead = true } };
+            When(battleService).IsToldTo(s => s.Challenge<ViewPlayerDto, ViewMonsterDto>(monsterId)).Return(challenge);
         }
 
         protected override Func<IBattleController, ActionResult> When()
@@ -165,7 +165,7 @@ namespace UnitTests.Web.Controllers
         [Test]
         public void should_tell_the_service_to_get_the_challenge()
         {
-            battleService.AssertWasCalled(s => s.Challenge(monsterId));
+            battleService.AssertWasCalled(s => s.Challenge<ViewPlayerDto, ViewMonsterDto>(monsterId));
         }
 
         [Test]
