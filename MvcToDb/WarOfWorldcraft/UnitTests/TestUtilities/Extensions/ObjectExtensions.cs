@@ -9,7 +9,7 @@ namespace UnitTests.TestUtilities.Extensions
             if (! typeof (T).IsAssignableFrom(target.GetType()))
             {
                 throw new AssertionException(string.Format("{0} is not of expected type {1}",
-                    target, typeof (T)));
+                    target.GetType().Name, typeof (T).Name));
             }
             return (T) target;
         }

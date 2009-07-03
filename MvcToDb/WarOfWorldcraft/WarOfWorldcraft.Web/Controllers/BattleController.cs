@@ -27,13 +27,13 @@ namespace WarOfWorldcraft.Web.Controllers
 
         public ActionResult Index()
         {
-            var enemies = batlleService.GetAllMonsters();
+            var enemies = batlleService.GetAllMonsters<ViewMonsterInfoDto>();
             return View(enemies);
         }
 
         public ActionResult Challenge(string id)
         {
-            var challenge = batlleService.Challenge(id);
+            var challenge = batlleService.Challenge<ViewPlayerDto, ViewMonsterDto>(id);
             
             if(challenge.Monster.IsDead)
                 return View("Win", challenge);

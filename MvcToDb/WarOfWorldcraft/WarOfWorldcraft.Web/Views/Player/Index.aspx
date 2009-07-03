@@ -13,11 +13,11 @@
 
 <%=
     Html.Grid(Model).Columns(column => {
-            column.For(x => Html.ActionLink(x.Name, "detail", x.Id.ToIdRoute()))
+            column.For(player => Html.ActionLink(player.Name, "detail", player.Id.ToIdRoute()))
                   .Named("Name").DoNotEncode();
-     		column.For(x => x.MaxHitPoints).Named("HP");
-            column.For(x => x.Experience).Named("XP");
-            column.For(x => x.Gold);
+     		column.For(player => player.MaxHitPoints).Named("HP");
+            column.For(player => player.Experience).Named("XP");
+            column.For(player => player.Gold);
      	})
             .Empty("This game doesn't have any players at the moment.")
 %>

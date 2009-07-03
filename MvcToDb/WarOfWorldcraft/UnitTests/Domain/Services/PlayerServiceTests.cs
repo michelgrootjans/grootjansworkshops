@@ -62,7 +62,7 @@ namespace UnitTests.Domain.Services
 
         protected override void Act()
         {
-            result = sut.GetAllPlayers().ToList();
+            result = sut.GetAllPlayers<ViewPlayerInfoDto>().ToList();
         }
 
         [Test]
@@ -106,7 +106,7 @@ namespace UnitTests.Domain.Services
 
         protected override void Act()
         {
-            result = sut.GetPlayer(playerId.ToString());
+            result = sut.GetPlayer<ViewPlayerDto>(playerId.ToString());
         }
 
         [Test]

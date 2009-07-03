@@ -9,7 +9,8 @@ using UnitTests.TestUtilities.Extensions;
 
 namespace UnitTests.Domain.Mapping
 {
-    public class when_mapping_a_Player_to_a_ViewPlayerInfoDto : InstanceContextSpecification<IMapper<Player, ViewPlayerInfoDto>>
+    public class when_mapping_a_Player_to_a_ViewPlayerInfoDto :
+        InstanceContextSpecification<IMapper<Player, ViewPlayerInfoDto>>
     {
         private Player player;
         private ViewPlayerInfoDto result;
@@ -64,5 +65,34 @@ namespace UnitTests.Domain.Mapping
             result.Gold.ShouldBeEqualTo(player.Gold.ToString());
         }
 
+    }
+    [Ignore("Don't know how to map this")]
+    public class when_mapping_a_NullPlayer_to_a_CurrentPlayerDto :
+        InstanceContextSpecification<IMapper<Player, ViewCurrentPlayerDto>>
+    {
+        private Player player;
+        private ViewCurrentPlayerDto dto;
+
+        protected override void Arrange()
+        {
+            ApplicationStartup.InitializeMappers();
+            player = new NullPlayer();
+        }
+
+        protected override IMapper<Player, ViewCurrentPlayerDto> CreateSystemUnderTest()
+        {
+            return new GenericMapper<Player, ViewCurrentPlayerDto>();
+        }
+
+        protected override void Act()
+        {
+            dto = sut.Map(player);
+        }
+
+        [Test]
+        public void should_map_to_a_null_playerdto()
+        {
+            dto.ShouldBeOfType<ViewCurrentNullPlayerDto>();
+        }
     }
 }

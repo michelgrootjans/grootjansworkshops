@@ -9,8 +9,10 @@ namespace WarOfWorldcraft.Domain.Services
 {
     public interface IBattleService
     {
-        IEnumerable<ViewMonsterInfoDto> GetAllMonsters();
-        ViewChallengeDto Challenge(string monsterId);
+        IEnumerable<MonsterDto> GetAllMonsters<MonsterDto>();
+        ViewChallengeDto<PlayerDto, MonsterDto> Challenge<PlayerDto, MonsterDto>(string monsterId) 
+            where PlayerDto : new()
+            where MonsterDto : new();
         void Attack(string monsterId);
     }
 
@@ -27,7 +29,7 @@ namespace WarOfWorldcraft.Domain.Services
             this.monsterGenerator = monsterGenerator;
         }
 
-        public IEnumerable<ViewMonsterInfoDto> GetAllMonsters()
+        public IEnumerable<MonsterDto> GetAllMonsters<MonsterDto>()
         {
             var monsters = repository.CreateCriteria<Monster>().Add(Restrictions.Gt("HitPoints", 0)).List<Monster>();
             if (monsters.Count < 5)
@@ -38,18 +40,20 @@ namespace WarOfWorldcraft.Domain.Services
                     repository.Save(monster);
                     monsters.Add(monster);
                 }
-            }            
-            return Map.These(monsters).ToAListOf<ViewMonsterInfoDto>();
+            }
+            return Map.These(monsters).ToAListOf<MonsterDto>();
         }
 
-        public ViewChallengeDto Challenge(string monsterId)
+        public ViewChallengeDto<PlayerDto, MonsterDto> Challenge<PlayerDto, MonsterDto>(string monsterId) 
+            where PlayerDto : new() 
+            where MonsterDto : new()
         {
             var player = playerService.GetCurrentPlayer();
             var monster = repository.Load<Monster>(monsterId.ToLong());
 
-            var challenge = new ViewChallengeDto();
-            challenge.Player = Map.This(player).ToA<ViewPlayerDto>();
-            challenge.Monster = Map.This(monster).ToA<ViewMonsterDto>();
+            var challenge = new ViewChallengeDto<PlayerDto, MonsterDto>();
+            challenge.Player = Map.This(player).ToA<PlayerDto>();
+            challenge.Monster = Map.This(monster).ToA<MonsterDto>();
 
             return challenge;
         }

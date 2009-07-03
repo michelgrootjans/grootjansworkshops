@@ -59,7 +59,7 @@ namespace UnitTests.Domain.Services
 
         protected override void Act()
         {
-            result = sut.GetAllMonsters().ToList();
+            result = sut.GetAllMonsters<ViewMonsterInfoDto>().ToList();
         }
     }
 
@@ -143,7 +143,7 @@ namespace UnitTests.Domain.Services
     public class when_BattleService_is_told_to_Challenge_a_monster
         : BattleServiceTest
     {
-        private ViewChallengeDto result;
+        private ViewChallengeDto<ViewPlayerDto, ViewMonsterDto> result;
         private readonly long monsterId = 6541846;
         private Player player;
         private IMapper<Player, ViewPlayerDto> playerMapper;
@@ -171,7 +171,7 @@ namespace UnitTests.Domain.Services
 
         protected override void Act()
         {
-            result = sut.Challenge(monsterId.ToString());
+            result = sut.Challenge<ViewPlayerDto, ViewMonsterDto>(monsterId.ToString());
         }
 
         [Test]
