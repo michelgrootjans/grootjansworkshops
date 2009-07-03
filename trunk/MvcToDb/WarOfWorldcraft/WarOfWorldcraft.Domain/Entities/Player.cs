@@ -19,7 +19,7 @@ namespace WarOfWorldcraft.Domain.Entities
         {
             enemy.AddDamage(CalculateDamage(this, enemy));
 
-            if (enemy.IsDead)
+            if (FightHasEndedWith(enemy))
             {
                 AddExperienceForKilling(enemy);
                 TakeAllGoldFrom(enemy);
@@ -35,7 +35,7 @@ namespace WarOfWorldcraft.Domain.Entities
             return enemy.IsDead;
         }
 
-        private void AddExperienceForKilling(Character character)
+        private void AddExperienceForKilling(IStatsHolder character)
         {
             Experience += character.Level;
             LevelUp();

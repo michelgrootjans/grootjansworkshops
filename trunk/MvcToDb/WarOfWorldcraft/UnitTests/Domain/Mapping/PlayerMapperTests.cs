@@ -1,11 +1,12 @@
+using AutoMapper;
 using NUnit.Framework;
 using UnitTests.TestUtilities;
+using UnitTests.TestUtilities.Extensions;
 using Utilities.Mapping;
 using WarOfWorldcraft.Domain;
 using WarOfWorldcraft.Domain.Entities;
 using WarOfWorldcraft.Domain.Services;
 using WarOfWorldcraft.Utilities.Mapping;
-using UnitTests.TestUtilities.Extensions;
 
 namespace UnitTests.Domain.Mapping
 {
@@ -64,35 +65,22 @@ namespace UnitTests.Domain.Mapping
         {
             result.Gold.ShouldBeEqualTo(player.Gold.ToString());
         }
-
     }
-    [Ignore("Don't know how to map this")]
+
     public class when_mapping_a_NullPlayer_to_a_CurrentPlayerDto :
-        InstanceContextSpecification<IMapper<Player, ViewCurrentPlayerDto>>
+        InstanceContextSpecification<IMapper<Player, ViewPlayerDetailsDto>>
     {
-        private Player player;
-        private ViewCurrentPlayerDto dto;
-
-        protected override void Arrange()
-        {
-            ApplicationStartup.InitializeMappers();
-            player = new NullPlayer();
-        }
-
-        protected override IMapper<Player, ViewCurrentPlayerDto> CreateSystemUnderTest()
-        {
-            return new GenericMapper<Player, ViewCurrentPlayerDto>();
-        }
-
-        protected override void Act()
-        {
-            dto = sut.Map(player);
-        }
-
         [Test]
+        [Ignore]
         public void should_map_to_a_null_playerdto()
         {
-            dto.ShouldBeOfType<ViewCurrentNullPlayerDto>();
+            Mapper.Reset();
+            Mapper.CreateMap<NullPlayer, NullPlayerDto>();
+            Mapper.CreateMap<Player, ViewPlayerDetailsDto>()
+                .Include<NullPlayer, NullPlayerDto>();
+            Mapper.AssertConfigurationIsValid();
+            Mapper.Map<Player, ViewPlayerDetailsDto>(new NullPlayer())
+                .ShouldBeOfType<NullPlayerDto>();
         }
     }
 }
