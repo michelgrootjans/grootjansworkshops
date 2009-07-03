@@ -1,3 +1,5 @@
+using System;
+
 namespace WarOfWorldcraft.Domain.Services
 {
     public class ViewPlayerInfoDto
@@ -18,12 +20,12 @@ namespace WarOfWorldcraft.Domain.Services
         public string PercentHitPoints { get; set; }
     }
 
-    public class ViewCurrentPlayerDto
+    public class ViewPlayerDetailsDto
     {
-        
+        public string Name { get; set; }
     }
 
-    public class ViewCurrentNullPlayerDto : ViewCurrentPlayerDto
+    public class NullPlayerDto : ViewPlayerDetailsDto
     {
         
     }
