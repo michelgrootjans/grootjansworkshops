@@ -26,6 +26,7 @@ namespace SlowTests
             transaction = session.BeginTransaction();
 
             PrepareData();
+            PurgeSession();
         }
 
         protected void PurgeSession()
