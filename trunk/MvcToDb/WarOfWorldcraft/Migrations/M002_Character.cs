@@ -8,7 +8,7 @@ namespace Migrations
     public class M002_Character : Migration
     {
         private readonly List<Column> columns;
-        private const string TableName = "Character";
+        internal const string TableName = "Character";
 
         public M002_Character()
         {

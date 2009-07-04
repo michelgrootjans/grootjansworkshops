@@ -6,5 +6,10 @@ namespace WarOfWorldcraft.Utilities.Extensions
         {
             return target == null;
         }
+
+        public static bool IsNotNull(this object target)
+        {
+            return ! target.IsNull();
+        }
     }
 }

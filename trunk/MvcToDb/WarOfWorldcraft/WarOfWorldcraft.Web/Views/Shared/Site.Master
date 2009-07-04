@@ -28,6 +28,7 @@
             
                 <ul id="menu">
                     <% if(Request.IsAuthenticated) { %>
+                        <li><%= Html.ActionLink("Shop", "Index", "Shop")%></li>
                         <li><%= Html.ActionLink("Arena", "Index", "Battle")%></li>
                         <li><%= Html.ActionLink("Players", "Index", "Player")%></li>
                     <% } %>

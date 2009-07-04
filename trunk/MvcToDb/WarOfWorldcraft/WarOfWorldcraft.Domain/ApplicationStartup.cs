@@ -27,6 +27,8 @@ namespace WarOfWorldcraft.Domain
             Mapper.CreateMap<Monster, ViewMonsterInfoDto>();
             Mapper.CreateMap<Monster, ViewMonsterDto>();
 
+            Mapper.CreateMap<Item, ViewItemInfoDto>();
+
             Mapper.AssertConfigurationIsValid();
 
             Map.Initialize(new GenericMapperLocator());
