@@ -10,15 +10,21 @@ namespace UnitTests.TestUtilities.Extensions
             return actionResult;
         }
 
-        public static RedirectToRouteResult ShouldRedirectToAction(this RedirectToRouteResult actionResult, string controller)
+        public static RedirectToRouteResult ShouldRedirectToAction(this RedirectToRouteResult actionResult, string action)
         {
-            actionResult.RouteValues["action"].ShouldBeEqualTo(controller);
+            actionResult.RouteValues["action"].ShouldBeEqualTo(action);
             return actionResult;
         }
 
-        public static RedirectToRouteResult ShouldRedirectToId(this RedirectToRouteResult actionResult, string controller)
+        public static RedirectToRouteResult ShouldRedirectToId(this RedirectToRouteResult actionResult, string id)
         {
-            actionResult.RouteValues["id"].ShouldBeEqualTo(controller);
+            actionResult.RouteValues["id"].ShouldBeEqualTo(id);
+            return actionResult;
+        }
+
+        public static RedirectToRouteResult ShouldRedirectWithRouteValue(this RedirectToRouteResult actionResult, string key, string value)
+        {
+            actionResult.RouteValues[key].ShouldBeEqualTo(value);
             return actionResult;
         }
     }
