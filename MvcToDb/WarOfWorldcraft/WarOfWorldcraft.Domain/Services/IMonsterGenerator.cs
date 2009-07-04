@@ -1,34 +1,47 @@
 using System.Collections.Generic;
 using WarOfWorldcraft.Domain.Entities;
 using WarOfWorldcraft.Utilities.Extensions;
+using WarOfWorldcraft.Utilities.Repository;
 
 namespace WarOfWorldcraft.Domain.Services
 {
     public interface IMonsterGenerator
     {
-        IEnumerable<Monster> GenerateMonstersAroundLevel(int level);
+        void GenerateMonsters();
     }
 
     internal class MonsterGenerator : IMonsterGenerator
     {
+        private readonly IRepository repository;
         private readonly IRandomizer randomizer;
-        private readonly IList<string> names;
         private readonly IMonsterStatsGenerator statsGenerator;
+        private readonly IInternalPlayerService playerService;
+        private readonly IList<string> names;
 
-        public MonsterGenerator(IRandomizer randomizer, IMonsterStatsGenerator statsGenerator)
+        public MonsterGenerator(IRepository repository, IRandomizer randomizer, IMonsterStatsGenerator statsGenerator, IInternalPlayerService playerService)
         {
+            this.repository = repository;
             this.randomizer = randomizer;
             this.statsGenerator = statsGenerator;
+            this.playerService = playerService;
             names = InitializeNames();
         }
 
-        public IEnumerable<Monster> GenerateMonstersAroundLevel(int level)
+        public void GenerateMonsters()
         {
-            for (var i = 0; i < 10; i++)
+            var player = playerService.GetCurrentPlayer();
+            var monsters = GenerateMonstersAroundLevel(player.Level);
+            foreach (var monster in monsters)
+                repository.Save(monster);
+        }
+
+        private IEnumerable<Monster> GenerateMonstersAroundLevel(int level)
+        {
+            for (var i = 0; i < 5; i++)
             {
                 var name = PickName();
                 var monster = new Monster(name);
-                monster.Level = randomizer.GetNumberBetween(-3, 3).Minimum(1);
+                monster.Level = randomizer.GetNumberBetween(level - 3, level + 3).Minimum(1);
                 statsGenerator.GenerateStatsFor(monster);
 
                 yield return monster;

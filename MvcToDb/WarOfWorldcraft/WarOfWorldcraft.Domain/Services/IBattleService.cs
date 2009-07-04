@@ -20,27 +20,16 @@ namespace WarOfWorldcraft.Domain.Services
     {
         private readonly IRepository repository;
         private readonly IInternalPlayerService playerService;
-        private readonly IMonsterGenerator monsterGenerator;
 
-        public BattleService(IRepository repository, IInternalPlayerService playerService, IMonsterGenerator monsterGenerator)
+        public BattleService(IRepository repository, IInternalPlayerService playerService)
         {
             this.repository = repository;
             this.playerService = playerService;
-            this.monsterGenerator = monsterGenerator;
         }
 
         public IEnumerable<MonsterDto> GetAllMonsters<MonsterDto>()
         {
             var monsters = repository.CreateCriteria<Monster>().Add(Restrictions.Gt("HitPoints", 0)).List<Monster>();
-            if (monsters.Count < 5)
-            {
-                var newmonsters = GenerateMonsters();
-                foreach (var monster in newmonsters)
-                {
-                    repository.Save(monster);
-                    monsters.Add(monster);
-                }
-            }
             return Map.These(monsters).ToAListOf<MonsterDto>();
         }
 
@@ -58,18 +47,11 @@ namespace WarOfWorldcraft.Domain.Services
             return challenge;
         }
 
-
         public void Attack(string monsterId)
         {
             var player = playerService.GetCurrentPlayer();
             var monster = repository.Load<Monster>(monsterId.ToLong());
             player.Fight(monster);
-        }
-
-        private IEnumerable<Monster> GenerateMonsters()
-        {
-            var player = playerService.GetCurrentPlayer();
-            return monsterGenerator.GenerateMonstersAroundLevel(player.Level);
         }
     }
 }

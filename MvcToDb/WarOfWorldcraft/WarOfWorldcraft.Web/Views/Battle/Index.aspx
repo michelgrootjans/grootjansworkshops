@@ -18,7 +18,7 @@
                   .Named("Name").DoNotEncode();
      		column.For(monster => monster.Level);
      	})
-     	.Empty("There are no monsters right now.")
+            .Empty(string.Format("There are no monsters right now. You can might want to {0}.", Html.ActionLink("generate monsters", "Generate", "Monster")))
 %>
      	
 </asp:Content>

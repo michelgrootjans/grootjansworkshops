@@ -29,7 +29,8 @@ namespace WarOfWorldcraft.Domain.Services
 
         public IEnumerable<ViewItemInfoDto> GetPlayerInventory()
         {
-            yield return Map.This(new Item("A strange looking potion", 1)).ToA<ViewItemInfoDto>();
+            var player = playerService.GetCurrentPlayer();
+            return Map.These(player.Inventory).ToAListOf<ViewItemInfoDto>();
         }
 
         public string Buy(string itemName)

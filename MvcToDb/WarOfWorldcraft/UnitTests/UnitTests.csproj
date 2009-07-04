@@ -77,6 +77,7 @@
     <Compile Include="Domain\Mapping\PlayerMapperTests.cs" />
     <Compile Include="Domain\Mapping\ItemMapperTests.cs" />
     <Compile Include="Domain\Services\BattleServiceTests.cs" />
+    <Compile Include="Domain\Services\MonsterGeneratorTests.cs" />
     <Compile Include="Domain\Services\PlayerServiceTests.cs" />
     <Compile Include="Domain\Services\RandomizerTests.cs" />
     <Compile Include="Domain\Services\ShopServiceTests.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="Web\Controllers\AccountControllerTests.cs" />
     <Compile Include="Web\Controllers\BatlleControllerTests.cs" />
     <Compile Include="Web\Controllers\HomeControllerTests.cs" />
+    <Compile Include="Web\Controllers\MonsterControllerTests.cs" />
     <Compile Include="Web\Controllers\PlayerControllerTests.cs" />
     <Compile Include="Web\Controllers\ShopControllerTests.cs" />
   </ItemGroup>
