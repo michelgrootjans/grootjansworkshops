@@ -17,18 +17,16 @@ namespace UnitTests.Domain.Services
     {
         protected IRepository repository;
         protected IInternalPlayerService playerService;
-        protected IMonsterGenerator monsterGenerator;
 
         protected override void Arrange()
         {
             repository = Dependency<IRepository>();
             playerService = Dependency<IInternalPlayerService>();
-            monsterGenerator = Dependency<IMonsterGenerator>();
         }
 
         protected override sealed IBattleService CreateSystemUnderTest()
         {
-            return new BattleService(repository, playerService, monsterGenerator);
+            return new BattleService(repository, playerService);
         }
     }
 
@@ -89,54 +87,6 @@ namespace UnitTests.Domain.Services
         {
             foreach (var monster in monstersFromRepository)
                 monsterMapper.AssertWasCalled(m => m.Map(monster));
-        }
-    }
-
-    public class when_BattleService_is_told_to_GetAllMonsters_with_insufficient_monsters_in_db
-        : BatlleService_GetAllMonsters_Test
-    {
-        private Player player;
-        private int playerLevel;
-        private IList<Monster> generatedMonsters;
-        private Monster casper;
-
-        protected override void Arrange()
-        {
-            numberOfMonstersInRepository = 0;
-            base.Arrange();
-
-            playerLevel = 54;
-            player = new Player("Michel", "mgr") {Level = playerLevel};
-            casper = new Monster("Casper");
-            generatedMonsters = new List<Monster> {casper};
-
-            When(playerService).IsToldTo(s => s.GetCurrentPlayer()).Return(player);
-            When(monsterGenerator).IsToldTo(g => g.GenerateMonstersAroundLevel(playerLevel)).Return(generatedMonsters);
-        }
-
-        [Test]
-        public void should_get_all_living_monsters()
-        {
-            criteria.AssertWasCalled(r => r.List<Monster>());
-        }
-
-        [Test]
-        public void should_save_the_new_monsters_to_the_repository()
-        {
-            repository.AssertWasCalled(r => r.Save(casper));
-        }
-
-        [Test]
-        public void should_map_all_the_monsters()
-        {
-            monsterMapper.AssertWasCalled(m => m.Map(casper));
-            foreach (var monster in monstersFromRepository)
-                monsterMapper.AssertWasCalled(m => m.Map(monster));
-        }
-
-        [Test]
-        public void should_return_the_mapped_monsters()
-        {
         }
     }
 

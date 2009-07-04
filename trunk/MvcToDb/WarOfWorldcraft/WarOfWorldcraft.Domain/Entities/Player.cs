@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Iesi.Collections.Generic;
 
@@ -81,6 +82,8 @@ namespace WarOfWorldcraft.Domain.Entities
 
         public virtual void Buy(Item item)
         {
+            if (item.Price > Gold)
+                throw new ArgumentException(string.Format("You cannot buy the {0}, you don't have enough gold!", item.Name));
             Gold -= item.Price;
             inventory.Add(item);
         }

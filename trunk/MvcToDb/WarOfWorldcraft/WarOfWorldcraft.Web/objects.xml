@@ -18,6 +18,10 @@
           type="WarOfWorldcraft.Web.Controllers.BattleController, WarOfWorldcraft.Web"
           autowire="autodetect"
           singleton="false" />
+  <object id="MonsterController" 
+          type="WarOfWorldcraft.Web.Controllers.MonsterController, WarOfWorldcraft.Web"
+          autowire="autodetect"
+          singleton="false" />
   <object id="ShopController" 
           type="WarOfWorldcraft.Web.Controllers.ShopController, WarOfWorldcraft.Web"
           autowire="autodetect"

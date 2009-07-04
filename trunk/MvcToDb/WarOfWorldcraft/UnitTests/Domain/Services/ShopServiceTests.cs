@@ -63,6 +63,55 @@ namespace UnitTests.Domain.Services
         }
     }
 
+    public class when_ShoppingService_is_told_to_get_the_players_inventory : ShopServiceTest
+    {
+        private IEnumerable<ViewItemInfoDto> result;
+        private IMapper<Item, ViewItemInfoDto> mapper;
+        private Item item;
+        private ViewItemInfoDto mappedItem;
+        private Player player;
+
+        protected override void Arrange()
+        {
+            base.Arrange();
+            player = new Player("michel", "mgr");
+            item = new Item("piece of bread", 0);
+            player.Buy(item);
+            mappedItem = new ViewItemInfoDto();
+
+            mapper = RegisterMapper<Item, ViewItemInfoDto>();
+
+            When(playerService).IsToldTo(s => s.GetCurrentPlayer()).Return(player);
+            When(mapper).IsToldTo(m => m.Map(item)).Return(mappedItem);
+        }
+
+
+        protected override void Act()
+        {
+            result = sut.GetPlayerInventory().ToList();
+        }
+
+        [Test]
+        public void should_get_the_player_from_the_playerservice()
+        {
+            playerService.AssertWasCalled(s => s.GetCurrentPlayer());
+        }
+
+        [Test]
+        public void should_map_the_players_inventory()
+        {
+            mapper.AssertWasCalled(m  => m.Map(item));
+        }
+
+        [Test]
+        public void should_return_the_mapped_items()
+        {
+            result.Count().ShouldBeEqualTo(1);
+            result.ShouldContain(mappedItem);
+        }
+    }
+
+
     public class when_the_ShopService_is_told_to_buy_an_item : ShopServiceTest
     {
         private string itemName;
