@@ -19,10 +19,16 @@
     <property name="Attack" />
     <property name="Defence" />
     <property name="Gold" />
-    
+
     <subclass name="Player" discriminator-value="player">
       <property name="Account" unique="true" />
       <property name="Experience" />
+
+      <set name="inventory" access="field" cascade="all">
+        <key column="CharacterId" />
+        <one-to-many class="Item" />
+      </set>
+
     </subclass>
     
     <subclass name="Monster" discriminator-value="monster">

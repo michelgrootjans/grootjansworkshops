@@ -1,19 +1,33 @@
+using System.Collections.Generic;
+using Iesi.Collections.Generic;
+
 namespace WarOfWorldcraft.Domain.Entities
 {
     public class Player : Character
     {
+        protected readonly ISet<Item> inventory;
+        public virtual string Account { get; protected set; }
+        public virtual int Experience { get; protected set; }
+
         protected Player()
         {
+            inventory = new HashedSet<Item>();
         }
 
         public Player(string name, string account) : base(name)
         {
             Account = account;
+            inventory = new HashedSet<Item>();
         }
 
-        public virtual string Account { get; set; }
-        public virtual int Gold { get; protected set; }
-        public virtual int Experience { get; protected set; }
+        public virtual IEnumerable<Item> Inventory
+        {
+            get
+            {
+                foreach (var item in inventory)
+                    yield return item;
+            }
+        }
 
         public virtual void Fight(Character enemy)
         {
@@ -44,7 +58,7 @@ namespace WarOfWorldcraft.Domain.Entities
         private void LevelUp()
         {
             if (Level*10 > Experience) return;
-            
+
             Level++;
             Attack += Roll.SixSidedDice().Once();
             Defence += Roll.SixSidedDice().Once();
@@ -60,14 +74,24 @@ namespace WarOfWorldcraft.Domain.Entities
 
         protected virtual int CalculateDamage(Character attacker, Character defender)
         {
-            var attack = attacker.Attack + Roll.SixSidedDice().Once();
-            var defense = defender.Defence + Roll.SixSidedDice().Once();
+            var attack = attacker.Attack + Roll.SixSidedDice().Twice();
+            var defense = defender.Defence + Roll.SixSidedDice().Twice();
             return attack - defense;
+        }
+
+        public virtual void Buy(Item item)
+        {
+            Gold -= item.Price;
+            inventory.Add(item);
+        }
+
+        public virtual void AddGold(int amount)
+        {
+            Gold += amount;
         }
     }
 
     public class NullPlayer : Player
     {
     }
-
 }

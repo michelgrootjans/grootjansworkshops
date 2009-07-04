@@ -27,6 +27,17 @@ namespace UnitTests.TestUtilities
             Arrange();
         }
 
+        [TearDown]
+        public virtual void TearDown()
+        {
+            AfterEachTest();
+        }
+
+        protected virtual void AfterEachTest()
+        {
+            
+        }
+
         private void InitMappers()
         {
             Mapper.Reset();

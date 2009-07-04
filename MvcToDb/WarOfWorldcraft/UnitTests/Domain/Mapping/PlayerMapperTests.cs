@@ -67,11 +67,11 @@ namespace UnitTests.Domain.Mapping
         }
     }
 
+    [Ignore]
     public class when_mapping_a_NullPlayer_to_a_CurrentPlayerDto :
         InstanceContextSpecification<IMapper<Player, ViewPlayerDetailsDto>>
     {
         [Test]
-        [Ignore]
         public void should_map_to_a_null_playerdto()
         {
             Mapper.Reset();
@@ -79,6 +79,7 @@ namespace UnitTests.Domain.Mapping
             Mapper.CreateMap<Player, ViewPlayerDetailsDto>()
                 .Include<NullPlayer, NullPlayerDto>();
             Mapper.AssertConfigurationIsValid();
+
             Mapper.Map<Player, ViewPlayerDetailsDto>(new NullPlayer())
                 .ShouldBeOfType<NullPlayerDto>();
         }

@@ -7,6 +7,8 @@
           type="WarOfWorldcraft.Domain.Services.PlayerService, WarOfWorldcraft.Domain" autowire="autodetect" />
   <object id="BattleService" 
           type="WarOfWorldcraft.Domain.Services.BattleService, WarOfWorldcraft.Domain" autowire="autodetect" />
+  <object id="ShopService" 
+          type="WarOfWorldcraft.Domain.Services.ShopService, WarOfWorldcraft.Domain" autowire="autodetect" />
 
   <object id="Randomizer" 
           type="WarOfWorldcraft.Domain.Services.Randomizer, WarOfWorldcraft.Domain" autowire="autodetect" />

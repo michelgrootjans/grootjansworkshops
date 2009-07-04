@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   namespace="WarOfWorldcraft.Domain.Entities"
+                   assembly="WarOfWorldcraft.Domain"
+                   default-lazy="true">
+
+  <class name="Item" table="Inventory">
+    <id name="Id">
+      <generator class="hilo" />
+    </id>
+
+    <property name="Name" />
+    <property name="Price" />
+    
+  </class>
+
+</hibernate-mapping>
