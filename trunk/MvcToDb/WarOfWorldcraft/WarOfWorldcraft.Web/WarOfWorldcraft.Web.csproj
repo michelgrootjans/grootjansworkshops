@@ -119,6 +119,7 @@
     <Content Include="Views\Player\Detail.aspx" />
     <Content Include="Views\Player\Index.aspx" />
     <Content Include="Views\Player\New.aspx" />
+    <Content Include="Views\Shared\Rescues\Error.aspx" />
     <Content Include="Views\Shop\Index.aspx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
@@ -152,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Filters\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

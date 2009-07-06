@@ -2,26 +2,20 @@ using System.Collections.Generic;
 
 namespace WarOfWorldcraft.Domain.Entities
 {
-    public class Shop
+    public class Shop : Character
     {
-        private static readonly IEnumerable<Item> catalog;
-
-        static Shop()
-        {
-            catalog = new List<Item>
-                          {
-                              new Item("Piece of stale bread", 2),
-                              new Item("A strange looking drink", 1)
-                          };
-        }
-
-        public IEnumerable<Item> Catalog
+        public virtual IEnumerable<Item> Catalog
         {
             get
             {
-                foreach (var item in catalog)
+                foreach (var item in inventory)
                     yield return item;
             }
+        }
+
+        public virtual void AddToCatalog(Item item)
+        {
+            inventory.Add(item);
         }
     }
 }

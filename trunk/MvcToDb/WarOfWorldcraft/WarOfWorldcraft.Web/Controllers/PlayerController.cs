@@ -1,5 +1,6 @@
 using System.Web.Mvc;
 using MvcContrib;
+using MvcContrib.Filters;
 using WarOfWorldcraft.Domain.Services;
 
 namespace WarOfWorldcraft.Web.Controllers
@@ -12,6 +13,7 @@ namespace WarOfWorldcraft.Web.Controllers
         ActionResult Create(CreatePlayerDto playerDto);
     }
 
+    [Rescue("Error")]
     public class PlayerController : Controller, IPlayerController
     {
         private readonly IPlayerService playerService;

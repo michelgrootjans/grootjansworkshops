@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using MvcContrib.Filters;
 
 namespace WarOfWorldcraft.Web.Controllers
 {
@@ -7,7 +8,7 @@ namespace WarOfWorldcraft.Web.Controllers
         ActionResult Index();
     }
 
-    [HandleError]
+    [Rescue("Error")]
     public class HomeController : Controller, IHomeController
     {
         public ActionResult Index()
