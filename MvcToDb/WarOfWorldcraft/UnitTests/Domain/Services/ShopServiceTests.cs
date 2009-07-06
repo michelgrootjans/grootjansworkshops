@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using NHibernate;
 using NUnit.Framework;
 using Rhino.Mocks;
 using UnitTests.TestUtilities;
@@ -38,13 +39,13 @@ namespace UnitTests.Domain.Services
         protected override void Arrange()
         {
             base.Arrange();
-            var shop = new Shop();
             bread = new Item("Bread", 1);
-            shop.AddToCatalog(bread);
             dto = new ViewItemInfoDto();
             mapper = RegisterMapper<Item, ViewItemInfoDto>();
 
-            When(repository).IsToldTo(r => r.FindAll<Shop>()).Return(new List<Shop> {shop});
+            var query = Dependency<IQuery>();
+            When(repository).IsToldTo(r => r.CreateQuery("from Item as item where item.Owner is null")).Return(query);
+            When(query).IsToldTo(q => q.List<Item>()).Return(new List<Item> {bread});
             When(mapper).IsToldTo(m => m.Map(Arg<Item>.Is.Anything)).Return(dto);
         }
 
@@ -118,32 +119,31 @@ namespace UnitTests.Domain.Services
 
     public class when_the_ShopService_is_told_to_buy_an_item : ShopServiceTest
     {
-        private string itemName;
+        private long itemId;
         private string result;
         private Player player;
         private int playerGold;
         private Item orderedItem;
+        private string itemName;
 
         protected override void Arrange()
         {
             base.Arrange();
+            
             player = new Player("Michel", "mgr");
-            playerGold = 100;
+            playerGold = 5;
             player.AddGold(playerGold);
+            itemId = 6543;
+            itemName = "Bread";
+            orderedItem = new Item(itemName, 5);
 
-            var shop = new Shop();
-            orderedItem = new Item("Bread", 1);
-            shop.AddToCatalog(orderedItem);
-
-            itemName = orderedItem.Name;
-
-            When(repository).IsToldTo(r => r.FindAll<Shop>()).Return(new List<Shop> {shop});
+            When(repository).IsToldTo(r => r.Load<Item>(itemId)).Return(orderedItem);
             When(playerService).IsToldTo(s => s.GetCurrentPlayer()).Return(player);
         }
 
         protected override void Act()
         {
-            result = sut.Buy(itemName);
+            result = sut.Buy(itemId.ToString());
         }
 
         [Test]

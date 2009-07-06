@@ -14,5 +14,6 @@ namespace WarOfWorldcraft.Domain.Entities
         public virtual long Id { get; protected set; }
         public virtual string Name { get; private set; }
         public virtual int Price { get; private set; }
+        protected internal virtual Character Owner { get; set; }
     }
 }

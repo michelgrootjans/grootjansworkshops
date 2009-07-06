@@ -60,7 +60,7 @@
     <Compile Include="ApplicationStartup.cs" />
     <Compile Include="Entities\Character.cs" />
     <Compile Include="Entities\Item.cs" />
-    <Compile Include="Entities\Shop.cs" />
+    <Compile Include="Services\IItemGenerator.cs" />
     <Compile Include="Services\IMonsterGenerator.cs" />
     <Compile Include="Services\IRandomizer.cs" />
     <Compile Include="Entities\IStatsHolder.cs" />

@@ -11,7 +11,7 @@ namespace WarOfWorldcraft.Web.Controllers
         ActionResult Index(string notification);
 
         [AcceptVerbs(HttpVerbs.Post)]
-        ActionResult Buy(string itemId);
+        ActionResult Buy(string id);
     }
 
     [Rescue("Error")]
@@ -35,9 +35,9 @@ namespace WarOfWorldcraft.Web.Controllers
             return result;
         }
 
-        public ActionResult Buy(string itemName)
+        public ActionResult Buy(string id)
         {
-            var notification = shopService.Buy(itemName);
+            var notification = shopService.Buy(id);
             return RedirectToAction("Index", "Shop", notification.ToNotificationRoute());
         }
     }

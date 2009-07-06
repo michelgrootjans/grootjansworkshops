@@ -24,6 +24,7 @@ namespace WarOfWorldcraft.Domain.Entities
         public Player(string name, string account) : base(name)
         {
             Account = account;
+            Level = 1;
         }
 
         public virtual void Fight(Character enemy)
@@ -54,13 +55,22 @@ namespace WarOfWorldcraft.Domain.Entities
 
         private void LevelUp()
         {
-            if (Level*10 > Experience) return;
+            if (Level < XP_To_LevelUp) return;
 
             Level++;
             Attack += Roll.SixSidedDice().Once();
             Defence += Roll.SixSidedDice().Once();
             MaxHitPoints += Roll.SixSidedDice().Once();
             HitPoints = MaxHitPoints;
+        }
+
+        private int XP_To_LevelUp
+        {
+            get
+            {
+                var level = (Level*2) - 1;
+                return level*20;
+            }
         }
 
         private void TakeAllGoldFrom(Character character)
@@ -83,6 +93,7 @@ namespace WarOfWorldcraft.Domain.Entities
                                                           item.Name));
             Gold -= item.Price;
             inventory.Add(item);
+            item.Owner = this;
         }
 
         public virtual void AddGold(int amount)

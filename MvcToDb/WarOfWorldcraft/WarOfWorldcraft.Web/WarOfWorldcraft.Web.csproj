@@ -84,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\MonsterController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Filters\ShowPlayerDetailsAttribute.cs" />
@@ -114,9 +115,9 @@
     <Content Include="Scripts\jquery.tablesorter.min.js" />
     <Content Include="Scripts\listify.js" />
     <Content Include="Views\Battle\Challenge.aspx" />
+    <Content Include="Views\Battle\Dead.aspx" />
     <Content Include="Views\Battle\Win.aspx" />
     <Content Include="Views\Battle\Index.aspx" />
-    <Content Include="Views\Player\PlayerDetails.ascx" />
     <Content Include="Views\Player\Detail.aspx" />
     <Content Include="Views\Player\Index.aspx" />
     <Content Include="Views\Player\New.aspx" />

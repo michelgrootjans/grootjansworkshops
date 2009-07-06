@@ -1,4 +1,5 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<ViewShopDto>" %>
+<%@ Import Namespace="WarOfWorldcraft.Web.Helpers"%>
 <%@ Import Namespace="WarOfWorldcraft.Utilities.Extensions"%>
 <%@ Import Namespace="WarOfWorldcraft.Web.Helpers"%>
 <%@ Import Namespace="MvcContrib.UI.Grid"%>
@@ -19,10 +20,10 @@
     <h3>Shop</h3>
     <%=
         Html.Grid(Model.Catalog.ToList())
-            .Empty("I'm sorry, we're sold out at the moment")
+            .Empty(Html.ActionLink("I'm sorry, we're sold out at the moment.", "generate", "items"))
             .Columns(column =>
                                              {
-                                                 column.For(item => Html.ActionLink(item.Name, "buy", item.Name.ToValueRoute("itemName")))
+                                                 column.For(item => Html.ActionLink(item.Name, "buy", item.Id.ToIdRoute()))
                                                      .Named("Name")
                                                      .DoNotEncode();
                                                  column.For(item => item.Price);
@@ -34,7 +35,7 @@
             .Empty("You don't have anything in your backpack")
             .Columns(column =>
                                              {
-                                                 column.For(item => Html.ActionLink(item.Name, "sell", item.Name.ToValueRoute("itemName")))
+                                                 column.For(item => Html.ActionLink(item.Name, "buy", item.Id.ToIdRoute()))
                                                      .Named("Name")
                                                      .DoNotEncode();
                                                  column.For(item => item.Price);

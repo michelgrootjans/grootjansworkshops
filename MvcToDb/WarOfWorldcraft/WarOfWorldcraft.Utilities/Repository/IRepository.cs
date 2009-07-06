@@ -9,6 +9,7 @@ namespace WarOfWorldcraft.Utilities.Repository
         T Load<T>(object id);
         void Save<T>(T t);
         ICriteria CreateCriteria<T>() where T : class;
+        IQuery CreateQuery(string query);
     }
 
     public class NHibernateRepository : IRepository
@@ -31,6 +32,11 @@ namespace WarOfWorldcraft.Utilities.Repository
         public ICriteria CreateCriteria<T>() where T : class
         {
             return NHibernateHelper.GetCurrentSession().CreateCriteria<T>();
+        }
+
+        public IQuery CreateQuery(string query)
+        {
+            return NHibernateHelper.GetCurrentSession().CreateQuery(query);
         }
     }
 }

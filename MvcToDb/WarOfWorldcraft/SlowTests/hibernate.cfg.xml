@@ -11,6 +11,8 @@
       <property name="connection.provider">NHibernate.Connection.DriverConnectionProvider</property>
       <property name="proxyfactory.factory_class">NHibernate.ByteCode.LinFu.ProxyFactoryFactory, NHibernate.ByteCode.LinFu</property>
 
+      <property name="use_outer_join">true</property>
+
       <mapping assembly="WarOfWorldcraft.Domain" />
     </session-factory>
   </hibernate-configuration>
