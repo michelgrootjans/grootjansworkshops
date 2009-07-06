@@ -22,6 +22,10 @@
           type="WarOfWorldcraft.Web.Controllers.MonsterController, WarOfWorldcraft.Web"
           autowire="autodetect"
           singleton="false" />
+  <object id="ItemsController" 
+          type="WarOfWorldcraft.Web.Controllers.ItemsController, WarOfWorldcraft.Web"
+          autowire="autodetect"
+          singleton="false" />
   <object id="ShopController" 
           type="WarOfWorldcraft.Web.Controllers.ShopController, WarOfWorldcraft.Web"
           autowire="autodetect"

@@ -19,7 +19,7 @@ namespace WarOfWorldcraft.Web.Filters
             }
             catch
             {
-                //never mind...
+                viewResult.ViewData["currentPlayer"] = new NullPlayerDto();
             }
         }
     }

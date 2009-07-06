@@ -1,4 +1,3 @@
-using AutoMapper;
 using NUnit.Framework;
 using UnitTests.TestUtilities;
 using UnitTests.TestUtilities.Extensions;
@@ -52,6 +51,12 @@ namespace UnitTests.Domain.Mapping
         public void should_map_its_experience()
         {
             result.Experience.ShouldBeEqualTo(player.Experience.ToString());
+        }
+
+        [Test]
+        public void should_map_its_level()
+        {
+            result.Level.ShouldBeEqualTo(player.Level.ToString());
         }
 
         [Test]

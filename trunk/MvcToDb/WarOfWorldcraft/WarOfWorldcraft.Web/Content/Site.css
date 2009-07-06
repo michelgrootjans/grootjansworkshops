@@ -320,3 +320,49 @@ div#title
 {
 	background-color: Silver;
 }
+
+
+/*****************
+* TABBED CONTENT *
+*****************/
+.ui-tabs-selected { background-color: #fff; color: #111; }
+.ui-state-hover { background-color: #fff; color:#000; }
+.ui-tabs-hide { display: none; }
+
+.ui-tabs-panel { border-width: thin; border-color: #ccc;}
+
+.tabs ul { padding: 0; }
+.tabs ul li { display: inline; list-style: none; }
+.tabs ul li a { background-color: #ccc; color: #fff; padding: 1em; /*border-right: 1px solid #fff; 
+                border-bottom: none;*/ text-decoration: none; font-weight: bold;
+                border: 1px outset #999; border-bottom-width: 0;}
+                
+/*****************
+* SORTABLE TABLE *
+*****************/
+table.tablesorter  { background-color: #B9C56F; border: 1px solid #000; }
+table.tablesorter th { background-color: #eee; color: #fff; text-align: left; padding: .2em .5em; cursor: pointer; }
+table.tablesorter td { padding: .5em; }
+.even {  }
+.odd {  }
+.over {  }
+table.tablesorter .header { border-top: 1px solid #FFF; border-right: 1px solid #000; border-left: 1px solid #FFF;
+                            padding-left: 3em; padding-top: .8em; height: auto; }
+table.tablesorter .header { background-image: url(bg.png); background-repeat: repeat; color: #333; }
+table.tablesorter .headerSortUp { background-image: url(asc.png); background-repeat: no-repeat; }
+table.tablesorter .headerSortDown { background-image: url(desc.png); background-repeat: no-repeat; }
+
+/*****************
+* Player stats   *
+*****************/
+#currentplayer 
+{
+    position: relative;
+    float:right;
+    background-color: #999;
+    color: #fff;
+}
+
+.playerstats
+{
+}

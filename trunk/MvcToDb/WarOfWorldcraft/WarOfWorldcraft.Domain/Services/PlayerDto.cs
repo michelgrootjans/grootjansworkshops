@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace WarOfWorldcraft.Domain.Services
@@ -21,6 +22,7 @@ namespace WarOfWorldcraft.Domain.Services
         public string Experience { get; set; }
         public string MaxHitPoints { get; set; }
         public string Gold { get; set; }
+        public string Level { get; set; }
     }
 
     public class ViewPlayerDto : ViewPlayerInfoDto

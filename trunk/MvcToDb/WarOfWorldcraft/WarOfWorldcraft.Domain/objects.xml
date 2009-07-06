@@ -14,6 +14,8 @@
           type="WarOfWorldcraft.Domain.Services.Randomizer, WarOfWorldcraft.Domain" autowire="autodetect" />
   <object id="MonsterGenerator"
           type="WarOfWorldcraft.Domain.Services.MonsterGenerator, WarOfWorldcraft.Domain" autowire="autodetect" />
+  <object id="ItemGenerator"
+          type="WarOfWorldcraft.Domain.Services.ItemGenerator, WarOfWorldcraft.Domain" autowire="autodetect" />
   <object id="MonsterStatsGenerator"
           type="WarOfWorldcraft.Domain.Services.MonsterStatsGenerator, WarOfWorldcraft.Domain" autowire="autodetect" />
   <object id="PlayerStatsGenerator"

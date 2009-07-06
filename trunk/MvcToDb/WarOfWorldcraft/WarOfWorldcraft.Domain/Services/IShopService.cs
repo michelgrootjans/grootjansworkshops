@@ -27,8 +27,8 @@ namespace WarOfWorldcraft.Domain.Services
 
         public IEnumerable<ViewItemInfoDto> GetShopContents()
         {
-            var shop = repository.FindAll<Shop>().FirstOrDefault();
-            return Map.These(shop.Catalog).ToAListOf<ViewItemInfoDto>();
+            var items = repository.CreateQuery("from Item as item where item.Owner is null").List<Item>();
+            return Map.These(items).ToAListOf<ViewItemInfoDto>();
         }
 
         public IEnumerable<ViewItemInfoDto> GetPlayerInventory()
@@ -37,13 +37,10 @@ namespace WarOfWorldcraft.Domain.Services
             return Map.These(player.Inventory).ToAListOf<ViewItemInfoDto>();
         }
 
-        public string Buy(string itemName)
+        public string Buy(string itemId)
         {
             var player = playerService.GetCurrentPlayer();
-            var shop = repository.FindAll<Shop>().First();
-            var item = (from i in shop.Catalog
-                        where i.Name.Equals(itemName)
-                        select i).FirstOrDefault();
+            var item = repository.Load<Item>(itemId.ToLong());
 
             player.Buy(item);
 
