@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using WarOfWorldcraft.Domain.Dto;
 using WarOfWorldcraft.Domain.Entities;
 using WarOfWorldcraft.Domain.Queries;
 using WarOfWorldcraft.Utilities.Extensions;

@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using System.Linq;
+using WarOfWorldcraft.Domain.Dto;
 using WarOfWorldcraft.Domain.Entities;
 using WarOfWorldcraft.Domain.Queries;
 using WarOfWorldcraft.Utilities.Mapping;

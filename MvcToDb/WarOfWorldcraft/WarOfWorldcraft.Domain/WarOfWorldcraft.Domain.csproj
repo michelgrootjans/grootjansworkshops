@@ -73,15 +73,15 @@
     <Compile Include="Services\IAuthenticationService.cs" />
     <Compile Include="Services\IMembershipService.cs" />
     <Compile Include="Services\IShopService.cs" />
-    <Compile Include="Services\MonsterDto.cs" />
+    <Compile Include="Dto\MonsterDto.cs" />
     <Compile Include="Services\IBattleService.cs" />
     <Compile Include="Services\IPlayerService.cs" />
     <Compile Include="Queries\MonstersAlive.cs" />
-    <Compile Include="Services\PlayerDto.cs" />
+    <Compile Include="Dto\PlayerDto.cs" />
     <Compile Include="Services\IStatsGenerator.cs" />
-    <Compile Include="Services\ChallengeDto.cs" />
-    <Compile Include="Services\ItemDto.cs" />
-    <Compile Include="Services\ShopDto.cs" />
+    <Compile Include="Dto\ChallengeDto.cs" />
+    <Compile Include="Dto\ItemDto.cs" />
+    <Compile Include="Dto\ShopDto.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="objects.xml" />

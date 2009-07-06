@@ -1,5 +1,5 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="ViewPage<ViewPlayerDto>" %>
-<%@ Import Namespace="WarOfWorldcraft.Domain.Services"%>
+<%@ Import Namespace="WarOfWorldcraft.Domain.Dto"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="titleContent" runat="server">
 	<%= Model.Name %>

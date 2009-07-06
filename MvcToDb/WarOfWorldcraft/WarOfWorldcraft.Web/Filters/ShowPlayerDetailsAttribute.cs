@@ -1,4 +1,5 @@
 using System.Web.Mvc;
+using WarOfWorldcraft.Domain.Dto;
 using WarOfWorldcraft.Domain.Services;
 using WarOfWorldcraft.Utilities.Extensions;
 using WarOfWorldcraft.Utilities.IoC;

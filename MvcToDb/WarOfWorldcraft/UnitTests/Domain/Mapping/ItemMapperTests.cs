@@ -2,8 +2,8 @@ using NUnit.Framework;
 using UnitTests.TestUtilities;
 using Utilities.Mapping;
 using WarOfWorldcraft.Domain;
+using WarOfWorldcraft.Domain.Dto;
 using WarOfWorldcraft.Domain.Entities;
-using WarOfWorldcraft.Domain.Services;
 using WarOfWorldcraft.Utilities.Mapping;
 using UnitTests.TestUtilities.Extensions;
 

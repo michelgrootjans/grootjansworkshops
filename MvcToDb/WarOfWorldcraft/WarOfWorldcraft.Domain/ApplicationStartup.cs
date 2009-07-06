@@ -1,11 +1,11 @@
 using AutoMapper;
+using WarOfWorldcraft.Domain.Dto;
 using WarOfWorldcraft.Domain.Entities;
-using WarOfWorldcraft.Domain.Services;
 using WarOfWorldcraft.Utilities.Mapping;
 
 namespace WarOfWorldcraft.Domain
 {
-    public class ApplicationStartup
+    public static class ApplicationStartup
     {
         public static void Run()
         {

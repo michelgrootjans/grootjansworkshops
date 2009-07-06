@@ -1,8 +1,8 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="ViewPage<ViewAllPlayersDto>" %>
+<%@ Import Namespace="WarOfWorldcraft.Domain.Dto"%>
 <%@ Import Namespace="MvcContrib.UI.Grid"%>
 <%@ Import Namespace="WarOfWorldcraft.Web.Helpers"%>
 <%@ Import Namespace="WarOfWorldcraft.Utilities.Extensions"%>
-<%@ Import Namespace="WarOfWorldcraft.Domain.Services"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="titleContent" runat="server">
 	Players

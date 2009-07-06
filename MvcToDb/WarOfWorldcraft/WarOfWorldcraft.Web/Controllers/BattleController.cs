@@ -1,6 +1,7 @@
 using System.Web.Mvc;
 using MvcContrib;
 using MvcContrib.Filters;
+using WarOfWorldcraft.Domain.Dto;
 using WarOfWorldcraft.Domain.Services;
 using WarOfWorldcraft.Web.Filters;
 

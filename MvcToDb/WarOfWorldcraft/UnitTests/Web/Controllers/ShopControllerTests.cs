@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using NUnit.Framework;
 using UnitTests.TestUtilities;
+using WarOfWorldcraft.Domain.Dto;
 using WarOfWorldcraft.Domain.Services;
 using WarOfWorldcraft.Web.Controllers;
 using Rhino.Mocks;

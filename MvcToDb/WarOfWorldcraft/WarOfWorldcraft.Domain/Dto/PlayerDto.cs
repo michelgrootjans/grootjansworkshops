@@ -1,7 +1,6 @@
-using System;
 using System.Collections.Generic;
 
-namespace WarOfWorldcraft.Domain.Services
+namespace WarOfWorldcraft.Domain.Dto
 {
     public class ViewAllPlayersDto
     {
