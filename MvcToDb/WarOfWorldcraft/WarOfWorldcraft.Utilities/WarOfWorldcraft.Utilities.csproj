@@ -88,8 +88,12 @@
     <Compile Include="Repository\Context.cs" />
     <Compile Include="Repository\IContext.cs" />
     <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Repository\IRepositoryCriteria.cs" />
+    <Compile Include="Repository\IRepositoryQuery.cs" />
+    <Compile Include="Repository\IRepositoryResult.cs" />
     <Compile Include="Repository\NHibernateHelper.cs" />
     <Compile Include="Repository\NHibernateTransactionInterceptor.cs" />
+    <Compile Include="Repository\QueryResult.cs" />
     <Compile Include="Repository\StaticContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

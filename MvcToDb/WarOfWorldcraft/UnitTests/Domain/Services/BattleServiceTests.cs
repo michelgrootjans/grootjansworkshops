@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
-using NHibernate;
-using NHibernate.Criterion;
 using NUnit.Framework;
 using Rhino.Mocks;
 using UnitTests.TestUtilities;
 using UnitTests.TestUtilities.Extensions;
 using Utilities.Mapping;
 using WarOfWorldcraft.Domain.Entities;
+using WarOfWorldcraft.Domain.Queries;
 using WarOfWorldcraft.Domain.Services;
 using WarOfWorldcraft.Utilities.Repository;
 
@@ -33,7 +32,6 @@ namespace UnitTests.Domain.Services
     public class BatlleService_GetAllMonsters_Test
         : BattleServiceTest
     {
-        protected ICriteria criteria;
         protected IEnumerable<ViewMonsterInfoDto> result;
         protected IList<Monster> monstersFromRepository;
         protected int numberOfMonstersInRepository;
@@ -47,12 +45,11 @@ namespace UnitTests.Domain.Services
             Repeat(() => monstersFromRepository.Add(new Monster("monster")))
                 .Times(numberOfMonstersInRepository);
 
-            criteria = Dependency<ICriteria>();
             monsterMapper = RegisterMapper<Monster, ViewMonsterInfoDto>();
 
-            When(repository).IsToldTo(r => r.CreateCriteria<Monster>()).Return(criteria);
-            When(criteria).IsToldTo(c => c.Add(Arg<ICriterion>.Is.Anything)).Return(criteria);
-            When(criteria).IsToldTo(c => c.List<Monster>()).Return(monstersFromRepository);
+            var iRepositoryResult = Dependency<IRepositoryResult<Monster>>();
+            When(repository).IsToldTo(r => r.Find(Arg<MonstersAlive>.Is.Anything)).Return(iRepositoryResult);
+            When(iRepositoryResult).IsToldTo(c => c.List()).Return(monstersFromRepository);
         }
 
         protected override void Act()
@@ -68,12 +65,6 @@ namespace UnitTests.Domain.Services
         {
             numberOfMonstersInRepository = 5;
             base.Arrange();
-        }
-
-        [Test]
-        public void should_get_all_living_monsters()
-        {
-            criteria.AssertWasCalled(r => r.List<Monster>());
         }
 
         [Test]

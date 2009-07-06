@@ -55,7 +55,7 @@ namespace WarOfWorldcraft.Domain.Entities
 
         private void LevelUp()
         {
-            if (Level < XP_To_LevelUp) return;
+            if (Experience < XP_To_LevelUp) return;
 
             Level++;
             Attack += Roll.SixSidedDice().Once();

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using NHibernate.Criterion;
 using WarOfWorldcraft.Domain.Entities;
+using WarOfWorldcraft.Domain.Queries;
 using WarOfWorldcraft.Utilities.Extensions;
 using WarOfWorldcraft.Utilities.Mapping;
 using WarOfWorldcraft.Utilities.Repository;
@@ -29,7 +29,7 @@ namespace WarOfWorldcraft.Domain.Services
 
         public IEnumerable<MonsterDto> GetAllMonsters<MonsterDto>()
         {
-            var monsters = repository.CreateCriteria<Monster>().Add(Restrictions.Gt("HitPoints", 0)).List<Monster>();
+            var monsters = repository.Find(new MonstersAlive()).List();
             return Map.These(monsters).ToAListOf<MonsterDto>();
         }
 
