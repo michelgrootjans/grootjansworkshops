@@ -86,6 +86,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\MonsterController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
+    <Compile Include="Filters\ShowPlayerDetailsAttribute.cs" />
     <Compile Include="Services\FormsAuthenticationService.cs" />
     <Compile Include="Services\HardcodedMembershipService.cs" />
     <Compile Include="Controllers\PlayerController.cs" />
@@ -119,6 +120,7 @@
     <Content Include="Views\Player\Detail.aspx" />
     <Content Include="Views\Player\Index.aspx" />
     <Content Include="Views\Player\New.aspx" />
+    <Content Include="Views\Shared\playerstats.ascx" />
     <Content Include="Views\Shared\Rescues\Error.aspx" />
     <Content Include="Views\Shop\Index.aspx" />
     <Content Include="Web.config" />
@@ -153,7 +155,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Filters\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

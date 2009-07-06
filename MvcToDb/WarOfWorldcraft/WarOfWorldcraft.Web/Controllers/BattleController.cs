@@ -2,6 +2,7 @@ using System.Web.Mvc;
 using MvcContrib;
 using MvcContrib.Filters;
 using WarOfWorldcraft.Domain.Services;
+using WarOfWorldcraft.Web.Filters;
 
 namespace WarOfWorldcraft.Web.Controllers
 {
@@ -18,6 +19,7 @@ namespace WarOfWorldcraft.Web.Controllers
     }
 
     [Rescue("Error")]
+    [ShowPlayerDetails]
     public class BattleController : Controller, IBattleController
     {
         private readonly IBattleService batlleService;

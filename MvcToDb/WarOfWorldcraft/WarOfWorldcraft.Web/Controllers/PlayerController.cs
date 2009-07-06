@@ -26,14 +26,14 @@ namespace WarOfWorldcraft.Web.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Index()
         {
-            var players = playerService.GetAllPlayers<ViewPlayerInfoDto>();
+            var players = playerService.GetAllPlayers();
             return View(players);
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Detail(string id)
         {
-            var player = playerService.GetPlayer<ViewPlayerDto>(id);
+            var player = playerService.GetPlayer(id);
             return View(player);
         }
 

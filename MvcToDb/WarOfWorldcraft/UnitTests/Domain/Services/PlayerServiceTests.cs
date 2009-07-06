@@ -42,27 +42,36 @@ namespace UnitTests.Domain.Services
     public class when_PlayerService_is_told_to_GetAllPlayers
         : PlayerServiceTest
     {
-        private IEnumerable<ViewPlayerInfoDto> result;
+        private ViewAllPlayersDto result;
         private IList<Player> players;
         private IMapper<Player, ViewPlayerInfoDto> mapper;
-        private Player player;
-        private ViewPlayerInfoDto playerDto;
+        private Player livingPlayer;
+        private Player deadPlayer;
+        private ViewPlayerInfoDto livingPlayerDto;
+        private ViewPlayerInfoDto deadPlayerDto;
 
         protected override void Arrange()
         {
             base.Arrange();
             mapper = RegisterMapper<Player, ViewPlayerInfoDto>();
-            player = new Player("Michel", "MGR");
-            players = new List<Player> {player};
-            playerDto = new ViewPlayerInfoDto();
+            livingPlayer = new Player("Michel", "MGR");
+            livingPlayer.HitPoints = 10;
+
+            deadPlayer = new Player("deadPlayer", "MGR");
+            livingPlayerDto = new ViewPlayerInfoDto();
+            deadPlayerDto = new ViewPlayerInfoDto();
+            players = new List<Player> {livingPlayer, deadPlayer};
 
             When(repository).IsToldTo(r => r.FindAll<Player>()).Return(players);
-            When(mapper).IsToldTo(m => m.Map(player)).Return(playerDto);
+            When(mapper).IsToldTo(m => m.Map(livingPlayer)).Return(livingPlayerDto);
+            When(mapper).IsToldTo(m => m.Map(deadPlayer)).Return(deadPlayerDto);
         }
 
         protected override void Act()
         {
-            result = sut.GetAllPlayers<ViewPlayerInfoDto>().ToList();
+            result = sut.GetAllPlayers();
+            result.LivingPlayers.ToList();
+            result.DeadPlayers.ToList();
         }
 
         [Test]
@@ -74,13 +83,20 @@ namespace UnitTests.Domain.Services
         [Test]
         public void should_map_the_player_to_a_playerdto()
         {
-            mapper.AssertWasCalled(m => m.Map(player));
+            mapper.AssertWasCalled(m => m.Map(livingPlayer));
+            mapper.AssertWasCalled(m => m.Map(deadPlayer));
         }
 
         [Test]
-        public void should_put_the_mapped_dto_in_the_result()
+        public void should_put_the_living_in_the_livingplayers()
         {
-            result.ShouldContain(playerDto);
+            result.LivingPlayers.ShouldContain(livingPlayerDto);
+        }
+
+        [Test]
+        public void should_put_the_dead_in_the_deadplayers()
+        {
+            result.DeadPlayers.ShouldContain(deadPlayerDto);
         }
     }
 
@@ -106,7 +122,7 @@ namespace UnitTests.Domain.Services
 
         protected override void Act()
         {
-            result = sut.GetPlayer<ViewPlayerDto>(playerId.ToString());
+            result = sut.GetPlayer(playerId.ToString());
         }
 
         [Test]
@@ -257,10 +273,10 @@ namespace UnitTests.Domain.Services
         }
 
         [Test]
-        public void shoul_throw_an_argument_exception()
+        public void should_throw_an_argument_exception()
         {
             getPlayer.ShouldThrowAn<ArgumentException>()
-                .Message.ShouldBeEqualTo("You don't have a player.");
+                .Message.ShouldBeEqualTo("You don't have a player yet.");
         }
     }
 }

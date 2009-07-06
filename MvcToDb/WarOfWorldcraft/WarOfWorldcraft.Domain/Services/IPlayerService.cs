@@ -5,14 +5,16 @@ using WarOfWorldcraft.Domain.Entities;
 using WarOfWorldcraft.Utilities.Extensions;
 using WarOfWorldcraft.Utilities.Mapping;
 using WarOfWorldcraft.Utilities.Repository;
+using System.Linq;
 
 namespace WarOfWorldcraft.Domain.Services
 {
     public interface IPlayerService
     {
-        IEnumerable<T> GetAllPlayers<T>();
-        T GetPlayer<T>(string player);
+        ViewAllPlayersDto GetAllPlayers();
+        ViewPlayerDto GetPlayer(string player);
         string CreatePlayer(CreatePlayerDto player);
+        ViewPlayerDto GetCurrentPlayer();
     }
 
     public interface IInternalPlayerService
@@ -33,16 +35,21 @@ namespace WarOfWorldcraft.Domain.Services
             this.statsGenerator = statsGenerator;
         }
 
-        public IEnumerable<PlayerDto> GetAllPlayers<PlayerDto>()
+        public ViewAllPlayersDto GetAllPlayers()
         {
             var players = repository.FindAll<Player>();
-            return Map.These(players).ToAListOf<PlayerDto>();
+            var allPlayers = new ViewAllPlayersDto();
+
+            allPlayers.LivingPlayers = Map.These(players.Where(p => !p.IsDead)).ToAListOf<ViewPlayerInfoDto>();
+            allPlayers.DeadPlayers = Map.These(players.Where(p => p.IsDead)).ToAListOf<ViewPlayerInfoDto>();
+            
+            return allPlayers;
         }
 
-        public PlayerDto GetPlayer<PlayerDto>(string playerId)
+        public ViewPlayerDto GetPlayer(string playerId)
         {
             var player = repository.Load<Player>(playerId.ToLong());
-            return Map.This(player).ToA<PlayerDto>();
+            return Map.This(player).ToA<ViewPlayerDto>();
         }
 
         public string CreatePlayer(CreatePlayerDto playerDto)
@@ -52,6 +59,11 @@ namespace WarOfWorldcraft.Domain.Services
             statsGenerator.GenerateStatsFor(player);
             repository.Save(player);
             return player.Id.ToString();
+        }
+
+        ViewPlayerDto IPlayerService.GetCurrentPlayer()
+        {
+            return Map.This(GetCurrentPlayer()).ToA<ViewPlayerDto>();
         }
 
         public Player GetCurrentPlayer()
@@ -64,7 +76,7 @@ namespace WarOfWorldcraft.Domain.Services
                 .UniqueResult<Player>();
 
             if (player.IsNull())
-                throw new ArgumentException("You don't have a player.");
+                throw new ArgumentException("You don't have a player yet.");
             return player;
         }
     }

@@ -66,22 +66,4 @@ namespace UnitTests.Domain.Mapping
             result.Gold.ShouldBeEqualTo(player.Gold.ToString());
         }
     }
-
-    [Ignore]
-    public class when_mapping_a_NullPlayer_to_a_CurrentPlayerDto :
-        InstanceContextSpecification<IMapper<Player, ViewPlayerDetailsDto>>
-    {
-        [Test]
-        public void should_map_to_a_null_playerdto()
-        {
-            Mapper.Reset();
-            Mapper.CreateMap<NullPlayer, NullPlayerDto>();
-            Mapper.CreateMap<Player, ViewPlayerDetailsDto>()
-                .Include<NullPlayer, NullPlayerDto>();
-            Mapper.AssertConfigurationIsValid();
-
-            Mapper.Map<Player, ViewPlayerDetailsDto>(new NullPlayer())
-                .ShouldBeOfType<NullPlayerDto>();
-        }
-    }
 }
