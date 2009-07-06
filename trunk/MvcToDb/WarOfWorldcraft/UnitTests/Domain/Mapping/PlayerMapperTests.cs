@@ -3,6 +3,7 @@ using UnitTests.TestUtilities;
 using UnitTests.TestUtilities.Extensions;
 using Utilities.Mapping;
 using WarOfWorldcraft.Domain;
+using WarOfWorldcraft.Domain.Dto;
 using WarOfWorldcraft.Domain.Entities;
 using WarOfWorldcraft.Domain.Services;
 using WarOfWorldcraft.Utilities.Mapping;

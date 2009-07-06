@@ -1,4 +1,4 @@
-namespace WarOfWorldcraft.Domain.Services
+namespace WarOfWorldcraft.Domain.Dto
 {
     public class ViewChallengeDto<PlayerDto, MonsterDto>
         where PlayerDto : new() 

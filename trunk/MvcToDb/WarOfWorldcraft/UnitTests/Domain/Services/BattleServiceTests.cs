@@ -5,6 +5,7 @@ using Rhino.Mocks;
 using UnitTests.TestUtilities;
 using UnitTests.TestUtilities.Extensions;
 using Utilities.Mapping;
+using WarOfWorldcraft.Domain.Dto;
 using WarOfWorldcraft.Domain.Entities;
 using WarOfWorldcraft.Domain.Queries;
 using WarOfWorldcraft.Domain.Services;

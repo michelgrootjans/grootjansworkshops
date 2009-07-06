@@ -1,5 +1,5 @@
 <%@ Control Language="C#" Inherits="ViewUserControl<ViewPlayerDto>" %>
-<%@ Import Namespace="WarOfWorldcraft.Domain.Services"%>
+<%@ Import Namespace="WarOfWorldcraft.Domain.Dto"%>
 
 <% if (Model is NullPlayerDto) {%>
     You don't have a player yet. <%= Html.ActionLink("You can create one here...", "new", "player")%>

@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Web.Mvc;
 using NUnit.Framework;
 using Rhino.Mocks;
 using UnitTests.TestUtilities;
 using UnitTests.TestUtilities.Extensions;
+using WarOfWorldcraft.Domain.Dto;
 using WarOfWorldcraft.Domain.Services;
 using WarOfWorldcraft.Web.Controllers;
 
