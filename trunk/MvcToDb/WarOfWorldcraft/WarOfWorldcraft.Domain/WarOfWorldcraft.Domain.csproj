@@ -60,6 +60,8 @@
     <Compile Include="ApplicationStartup.cs" />
     <Compile Include="Entities\Character.cs" />
     <Compile Include="Entities\Item.cs" />
+    <Compile Include="Queries\ItemsWithoutOwner.cs" />
+    <Compile Include="Queries\LivingPlayerWithAccount.cs" />
     <Compile Include="Services\IItemGenerator.cs" />
     <Compile Include="Services\IMonsterGenerator.cs" />
     <Compile Include="Services\IRandomizer.cs" />
@@ -74,6 +76,7 @@
     <Compile Include="Services\MonsterDto.cs" />
     <Compile Include="Services\IBattleService.cs" />
     <Compile Include="Services\IPlayerService.cs" />
+    <Compile Include="Queries\MonstersAlive.cs" />
     <Compile Include="Services\PlayerDto.cs" />
     <Compile Include="Services\IStatsGenerator.cs" />
     <Compile Include="Services\ChallengeDto.cs" />

@@ -8,8 +8,8 @@ namespace WarOfWorldcraft.Utilities.Repository
         IEnumerable<T> FindAll<T>() where T : class;
         T Load<T>(object id);
         void Save<T>(T t);
-        ICriteria CreateCriteria<T>() where T : class;
-        IQuery CreateQuery(string query);
+        IRepositoryResult<T> Find<T>(IRepositoryQuery<T> query);
+        IRepositoryResult<T> Find<T>(IRepositoryCriteria<T> criteria) where T : class;
     }
 
     public class NHibernateRepository : IRepository
@@ -29,14 +29,25 @@ namespace WarOfWorldcraft.Utilities.Repository
             NHibernateHelper.GetCurrentSession().Save(t);
         }
 
-        public ICriteria CreateCriteria<T>() where T : class
+        public IRepositoryResult<T> Find<T>(IRepositoryQuery<T> query)
+        {
+            return new QueryResult<T>(CreateQuery(query.QueryString));
+        }
+
+        public IRepositoryResult<T> Find<T>(IRepositoryCriteria<T> queryObject) where T : class
+        {
+            return new CriteriaResult<T>(CreateCriteria<T>(), queryObject);
+        }
+
+        private ICriteria CreateCriteria<T>() where T : class
         {
             return NHibernateHelper.GetCurrentSession().CreateCriteria<T>();
         }
 
-        public IQuery CreateQuery(string query)
+        private IQuery CreateQuery(string query)
         {
             return NHibernateHelper.GetCurrentSession().CreateQuery(query);
         }
     }
+
 }

@@ -9,6 +9,7 @@ using UnitTests.TestUtilities;
 using UnitTests.TestUtilities.Extensions;
 using Utilities.Mapping;
 using WarOfWorldcraft.Domain.Entities;
+using WarOfWorldcraft.Domain.Queries;
 using WarOfWorldcraft.Domain.Services;
 using WarOfWorldcraft.Utilities.Repository;
 
@@ -185,9 +186,9 @@ namespace UnitTests.Domain.Services
         private IRepository repository;
         private IMembershipService membershipService;
         private IPlayerStatsGenerator statsGenerator;
-        private ICriteria criteria;
         private Player player;
         private Player result;
+        private IRepositoryResult<Player> repositoryResult;
 
         protected override void Arrange()
         {
@@ -196,12 +197,11 @@ namespace UnitTests.Domain.Services
             repository = Dependency<IRepository>();
             membershipService = Dependency<IMembershipService>();
             statsGenerator = Dependency<IPlayerStatsGenerator>();
-            criteria = Dependency<ICriteria>();
+            repositoryResult = Dependency<IRepositoryResult<Player>>();
 
             When(membershipService).IsToldTo(s => s.CurrentAccount).Return("mgr");
-            When(repository).IsToldTo(r => r.CreateCriteria<Player>()).Return(criteria);
-            When(criteria).IsToldTo(c => c.Add(Arg<ICriterion>.Is.Anything)).Return(criteria).Repeat.Any();
-            When(criteria).IsToldTo(c => c.UniqueResult<Player>()).Return(player);
+            When(repository).IsToldTo(r => r.Find(Arg<LivingPlayerWithAccount>.Is.Anything)).Return(repositoryResult);
+            When(repositoryResult).IsToldTo(r => r.UniqueResult()).Return(player);
         }
 
         protected override IInternalPlayerService CreateSystemUnderTest()
@@ -217,21 +217,14 @@ namespace UnitTests.Domain.Services
         [Test]
         public void should_have_account_criteria()
         {
-            var accountCriteria = Arg<SimpleExpression>.Matches(c => c.PropertyName.Equals("Account") && c.Value.Equals("mgr"));
-            criteria.AssertWasCalled(c => c.Add(accountCriteria));
-        }
-
-        [Test]
-        public void should_have_hitpoint_criteria()
-        {
-            var accountCriteria = Arg<SimpleExpression>.Matches(c => c.PropertyName.Equals("HitPoints") && c.Value.Equals(0));
-            criteria.AssertWasCalled(c => c.Add(accountCriteria));
+            var accountCriteria = Arg<LivingPlayerWithAccount>.Matches(c => c.Account.Equals("mgr"));
+            repository.AssertWasCalled(r => r.Find(accountCriteria));
         }
 
         [Test]
         public void should_get_the_current_player_from_the_repository()
         {
-            criteria.AssertWasCalled(r => r.UniqueResult<Player>());
+            repositoryResult.AssertWasCalled(r => r.UniqueResult());
         }
 
         [Test]
@@ -256,10 +249,10 @@ namespace UnitTests.Domain.Services
             membershipService = Dependency<IMembershipService>();
             statsGenerator = Dependency<IPlayerStatsGenerator>();
             criteria = Dependency<ICriteria>();
+            var repositoryResult = Dependency<IRepositoryResult<Player>>();
 
             When(membershipService).IsToldTo(s => s.CurrentAccount).Return("mgr");
-            When(repository).IsToldTo(r => r.CreateCriteria<Player>()).Return(criteria);
-            When(criteria).IsToldTo(c => c.Add(Arg<ICriterion>.Is.Anything)).Return(criteria).Repeat.Any();
+            When(repository).IsToldTo(r => r.Find(Arg<LivingPlayerWithAccount>.Is.Anything)).Return(repositoryResult);
         }
 
         protected override IInternalPlayerService CreateSystemUnderTest()

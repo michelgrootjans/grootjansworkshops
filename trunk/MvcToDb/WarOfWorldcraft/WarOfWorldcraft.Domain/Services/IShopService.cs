@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using WarOfWorldcraft.Domain.Entities;
+using WarOfWorldcraft.Domain.Queries;
 using WarOfWorldcraft.Utilities.Mapping;
 using WarOfWorldcraft.Utilities.Repository;
 using WarOfWorldcraft.Utilities.Extensions;
@@ -27,7 +28,7 @@ namespace WarOfWorldcraft.Domain.Services
 
         public IEnumerable<ViewItemInfoDto> GetShopContents()
         {
-            var items = repository.CreateQuery("from Item as item where item.Owner is null").List<Item>();
+            var items = repository.Find(new ItemsWithoutOwner()).List();
             return Map.These(items).ToAListOf<ViewItemInfoDto>();
         }
 

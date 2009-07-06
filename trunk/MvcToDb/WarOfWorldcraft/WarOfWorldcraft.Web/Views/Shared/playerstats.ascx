@@ -9,6 +9,10 @@
         <td colspan="2"><%= Model.Name %></td>
     </tr>
     <tr>
+        <td>Gold</td>
+        <td><%= Model.Gold %></td>
+    </tr>
+    <tr>
         <td>Hit points</td>
         <td><%= Model.HitPoints %>/<%= Model.MaxHitPoints %> (<%= Model.PercentHitPoints %> %)</td>
     </tr>

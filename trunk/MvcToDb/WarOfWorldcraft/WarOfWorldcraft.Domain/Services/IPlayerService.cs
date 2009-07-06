@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using NHibernate.Criterion;
 using WarOfWorldcraft.Domain.Entities;
+using WarOfWorldcraft.Domain.Queries;
 using WarOfWorldcraft.Utilities.Extensions;
 using WarOfWorldcraft.Utilities.Mapping;
 using WarOfWorldcraft.Utilities.Repository;
@@ -70,10 +71,7 @@ namespace WarOfWorldcraft.Domain.Services
         {
             var account = membershipService.CurrentAccount;
 
-            var player = repository.CreateCriteria<Player>()
-                .Add(Restrictions.Eq("Account", account))
-                .Add(Restrictions.Gt("HitPoints", 0))
-                .UniqueResult<Player>();
+            var player = repository.Find(new LivingPlayerWithAccount(account)).UniqueResult();
 
             if (player.IsNull())
                 throw new ArgumentException("You don't have a player yet.");

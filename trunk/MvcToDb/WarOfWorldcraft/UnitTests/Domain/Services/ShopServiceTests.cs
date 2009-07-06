@@ -7,6 +7,7 @@ using UnitTests.TestUtilities;
 using UnitTests.TestUtilities.Extensions;
 using Utilities.Mapping;
 using WarOfWorldcraft.Domain.Entities;
+using WarOfWorldcraft.Domain.Queries;
 using WarOfWorldcraft.Domain.Services;
 using WarOfWorldcraft.Utilities.Repository;
 
@@ -44,8 +45,11 @@ namespace UnitTests.Domain.Services
             mapper = RegisterMapper<Item, ViewItemInfoDto>();
 
             var query = Dependency<IQuery>();
-            When(repository).IsToldTo(r => r.CreateQuery("from Item as item where item.Owner is null")).Return(query);
-            When(query).IsToldTo(q => q.List<Item>()).Return(new List<Item> {bread});
+            //When(repository).IsToldTo(r => r.CreateQuery("from Item as item where item.Owner is null")).Return(query);
+            //When(query).IsToldTo(q => q.List<Item>()).Return(new List<Item> {bread});
+            var repositoryResult = Dependency<IRepositoryResult<Item>>();
+            When(repository).IsToldTo(r => r.Find(Arg<ItemsWithoutOwner>.Is.Anything)).Return(repositoryResult);
+            When(repositoryResult).IsToldTo(r => r.List()).Return(new List<Item> {bread});
             When(mapper).IsToldTo(m => m.Map(Arg<Item>.Is.Anything)).Return(dto);
         }
 
