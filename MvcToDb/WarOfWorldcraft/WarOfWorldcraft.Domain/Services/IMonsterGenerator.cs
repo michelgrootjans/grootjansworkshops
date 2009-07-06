@@ -41,7 +41,7 @@ namespace WarOfWorldcraft.Domain.Services
             {
                 var name = PickName();
                 var monster = new Monster(name);
-                monster.Level = randomizer.GetNumberBetween(level - 3, level + 3).Minimum(1);
+                monster.Level = randomizer.GetNumberBetween(level - 3, level + 1).Minimum(1);
                 statsGenerator.GenerateStatsFor(monster);
 
                 yield return monster;

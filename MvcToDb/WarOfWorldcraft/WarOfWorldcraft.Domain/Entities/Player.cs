@@ -1,25 +1,12 @@
 using System;
 using System.Collections.Generic;
-using Iesi.Collections.Generic;
 
 namespace WarOfWorldcraft.Domain.Entities
 {
     public class Player : Character
     {
-        protected readonly ISet<Item> inventory;
         public virtual string Account { get; protected set; }
         public virtual int Experience { get; protected set; }
-
-        protected Player()
-        {
-            inventory = new HashedSet<Item>();
-        }
-
-        public Player(string name, string account) : base(name)
-        {
-            Account = account;
-            inventory = new HashedSet<Item>();
-        }
 
         public virtual IEnumerable<Item> Inventory
         {
@@ -28,6 +15,15 @@ namespace WarOfWorldcraft.Domain.Entities
                 foreach (var item in inventory)
                     yield return item;
             }
+        }
+
+        protected Player()
+        {
+        }
+
+        public Player(string name, string account) : base(name)
+        {
+            Account = account;
         }
 
         public virtual void Fight(Character enemy)
@@ -83,7 +79,8 @@ namespace WarOfWorldcraft.Domain.Entities
         public virtual void Buy(Item item)
         {
             if (item.Price > Gold)
-                throw new ArgumentException(string.Format("You cannot buy the {0}, you don't have enough gold!", item.Name));
+                throw new ArgumentException(string.Format("You cannot buy the {0}, you don't have enough gold!",
+                                                          item.Name));
             Gold -= item.Price;
             inventory.Add(item);
         }

@@ -1,4 +1,5 @@
 using System.Web.Mvc;
+using MvcContrib.Filters;
 using WarOfWorldcraft.Domain.Services;
 using MvcContrib;
 
@@ -9,6 +10,7 @@ namespace WarOfWorldcraft.Web.Controllers
         ActionResult Generate();
     }
 
+    [Rescue("Error")]
     public class MonsterController : Controller, IMonsterController
     {
         private readonly IMonsterGenerator monsterGenerator;

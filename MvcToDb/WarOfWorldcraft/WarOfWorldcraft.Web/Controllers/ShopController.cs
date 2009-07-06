@@ -1,4 +1,5 @@
 using System.Web.Mvc;
+using MvcContrib.Filters;
 using WarOfWorldcraft.Domain.Services;
 using WarOfWorldcraft.Web.Helpers;
 
@@ -13,6 +14,7 @@ namespace WarOfWorldcraft.Web.Controllers
         ActionResult Buy(string itemId);
     }
 
+    [Rescue("Error")]
     public class ShopController : Controller, IShopController
     {
         private readonly IShopService shopService;

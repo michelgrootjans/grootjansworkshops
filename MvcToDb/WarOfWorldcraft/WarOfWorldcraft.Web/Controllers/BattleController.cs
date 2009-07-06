@@ -1,5 +1,6 @@
 using System.Web.Mvc;
 using MvcContrib;
+using MvcContrib.Filters;
 using WarOfWorldcraft.Domain.Services;
 
 namespace WarOfWorldcraft.Web.Controllers
@@ -16,6 +17,7 @@ namespace WarOfWorldcraft.Web.Controllers
         ActionResult Attack(string monsterId);
     }
 
+    [Rescue("Error")]
     public class BattleController : Controller, IBattleController
     {
         private readonly IBattleService batlleService;

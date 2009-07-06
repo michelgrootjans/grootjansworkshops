@@ -1,6 +1,6 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using MvcContrib;
+using MvcContrib.Filters;
 using WarOfWorldcraft.Domain.Services;
 using WarOfWorldcraft.Utilities.Extensions;
 
@@ -18,7 +18,7 @@ namespace WarOfWorldcraft.Web.Controllers
         ActionResult LogOff();
     }
 
-    [HandleError]
+    [Rescue("Error")]
     public class AccountController : Controller, IAccountController
     {
         private readonly IAuthenticationService authenticationService;

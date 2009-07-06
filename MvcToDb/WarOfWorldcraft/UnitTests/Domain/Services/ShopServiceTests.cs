@@ -7,21 +7,24 @@ using UnitTests.TestUtilities.Extensions;
 using Utilities.Mapping;
 using WarOfWorldcraft.Domain.Entities;
 using WarOfWorldcraft.Domain.Services;
+using WarOfWorldcraft.Utilities.Repository;
 
 namespace UnitTests.Domain.Services
 {
     public class ShopServiceTest : InstanceContextSpecification<IShopService>
     {
         protected IInternalPlayerService playerService;
+        protected IRepository repository;
 
         protected override void Arrange()
         {
+            repository = Dependency<IRepository>();
             playerService = Dependency<IInternalPlayerService>();
         }
 
         protected override IShopService CreateSystemUnderTest()
         {
-            return new ShopService(playerService);
+            return new ShopService(repository, playerService);
         }
     }
 
@@ -29,16 +32,19 @@ namespace UnitTests.Domain.Services
     {
         private IEnumerable<ViewItemInfoDto> result;
         private IMapper<Item, ViewItemInfoDto> mapper;
-        private IEnumerable<Item> itemsInShop;
         private ViewItemInfoDto dto;
+        private Item bread;
 
         protected override void Arrange()
         {
             base.Arrange();
-            itemsInShop = new Shop().Catalog;
+            var shop = new Shop();
+            bread = new Item("Bread", 1);
+            shop.AddToCatalog(bread);
             dto = new ViewItemInfoDto();
             mapper = RegisterMapper<Item, ViewItemInfoDto>();
 
+            When(repository).IsToldTo(r => r.FindAll<Shop>()).Return(new List<Shop> {shop});
             When(mapper).IsToldTo(m => m.Map(Arg<Item>.Is.Anything)).Return(dto);
         }
 
@@ -50,16 +56,14 @@ namespace UnitTests.Domain.Services
         [Test]
         public void should_map_the_contents_of_the_shop()
         {
-            foreach (var item in itemsInShop)
-                mapper.AssertWasCalled(m => m.Map(item));
+            mapper.AssertWasCalled(m => m.Map(bread));
         }
 
         [Test]
         public void should_return_the_mapped_items()
         {
-            result.Count().ShouldBeEqualTo(itemsInShop.Count());
-            foreach (var itemInfoDto in result)
-                itemInfoDto.ShouldBeSameAs(dto);
+            result.Count().ShouldBeEqualTo(1);
+            result.ShouldContain(dto);
         }
     }
 
@@ -100,7 +104,7 @@ namespace UnitTests.Domain.Services
         [Test]
         public void should_map_the_players_inventory()
         {
-            mapper.AssertWasCalled(m  => m.Map(item));
+            mapper.AssertWasCalled(m => m.Map(item));
         }
 
         [Test]
@@ -117,8 +121,8 @@ namespace UnitTests.Domain.Services
         private string itemName;
         private string result;
         private Player player;
-        private Item orderedItem;
         private int playerGold;
+        private Item orderedItem;
 
         protected override void Arrange()
         {
@@ -127,9 +131,13 @@ namespace UnitTests.Domain.Services
             playerGold = 100;
             player.AddGold(playerGold);
 
-            orderedItem = new Shop().Catalog.First();
+            var shop = new Shop();
+            orderedItem = new Item("Bread", 1);
+            shop.AddToCatalog(orderedItem);
+
             itemName = orderedItem.Name;
 
+            When(repository).IsToldTo(r => r.FindAll<Shop>()).Return(new List<Shop> {shop});
             When(playerService).IsToldTo(s => s.GetCurrentPlayer()).Return(player);
         }
 

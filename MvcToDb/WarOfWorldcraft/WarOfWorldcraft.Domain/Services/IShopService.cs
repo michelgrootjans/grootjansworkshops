@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Linq;
 using WarOfWorldcraft.Domain.Entities;
 using WarOfWorldcraft.Utilities.Mapping;
+using WarOfWorldcraft.Utilities.Repository;
+using WarOfWorldcraft.Utilities.Extensions;
 
 namespace WarOfWorldcraft.Domain.Services
 {
@@ -14,17 +16,19 @@ namespace WarOfWorldcraft.Domain.Services
 
     internal class ShopService : IShopService
     {
+        private readonly IRepository repository;
         private readonly IInternalPlayerService playerService;
 
-        public ShopService(IInternalPlayerService playerService)
+        public ShopService(IRepository repository, IInternalPlayerService playerService)
         {
+            this.repository = repository;
             this.playerService = playerService;
         }
 
         public IEnumerable<ViewItemInfoDto> GetShopContents()
         {
-            var items = new Shop().Catalog;
-            return Map.These(items).ToAListOf<ViewItemInfoDto>();
+            var shop = repository.FindAll<Shop>().FirstOrDefault();
+            return Map.These(shop.Catalog).ToAListOf<ViewItemInfoDto>();
         }
 
         public IEnumerable<ViewItemInfoDto> GetPlayerInventory()
@@ -36,7 +40,8 @@ namespace WarOfWorldcraft.Domain.Services
         public string Buy(string itemName)
         {
             var player = playerService.GetCurrentPlayer();
-            var item = (from i in new Shop().Catalog
+            var shop = repository.FindAll<Shop>().First();
+            var item = (from i in shop.Catalog
                         where i.Name.Equals(itemName)
                         select i).FirstOrDefault();
 
