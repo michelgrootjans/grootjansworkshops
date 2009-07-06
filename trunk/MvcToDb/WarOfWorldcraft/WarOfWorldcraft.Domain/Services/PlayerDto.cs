@@ -1,7 +1,19 @@
-using System;
+using System.Collections.Generic;
 
 namespace WarOfWorldcraft.Domain.Services
 {
+    public class ViewAllPlayersDto
+    {
+        public IEnumerable<ViewPlayerInfoDto> LivingPlayers { get; set; }
+        public IEnumerable<ViewPlayerInfoDto> DeadPlayers { get; set; }
+
+        public ViewAllPlayersDto()
+        {
+            LivingPlayers = new List<ViewPlayerInfoDto>();
+            DeadPlayers = new List<ViewPlayerInfoDto>();
+        }
+    }
+
     public class ViewPlayerInfoDto
     {
         public string Id { get; set; }
@@ -20,14 +32,8 @@ namespace WarOfWorldcraft.Domain.Services
         public string PercentHitPoints { get; set; }
     }
 
-    public class ViewPlayerDetailsDto
+    public class NullPlayerDto : ViewPlayerDto
     {
-        public string Name { get; set; }
-    }
-
-    public class NullPlayerDto : ViewPlayerDetailsDto
-    {
-        
     }
 
     public class CreatePlayerDto

@@ -19,11 +19,6 @@ namespace WarOfWorldcraft.Domain
             Mapper.CreateMap<Player, ViewPlayerDto>()
                 .ForMember(dto => dto.PercentHitPoints, config => config.MapFrom(player => player.HitPoints*100/player.MaxHitPoints));
 
-            Mapper.CreateMap<NullPlayer, NullPlayerDto>();
-
-            Mapper.CreateMap<Player, ViewPlayerDetailsDto>()
-                .Include<NullPlayer, NullPlayerDto>(); 
-            
             Mapper.CreateMap<Monster, ViewMonsterInfoDto>();
             Mapper.CreateMap<Monster, ViewMonsterDto>();
 

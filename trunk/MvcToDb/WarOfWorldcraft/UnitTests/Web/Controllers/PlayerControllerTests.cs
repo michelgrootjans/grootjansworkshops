@@ -29,13 +29,13 @@ namespace UnitTests.Web.Controllers
     public class when_PlayerController_is_told_to_show_the_Index
         : PlayerControllerTest
     {
-        private IEnumerable<ViewPlayerInfoDto> players;
+        private ViewAllPlayersDto players;
 
         protected override void Arrange()
         {
             base.Arrange();
-            players = new List<ViewPlayerInfoDto>();
-            When(playerService).IsToldTo(s => s.GetAllPlayers<ViewPlayerInfoDto>()).Return(players);
+            players = new ViewAllPlayersDto();
+            When(playerService).IsToldTo(s => s.GetAllPlayers()).Return(players);
         }
 
         protected override Func<IPlayerController, ActionResult> When()
@@ -46,7 +46,7 @@ namespace UnitTests.Web.Controllers
         [Test]
         public void should_get_all_the_players_in_game_from_the_service()
         {
-            playerService.AssertWasCalled(s => s.GetAllPlayers<ViewPlayerInfoDto>());
+            playerService.AssertWasCalled(s => s.GetAllPlayers());
         }
 
         [Test]
@@ -75,7 +75,7 @@ namespace UnitTests.Web.Controllers
             base.Arrange();
             playerId = "8797955";
             player = new ViewPlayerDto();
-            When(playerService).IsToldTo(s => s.GetPlayer<ViewPlayerDto>(playerId)).Return(player);
+            When(playerService).IsToldTo(s => s.GetPlayer(playerId)).Return(player);
         }
 
         protected override Func<IPlayerController, ActionResult> When()
@@ -86,7 +86,7 @@ namespace UnitTests.Web.Controllers
         [Test]
         public void should_get_all_the_players_in_game_from_the_service()
         {
-            playerService.AssertWasCalled(s => s.GetPlayer<ViewPlayerDto>(playerId));
+            playerService.AssertWasCalled(s => s.GetPlayer(playerId));
         }
 
         [Test]

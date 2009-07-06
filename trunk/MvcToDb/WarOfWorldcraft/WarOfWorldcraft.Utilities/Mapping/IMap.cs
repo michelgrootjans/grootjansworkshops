@@ -19,6 +19,6 @@ namespace WarOfWorldcraft.Utilities.Mapping
             var mapper = Map.locator.GetMapperFor<From, To>();
             return mapper.Map(from);
         }
-    }
 
+    }
 }
