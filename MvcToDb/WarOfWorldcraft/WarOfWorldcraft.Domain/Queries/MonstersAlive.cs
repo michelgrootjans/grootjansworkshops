@@ -5,7 +5,7 @@ using WarOfWorldcraft.Utilities.Repository;
 
 namespace WarOfWorldcraft.Domain.Queries
 {
-    internal class MonstersAlive : IRepositoryCriteria<Monster>
+    public class MonstersAlive : IRepositoryCriteria<Monster>
     {
         public ICriteria AddCriterionTo(ICriteria criteria)
         {

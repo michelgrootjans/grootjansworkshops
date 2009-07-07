@@ -1,9 +1,8 @@
-using System;
 using NUnit.Framework;
 using UnitTests.TestUtilities.Extensions;
 using WarOfWorldcraft.Domain.Entities;
 
-namespace SlowTests
+namespace SlowTests.Entities
 {
     public class PlayerCrudTest : NHibernateTest
     {
