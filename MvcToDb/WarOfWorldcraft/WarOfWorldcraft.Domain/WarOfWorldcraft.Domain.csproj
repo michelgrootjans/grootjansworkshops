@@ -59,10 +59,7 @@
   <ItemGroup>
     <Compile Include="ApplicationStartup.cs" />
     <Compile Include="Entities\Character.cs" />
-    <Compile Include="Entities\Item.cs" />
-    <Compile Include="Queries\ItemsWithoutOwner.cs" />
     <Compile Include="Queries\LivingPlayerWithAccount.cs" />
-    <Compile Include="Services\IItemGenerator.cs" />
     <Compile Include="Services\IMonsterGenerator.cs" />
     <Compile Include="Services\IRandomizer.cs" />
     <Compile Include="Entities\IStatsHolder.cs" />
@@ -72,7 +69,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IAuthenticationService.cs" />
     <Compile Include="Services\IMembershipService.cs" />
-    <Compile Include="Services\IShopService.cs" />
     <Compile Include="Dto\MonsterDto.cs" />
     <Compile Include="Services\IBattleService.cs" />
     <Compile Include="Services\IPlayerService.cs" />
@@ -80,8 +76,6 @@
     <Compile Include="Dto\PlayerDto.cs" />
     <Compile Include="Services\IStatsGenerator.cs" />
     <Compile Include="Dto\ChallengeDto.cs" />
-    <Compile Include="Dto\ItemDto.cs" />
-    <Compile Include="Dto\ShopDto.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="objects.xml" />
@@ -94,9 +88,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Entities\Character.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Entities\Item.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

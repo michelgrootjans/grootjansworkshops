@@ -8,15 +8,6 @@ namespace WarOfWorldcraft.Domain.Entities
         public virtual string Account { get; protected set; }
         public virtual int Experience { get; protected set; }
 
-        public virtual IEnumerable<Item> Inventory
-        {
-            get
-            {
-                foreach (var item in inventory)
-                    yield return item;
-            }
-        }
-
         protected Player()
         {
         }
@@ -84,16 +75,6 @@ namespace WarOfWorldcraft.Domain.Entities
             var attack = attacker.Attack + Roll.SixSidedDice().Twice();
             var defense = defender.Defence + Roll.SixSidedDice().Twice();
             return attack - defense;
-        }
-
-        public virtual void Buy(Item item)
-        {
-            if (item.Price > Gold)
-                throw new ArgumentException(string.Format("You cannot buy the {0}, you don't have enough gold!",
-                                                          item.Name));
-            Gold -= item.Price;
-            inventory.Add(item);
-            item.Owner = this;
         }
 
         public virtual void AddGold(int amount)
