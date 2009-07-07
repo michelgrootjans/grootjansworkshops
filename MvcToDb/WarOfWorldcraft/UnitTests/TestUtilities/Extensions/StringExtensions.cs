@@ -9,5 +9,10 @@ namespace UnitTests.TestUtilities.Extensions
         {
             Assert.IsTrue(target.IsEmpty());
         }
+
+        public static void ShouldContain(this string target, string expected)
+        {
+            Assert.IsTrue(target.Contains(expected), string.Format("Expected '{0}' in string '{1}'", expected, target));
+        }
     }
 }

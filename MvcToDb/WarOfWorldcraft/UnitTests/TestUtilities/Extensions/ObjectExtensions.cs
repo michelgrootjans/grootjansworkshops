@@ -19,6 +19,11 @@ namespace UnitTests.TestUtilities.Extensions
             Assert.IsNull(target);
         }
 
+        public static void ShouldNotBeNull(this object target)
+        {
+            Assert.IsNotNull(target);
+        }
+
         public static void ShouldBeEqualTo(this object actual, object expected)
         {
             Assert.AreEqual(expected, actual);
