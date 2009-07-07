@@ -13,30 +13,19 @@
     <discriminator column="type" />
 
     <property name="Name" />
-
-    <set name="inventory" access="field" cascade="all" fetch="join">
-      <key column="CharacterId" />
-      <one-to-many class="Item" />
-    </set>
+    <property name="Level" />
+    <property name="HitPoints" />
+    <property name="MaxHitPoints" />
+    <property name="Attack" />
+    <property name="Defence" />
+    <property name="Gold" />
 
     <subclass name="Player" discriminator-value="player">
-      <property name="Level" />
-      <property name="HitPoints" />
-      <property name="MaxHitPoints" />
-      <property name="Attack" />
-      <property name="Defence" />
-      <property name="Gold" />
       <property name="Account" unique="true" />
       <property name="Experience" />
     </subclass>
     
     <subclass name="Monster" discriminator-value="monster">
-      <property name="Level" />
-      <property name="HitPoints" />
-      <property name="MaxHitPoints" />
-      <property name="Attack" />
-      <property name="Defence" />
-      <property name="Gold" />
     </subclass>
   
   </class>

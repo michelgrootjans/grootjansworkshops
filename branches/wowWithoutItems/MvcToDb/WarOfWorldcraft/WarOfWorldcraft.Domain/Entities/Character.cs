@@ -4,17 +4,14 @@ namespace WarOfWorldcraft.Domain.Entities
 {
     public abstract class Character : IStatsHolder
     {
-        protected readonly ISet<Item> inventory;
 
         protected Character() //Necessary for NHibernate
         {
-            inventory = new HashedSet<Item>();
         }
 
         public Character(string name)
         {
             Name = name;
-            inventory = new HashedSet<Item>();
         }
 
         public override string ToString()

@@ -49,26 +49,4 @@ namespace SlowTests.Entities
             session.Get<Player>(playerId).ShouldBeNull();
         }
     }
-
-    public class PlayerInventoryTest : NHibernateTest
-    {
-        private long playerId;
-
-        protected override void PrepareData()
-        {
-            var player = new Player("Michel", "mgr");
-            player.AddGold(100);
-            player.Buy(new Item("Gizmo", 10));
-            session.Save(player);
-            playerId = player.Id;
-        }
-
-        [Test]
-        public void should_be_able_to_get_the_players_inventory()
-        {
-            var player = session.Load<Player>(playerId);
-            player.Inventory.ShouldContain(i => i.Name.Equals("Gizmo"));
-            player.Gold.ShouldBeEqualTo(90);
-        }
-    }
 }
