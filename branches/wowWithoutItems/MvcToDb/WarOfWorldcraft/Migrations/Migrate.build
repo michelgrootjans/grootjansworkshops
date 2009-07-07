@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Migrate">
+  <PropertyGroup>
+    <MigratorTasksPath>..\..\..\tools\migrator</MigratorTasksPath>
+  </PropertyGroup>
+
+  <Import Project="$(MigratorTasksPath)\Migrator.Targets" />
+
+  <ItemGroup>
+    <MigrationAssemblies Include="bin\Debug\Migrations.dll" />
+  </ItemGroup>
+
+  <Target Name="Migrate">
+    <Message Text="Migrating: @(MigrationAssemblies)"/>
+
+    <CreateProperty Value="-1" Condition="'$(SchemaVersion)'==''">
+      <Output TaskParameter="Value" PropertyName="SchemaVersion"/>
+    </CreateProperty>
+    
+    <CreateProperty Value="wow" Condition="'$(DataBase)'==''">
+      <Output TaskParameter="Value" PropertyName="DataBase"/>
+    </CreateProperty>
+    
+    <Migrate Provider="SqlServer"
+        Connectionstring="Database=$(DataBase);Data Source=localhost;Integrated Security=true;"
+        Migrations="@(MigrationAssemblies)"
+        To="$(SchemaVersion)"/>
+  </Target>
+</Project>

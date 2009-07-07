@@ -1,0 +1,9 @@
+2009-06-21 20:09:41,156 [1] WARN  Rhino.Licensing.LicenseValidator [(null)] - Could not find license file: I:\Documents and Settings\Michel\Local Settings\Application Data\NHProf\license.xml
+2009-06-21 20:09:57,296 [1] INFO  Rhino.Licensing.LicenseValidator [(null)] - License I:\Program Files\NHibernate.Profiler\Michel Grootjans.xml expiration date is 06/15/2009 10:26:31
+2009-06-21 20:09:57,296 [1] WARN  Rhino.Licensing.LicenseValidator [(null)] - Could not find an existing license in I:\Program Files\NHibernate.Profiler\Michel Grootjans.xml
+2009-06-21 20:10:02,546 [1] INFO  Rhino.Licensing.LicenseValidator [(null)] - License I:\Program Files\NHibernate.Profiler\Michel Grootjans.xml expiration date is 06/15/2009 10:26:31
+2009-06-21 20:10:02,546 [1] WARN  Rhino.Licensing.LicenseValidator [(null)] - Could not find an existing license in I:\Program Files\NHibernate.Profiler\Michel Grootjans.xml
+2009-06-21 20:10:04,515 [1] INFO  Rhino.Licensing.LicenseValidator [(null)] - License I:\Program Files\NHibernate.Profiler\Michel Grootjans.xml expiration date is 06/15/2009 10:26:31
+2009-06-21 20:10:04,515 [1] WARN  Rhino.Licensing.LicenseValidator [(null)] - Could not find an existing license in I:\Program Files\NHibernate.Profiler\Michel Grootjans.xml
+2009-06-21 20:11:12,859 [1] INFO  Rhino.Licensing.LicenseValidator [(null)] - License I:\Program Files\NHibernate.Profiler\Michel.xml expiration date is 12/31/9999 23:59:59
+2009-06-21 20:11:13,187 [1] INFO  Rhino.Licensing.LicenseValidator [(null)] - License I:\Documents and Settings\Michel\Local Settings\Application Data\NHProf\license.xml expiration date is 12/31/9999 23:59:59

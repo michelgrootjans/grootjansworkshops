@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://www.springframework.net http://www.springframework.net/xsd/spring-objects.xsd">
+
+  <object id="HomeController" 
+          type="WarOfWorldcraft.Web.Controllers.HomeController, WarOfWorldcraft.Web"
+          singleton="false" />
+  <object id="AccountController"
+          type="WarOfWorldcraft.Web.Controllers.AccountController, WarOfWorldcraft.Web"
+          autowire="autodetect"
+          singleton="false" />
+  <object id="PlayerController" 
+          type="WarOfWorldcraft.Web.Controllers.PlayerController, WarOfWorldcraft.Web"
+          autowire="autodetect"
+          singleton="false" />
+  <object id="BattleController" 
+          type="WarOfWorldcraft.Web.Controllers.BattleController, WarOfWorldcraft.Web"
+          autowire="autodetect"
+          singleton="false" />
+  <object id="MonsterController" 
+          type="WarOfWorldcraft.Web.Controllers.MonsterController, WarOfWorldcraft.Web"
+          autowire="autodetect"
+          singleton="false" />
+  <object id="ItemsController" 
+          type="WarOfWorldcraft.Web.Controllers.ItemsController, WarOfWorldcraft.Web"
+          autowire="autodetect"
+          singleton="false" />
+  <object id="ShopController" 
+          type="WarOfWorldcraft.Web.Controllers.ShopController, WarOfWorldcraft.Web"
+          autowire="autodetect"
+          singleton="false" />
+  
+  <object id="AuthenticationService" type="WarOfWorldcraft.Web.Services.FormsAuthenticationService, WarOfWorldcraft.Web" />
+  <object id="MembershipService" type="WarOfWorldcraft.Web.Services.HardcodedMembershipService, WarOfWorldcraft.Web" />
+
+  <!-- Apply transactions to every service call -->
+  <object id="repository"
+          type="WarOfWorldcraft.Utilities.Repository.NHibernateRepository, WarOfWorldcraft.Utilities" />
+  <object id="transactionAdvice" 
+          type="WarOfWorldcraft.Utilities.Repository.NHibernateTransactionInterceptor, WarOfWorldcraft.Utilities" />
+  
+  <object type="Spring.Aop.Framework.AutoProxy.ObjectNameAutoProxyCreator, Spring.Aop">
+    <property name="ObjectNames">
+      <list>
+        <value>*Controller</value>
+      </list>
+    </property>
+    <property name="InterceptorNames">
+      <list>
+        <value>transactionAdvice</value>
+      </list>
+    </property>
+  </object>
+
+</objects>
+

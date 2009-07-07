@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   namespace="WarOfWorldcraft.Domain.Entities"
+                   assembly="WarOfWorldcraft.Domain"
+                   default-lazy="true">
+
+  <class name="Character">
+
+    <id name="Id">
+      <generator class="hilo"/>
+    </id>
+
+    <discriminator column="type" />
+
+    <property name="Name" />
+
+    <set name="inventory" access="field" cascade="all" fetch="join">
+      <key column="CharacterId" />
+      <one-to-many class="Item" />
+    </set>
+
+    <subclass name="Player" discriminator-value="player">
+      <property name="Level" />
+      <property name="HitPoints" />
+      <property name="MaxHitPoints" />
+      <property name="Attack" />
+      <property name="Defence" />
+      <property name="Gold" />
+      <property name="Account" unique="true" />
+      <property name="Experience" />
+    </subclass>
+    
+    <subclass name="Monster" discriminator-value="monster">
+      <property name="Level" />
+      <property name="HitPoints" />
+      <property name="MaxHitPoints" />
+      <property name="Attack" />
+      <property name="Defence" />
+      <property name="Gold" />
+    </subclass>
+  
+  </class>
+
+</hibernate-mapping>

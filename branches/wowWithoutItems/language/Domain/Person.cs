@@ -1,0 +1,41 @@
+using System;
+
+namespace Domain
+{
+    public class Person
+    {
+        public string Name { get; private set; }
+        internal DateTime DateOfBirth { get; private set; }
+        internal DateTime? DateOfDeath { get; private set; }
+
+        public Person(string name, DateTime dateOfBirth) : this(name, dateOfBirth, null)
+        {
+        }
+
+        public Person(string name, DateTime dateOfBirth, DateTime? dateOfDeath)
+        {
+            DateOfBirth = dateOfBirth;
+            DateOfDeath = dateOfDeath;
+            Name = name;
+        }
+
+        public TimeSpan AgeTheOldWay
+        {
+            get
+            {
+                TimeSpan age;
+                if (DateOfDeath.HasValue)
+                    age = DateOfDeath.Value - DateOfBirth;
+                else
+                    age = DateTime.Now - DateOfBirth;
+
+                return age;
+            }
+        }
+
+        public TimeSpan Age
+        {
+            get { return (DateOfDeath ?? DateTime.Now) - DateOfBirth; }
+        }
+    }
+}
