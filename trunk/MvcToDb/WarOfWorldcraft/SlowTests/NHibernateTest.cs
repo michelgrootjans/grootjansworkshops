@@ -1,15 +1,15 @@
 using HibernatingRhinos.NHibernate.Profiler.Appender;
 using NHibernate;
-using NHibernate.Cfg;
 using UnitTests.TestUtilities;
+using WarOfWorldcraft.Utilities.Repository;
 
 namespace SlowTests
 {
     public abstract class NHibernateTest : StaticContextSpecification
     {
-        private static ISessionFactory sessionFactory; //make this one static because it is slow
         protected ISession session;
         private ITransaction transaction;
+        protected NHibernateRepository repository;
 
         static NHibernateTest()
         {
@@ -17,13 +17,11 @@ namespace SlowTests
         }
 
 
-        protected sealed override void Arrange()
+        protected override sealed void Arrange()
         {
-            if (sessionFactory == null)
-                sessionFactory = new Configuration().Configure().BuildSessionFactory();
-
-            session = sessionFactory.OpenSession();
+            session = NHibernateHelper.GetCurrentSession();
             transaction = session.BeginTransaction();
+            repository = new NHibernateRepository();
 
             PrepareData();
             PurgeSession();
@@ -37,7 +35,7 @@ namespace SlowTests
 
         protected abstract void PrepareData();
 
-        protected sealed override void AfterEachTest()
+        protected override sealed void AfterEachTest()
         {
             transaction.Rollback();
             transaction.Dispose();
