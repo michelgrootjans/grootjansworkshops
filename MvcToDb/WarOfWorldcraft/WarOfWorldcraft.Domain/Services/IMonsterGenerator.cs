@@ -50,8 +50,7 @@ namespace WarOfWorldcraft.Domain.Services
 
         private string PickName()
         {
-            var index = randomizer.GetNumberBetween(0, names.Count - 1);
-            return names[index];
+            return names.PickAny();
         }
 
         private IList<string> InitializeNames()
@@ -73,7 +72,7 @@ namespace WarOfWorldcraft.Domain.Services
             list.Add("Blazing Elemental");
             list.Add("Dark Iron Taskmaster");
             list.Add("Harris Pilton");
-            list.Add("Ganny Dladines");
+            list.Add("Glanny Dadines");
             list.Add("Faulty War Golem");
             list.Add("Lava Crab");
             list.Add("Molten Destroyer");

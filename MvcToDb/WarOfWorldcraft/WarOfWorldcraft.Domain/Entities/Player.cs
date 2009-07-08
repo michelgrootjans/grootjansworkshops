@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace WarOfWorldcraft.Domain.Entities
 {
     public class Player : Character
