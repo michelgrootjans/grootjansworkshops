@@ -61,6 +61,8 @@
     <Compile Include="Entities\Character.cs" />
     <Compile Include="Queries\LivingPlayerWithAccount.cs" />
     <Compile Include="Services\IMonsterGenerator.cs" />
+    <Compile Include="Services\IMonsterStatsGenerator.cs" />
+    <Compile Include="Services\IPlayerStatsGenerator.cs" />
     <Compile Include="Services\IRandomizer.cs" />
     <Compile Include="Entities\IStatsHolder.cs" />
     <Compile Include="Entities\Monster.cs" />

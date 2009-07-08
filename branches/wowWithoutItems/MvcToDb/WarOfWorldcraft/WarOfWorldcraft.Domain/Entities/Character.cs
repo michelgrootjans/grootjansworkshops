@@ -1,10 +1,7 @@
-using Iesi.Collections.Generic;
-
 namespace WarOfWorldcraft.Domain.Entities
 {
     public abstract class Character : IStatsHolder
     {
-
         protected Character() //Necessary for NHibernate
         {
         }
