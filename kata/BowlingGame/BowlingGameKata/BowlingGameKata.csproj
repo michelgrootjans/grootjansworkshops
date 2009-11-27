@@ -53,9 +53,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Code\Combination.cs" />
+    <Compile Include="Code\Hand.cs" />
+    <Compile Include="Code\HighCard.cs" />
+    <Compile Include="Code\Pair.cs" />
+    <Compile Include="Code\Straight.cs" />
+    <Compile Include="Code\StringExtensions.cs" />
+    <Compile Include="Code\Suit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\CombinationExtensions.cs" />
+    <Compile Include="Code\Flush.cs" />
+    <Compile Include="Code\FourOfAKind.cs" />
+    <Compile Include="Code\FullHouse.cs" />
     <Compile Include="Tests\GameTests.cs" />
     <Compile Include="Code\Game.cs" />
+    <Compile Include="Code\TwoPairs.cs" />
+    <Compile Include="Code\ThreeOfAKind.cs" />
+    <Compile Include="Code\StraightFlush.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
