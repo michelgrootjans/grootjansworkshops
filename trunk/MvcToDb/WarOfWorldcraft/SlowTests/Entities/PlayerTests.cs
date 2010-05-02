@@ -48,6 +48,15 @@ namespace SlowTests.Entities
 
             session.Get<Player>(playerId).ShouldBeNull();
         }
+
+        [Test]
+        public void should_find_player_by_querying_the_whole_database()
+        {
+            var player = session.Load<Player>(playerId);
+            var objects = session.CreateCriteria<object>().List<object>();
+            objects.Contains(player).ShouldBeTrue();
+        }
+
     }
 
     public class PlayerInventoryTest : NHibernateTest
@@ -57,9 +66,9 @@ namespace SlowTests.Entities
         protected override void PrepareData()
         {
             var player = new Player("Michel", "mgr");
+            session.Save(player);
             player.AddGold(100);
             player.Buy(new Item("Gizmo", 10));
-            session.Save(player);
             playerId = player.Id;
         }
 
