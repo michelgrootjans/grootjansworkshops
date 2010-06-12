@@ -1,0 +1,16 @@
+Design problems:
+----------------
+PRO
+---
+As-is: no problem for a simplem program
+
+CONTRA
+------
+Not well designed, not OO
+Does far too much
+Hard to change
+
+Possible future requirements:
+-----------------------------
+Report in HTML
+New video type: Deal of the month: 1 EURO, 3 renting points
