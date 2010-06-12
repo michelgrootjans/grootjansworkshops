@@ -1,0 +1,24 @@
+Print out a statement for a customer with
+- His name
+- Each movie he rented with its price
+- A total price
+- His frequent renter points
+
+Rules:
+There are three types of movies: Regular, New Release and Childrens
+Price:
+- Regular:
+	2 Euro for 2 days.
+	Additional days cost 1.5 Euro
+- New Release:
+	3 Euro per day
+- Children:
+	1.5 Euro for 3 days
+	Additional days cost 1.5 Euro
+Points:
+- Regular:
+	1 point
+- New Release:
+	1 point. 1 extra point if rented for more than 1 day
+- Children:
+	1 point
