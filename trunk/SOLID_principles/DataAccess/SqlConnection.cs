@@ -3,7 +3,7 @@ using System.Data;
 
 namespace DataAccess
 {
-    public class SuperDuperSqlConnection : IDbConnection
+    public class SqlConnection : IDbConnection
     {
         public void Open()
         {
@@ -14,7 +14,7 @@ namespace DataAccess
         public IDbTransaction BeginTransaction()
         {
             Console.WriteLine("Beginning a transaction...");
-            return new SuperDuperSqlTransaction(this);
+            return new SqlTransaction(this);
         }
 
         public void Close()

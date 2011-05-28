@@ -3,14 +3,14 @@ using System.Data;
 
 namespace DataAccess
 {
-    public class SuperDuperSqlDataReader : IDataReader
+    public class SqlDataReader : IDataReader
     {
         private readonly string tableName;
         private int counter;
         private static readonly Random random = new Random(DateTime.Now.Millisecond);
         private int lastId;
 
-        public SuperDuperSqlDataReader(string tableName)
+        public SqlDataReader(string tableName)
         {
             this.tableName = tableName;
         }

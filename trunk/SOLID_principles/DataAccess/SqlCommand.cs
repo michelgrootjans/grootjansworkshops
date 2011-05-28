@@ -3,12 +3,12 @@ using System.Data;
 
 namespace DataAccess
 {
-    public class SuperDuperSqlCommand : IDbCommand
+    public class SqlCommand : IDbCommand
     {
         public string CommandText { get; set; }
         public IDbConnection Connection { get; set; }
 
-        public SuperDuperSqlCommand(string command)
+        public SqlCommand(string command)
         {
             CommandText = command;
         }
@@ -16,7 +16,7 @@ namespace DataAccess
         public IDataReader ExecuteReader()
         {
             Console.WriteLine("Executing '{0}'", CommandText);
-            return new SuperDuperSqlDataReader(GetTableName());
+            return new SqlDataReader(GetTableName());
         }
 
         private string GetTableName()
