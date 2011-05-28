@@ -5,15 +5,16 @@ namespace DataAccess
 {
     public class OrderDataAccessObject
     {
-
         public List<Order> FindOrdersForCustomer(int customerId)
         {
             var connection = new SuperDuperSqlConnection();
             connection.Open();
+
             var customers = new List<Order>();
             using (var transaction = connection.BeginTransaction())
             {
                 var command = new SuperDuperSqlCommand("SELECT * FROM ORDERS WHERE CUSTID=" + customerId);
+                command.Connection = connection;
                 var reader = command.ExecuteReader();
 
                 while (reader.Read())
