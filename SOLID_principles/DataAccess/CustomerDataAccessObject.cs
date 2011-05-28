@@ -1,29 +1,29 @@
 ﻿using System.Collections.Generic;
-using System.Data;
 using BusinessObjects;
 
 namespace DataAccess
 {
     public class CustomerDataAccessObject
     {
-        private SuperDuperSqlConnection connection;
-
-        public IDbTransaction BeginTransaction()
-        {
-            connection = new SuperDuperSqlConnection();
-            connection.Open();
-            return connection.BeginTransaction();
-        }
-
         public List<Customer> FindAllCustomers()
         {
+            var connection = new SuperDuperSqlConnection();
             var command = new SuperDuperSqlCommand(connection, "SELECT * FROM CUSTOMERS");
-            var reader = command.ExecuteReader();
+
+            connection.Open();
             var customers = new List<Customer>();
-            while (!reader.Read())
+            using (var transaction = connection.BeginTransaction())
             {
-                var customer = new Customer {Id = reader.GetInt32(0), Name = reader.GetString(1)};
-                customers.Add(customer);
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    var customer = new Customer();
+                    customer.Id = reader.GetInt32(0);
+                    customer.Name = reader.GetString(1);
+                    customers.Add(customer);
+                }
+                transaction.Commit();
             }
             return customers;
         }

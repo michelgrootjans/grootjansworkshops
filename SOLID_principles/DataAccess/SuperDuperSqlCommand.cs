@@ -16,7 +16,7 @@ namespace DataAccess
 
         public IDataReader ExecuteReader()
         {
-            Console.WriteLine("Executing the DataReader...");
+            Console.WriteLine("Executing '{0}' on {1}", command, connection.GetType());
             return new SuperDuperSqlDataReader(GetTableName());
         }
 
