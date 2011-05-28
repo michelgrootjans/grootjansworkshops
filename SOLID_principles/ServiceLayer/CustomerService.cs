@@ -8,10 +8,24 @@ namespace ServiceLayer
         public List<CustomerDto> GetAllCustomers()
         {
             var customerManager = new CustomerManager();
-            var mapper = new CustomerMapper();
-
             List<Customer> customers = customerManager.GetAll();
-            List<CustomerDto> customerDtos = mapper.Map(customers);
+
+            var result = new List<CustomerDto>();
+            foreach (var customer in customers)
+            {
+                var customerDto = new CustomerDto();
+                customerDto.Id = customer.Id;
+                customerDto.Name = customer.Name;
+                foreach (var order in customer.Orders)
+                {
+                    var orderDto = new OrderDto();
+                    orderDto.Id = order.Id;
+                    orderDto.Name = order.Name;
+                    customerDto.Orders.Add(orderDto);
+                }
+                result.Add(customerDto);
+            }
+            List<CustomerDto> customerDtos = result;
 
             return customerDtos;
         }

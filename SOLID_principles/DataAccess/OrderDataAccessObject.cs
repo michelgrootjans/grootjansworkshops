@@ -7,13 +7,13 @@ namespace DataAccess
     {
         public List<Order> FindOrdersForCustomer(int customerId)
         {
-            var connection = new SuperDuperSqlConnection();
+            var connection = new SqlConnection();
             connection.Open();
 
             var customers = new List<Order>();
             using (var transaction = connection.BeginTransaction())
             {
-                var command = new SuperDuperSqlCommand("SELECT * FROM ORDERS WHERE CUSTID=" + customerId);
+                var command = new SqlCommand("SELECT * FROM ORDERS WHERE CUSTID=" + customerId);
                 command.Connection = connection;
                 var reader = command.ExecuteReader();
 
