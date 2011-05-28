@@ -13,7 +13,7 @@ namespace DataAccess
             var customers = new List<Order>();
             using (var transaction = connection.BeginTransaction())
             {
-                var command = new SuperDuperSqlCommand(connection, "SELECT * FROM ORDERS WHERE CUSTID=" + customerId);
+                var command = new SuperDuperSqlCommand("SELECT * FROM ORDERS WHERE CUSTID=" + customerId);
                 var reader = command.ExecuteReader();
 
                 while (reader.Read())
