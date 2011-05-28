@@ -3,11 +3,11 @@ using System.Data;
 
 namespace DataAccess
 {
-    public class SuperDuperSqlTransaction : IDbTransaction
+    public class SqlTransaction : IDbTransaction
     {
         private readonly IDbConnection connection;
 
-        public SuperDuperSqlTransaction(IDbConnection connection)
+        public SqlTransaction(IDbConnection connection)
         {
             this.connection = connection;
         }
