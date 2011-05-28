@@ -5,27 +5,26 @@ namespace DataAccess
 {
     public class SuperDuperSqlCommand : IDbCommand
     {
-        private readonly SuperDuperSqlConnection connection;
-        private readonly string command;
+        public string CommandText { get; set; }
+        public IDbConnection Connection { get; set; }
 
-        public SuperDuperSqlCommand(SuperDuperSqlConnection connection, string command)
+        public SuperDuperSqlCommand(string command)
         {
-            this.connection = connection;
-            this.command = command;
+            CommandText = command;
         }
 
         public IDataReader ExecuteReader()
         {
-            Console.WriteLine("Executing '{0}' on {1}", command, connection.GetType());
+            Console.WriteLine("Executing '{0}'", CommandText);
             return new SuperDuperSqlDataReader(GetTableName());
         }
 
         private string GetTableName()
         {
             string tableName = null;
-            if (command.ToUpper().Contains("FROM CUSTOMERS"))
+            if (CommandText.ToUpper().Contains("FROM CUSTOMERS"))
                 tableName = "Customer";
-            else if (command.ToUpper().Contains("FROM ORDERS"))
+            else if (CommandText.ToUpper().Contains("FROM ORDERS"))
                 tableName = "Order";
             return tableName;
         }
@@ -65,19 +64,7 @@ namespace DataAccess
             throw new NotImplementedException();
         }
 
-        public IDbConnection Connection
-        {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
-        }
-
         public IDbTransaction Transaction
-        {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
-        }
-
-        public string CommandText
         {
             get { throw new NotImplementedException(); }
             set { throw new NotImplementedException(); }

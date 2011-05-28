@@ -5,15 +5,16 @@ namespace DataAccess
 {
     public class SuperDuperSqlConnection : IDbConnection
     {
+        public void Open()
+        {
+            Console.WriteLine("----------------------------------------");
+            Console.WriteLine("Opening a connection to the database ...");
+        }
+
         public IDbTransaction BeginTransaction()
         {
             Console.WriteLine("Beginning a transaction...");
             return new SuperDuperSqlTransaction(this);
-        }
-
-        public void Open()
-        {
-            Console.WriteLine("-> Opening a connection to the database ...");
         }
 
         public void Close()
