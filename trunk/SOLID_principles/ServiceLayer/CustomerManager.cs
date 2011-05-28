@@ -9,11 +9,11 @@ namespace ServiceLayer
         public List<Customer> GetAll()
         {
             var customerDao = new CustomerDataAccessObject();
-            var orderManager = new OrderDataAccessObject();
 
             var customers = customerDao.FindAllCustomers();
             foreach (var customer in customers)
             {
+                var orderManager = new OrderDataAccessObject();
                 customer.Orders = orderManager.FindOrdersForCustomer(customer.Id);
             }
 
