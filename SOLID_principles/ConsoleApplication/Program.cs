@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using BusinessObjects;
 using ServiceLayer;
 
 namespace ConsoleApplication
@@ -14,7 +13,7 @@ namespace ConsoleApplication
             Print(customers);
         }
 
-        private static void Print(List<Customer> customers)
+        private static void Print(List<CustomerDto> customers)
         {
             Console.WriteLine("***********************");
             Console.WriteLine("All your customers are:");
