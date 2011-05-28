@@ -11,7 +11,6 @@ namespace ConsoleApplication
         {
             var customerService = new CustomerService();
             var customers = customerService.GetAllCustomers();
-            
             Print(customers);
         }
 

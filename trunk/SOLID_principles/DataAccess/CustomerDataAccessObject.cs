@@ -8,13 +8,13 @@ namespace DataAccess
         public List<Customer> FindAllCustomers()
         {
             var connection = new SuperDuperSqlConnection();
-            var command = new SuperDuperSqlCommand("SELECT * FROM CUSTOMERS");
-            command.Connection = connection;
-
             connection.Open();
+
             var customers = new List<Customer>();
             using (var transaction = connection.BeginTransaction())
             {
+                var command = new SuperDuperSqlCommand("SELECT * FROM CUSTOMERS");
+                command.Connection = connection;
                 var reader = command.ExecuteReader();
 
                 while (reader.Read())
