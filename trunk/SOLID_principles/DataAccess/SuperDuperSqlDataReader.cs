@@ -7,6 +7,8 @@ namespace DataAccess
     {
         private readonly string tableName;
         private int counter;
+        private static readonly Random random = new Random(DateTime.Now.Millisecond);
+        private int lastId;
 
         public SuperDuperSqlDataReader(string tableName)
         {
@@ -15,23 +17,25 @@ namespace DataAccess
 
         public bool Read()
         {
-            counter++;
-            return counter > 10;
+            var next = random.Next(2, 5);
+            var now = counter++;
+            lastId = random.Next(10000);
+            return now < next;
         }
 
         public int GetInt32(int i)
         {
-            return counter;
+            return lastId;
         }
 
         public string GetString(int i)
         {
-            return string.Format("{0} number {1}", tableName, counter);
+            return string.Format("{0} number {1}", tableName, lastId);
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Disposing of the DataReader");
         }
 
         public string GetName(int i)

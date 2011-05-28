@@ -15,6 +15,10 @@ namespace ConsoleApplication
             foreach (var customer in customers)
             {
                 Console.WriteLine("- " + customer.Name);
+                foreach (var order in customer.Orders)
+                {
+                    Console.WriteLine("\t" + order.Name);
+                }
             }
 
             Console.Write("Hit ENTER to end...");

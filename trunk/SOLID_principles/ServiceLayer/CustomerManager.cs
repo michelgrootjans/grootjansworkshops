@@ -9,18 +9,12 @@ namespace ServiceLayer
         public List<Customer> GetAll()
         {
             var customerDao = new CustomerDataAccessObject();
-            List<Customer> customers;
-            using (var transaction = customerDao.BeginTransaction())
-            {
-                var orderManager = new OrderDataAccessObject((SuperDuperSqlConnection) transaction.Connection);
-                
-                customers = customerDao.FindAllCustomers();
-                foreach (var customer in customers)
-                {
-                    customer.Orders = orderManager.FindOrdersForCustomer(customer.Id);
-                }
+            var orderManager = new OrderDataAccessObject();
 
-                transaction.Commit();
+            var customers = customerDao.FindAllCustomers();
+            foreach (var customer in customers)
+            {
+                customer.Orders = orderManager.FindOrdersForCustomer(customer.Id);
             }
 
             return customers;

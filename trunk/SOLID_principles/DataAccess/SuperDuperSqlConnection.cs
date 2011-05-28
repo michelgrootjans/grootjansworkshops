@@ -13,7 +13,7 @@ namespace DataAccess
 
         public void Open()
         {
-            Console.WriteLine("Opening a connection to the database ...");
+            Console.WriteLine("-> Opening a connection to the database ...");
         }
 
         public void Close()

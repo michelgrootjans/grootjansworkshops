@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace BusinessObjects
 {
@@ -7,13 +6,6 @@ namespace BusinessObjects
     {
         public int Id { get; set; }
         public string Name { get; set; }
-
         public List<Order> Orders { get; set; }
-    }
-
-    public class Order
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
     }
 }

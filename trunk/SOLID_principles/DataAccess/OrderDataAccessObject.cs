@@ -5,22 +5,25 @@ namespace DataAccess
 {
     public class OrderDataAccessObject
     {
-        private readonly SuperDuperSqlConnection connection;
-
-        public OrderDataAccessObject(SuperDuperSqlConnection connection)
-        {
-            this.connection = connection;
-        }
 
         public List<Order> FindOrdersForCustomer(int customerId)
         {
-            var command = new SuperDuperSqlCommand(connection, "SELECT * FROM ORDERS WHERE CUSTID=" + customerId);
-            var reader = command.ExecuteReader();
+            var connection = new SuperDuperSqlConnection();
+            connection.Open();
             var customers = new List<Order>();
-            while (!reader.Read())
+            using (var transaction = connection.BeginTransaction())
             {
-                var customer = new Order {Id = reader.GetInt32(0), Name = reader.GetString(1)};
-                customers.Add(customer);
+                var command = new SuperDuperSqlCommand(connection, "SELECT * FROM ORDERS WHERE CUSTID=" + customerId);
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    var customer = new Order();
+                    customer.Id = reader.GetInt32(0);
+                    customer.Name = reader.GetString(1);
+                    customers.Add(customer);
+                }
+                transaction.Commit();
             }
             return customers;
         }

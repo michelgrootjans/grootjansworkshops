@@ -31,12 +31,15 @@ namespace DataAccess
 
         public void Rollback()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Rolling back the transaction...");
         }
 
         public IsolationLevel IsolationLevel
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                return IsolationLevel.Chaos; //hehe }
+            }
         }
     }
 }
