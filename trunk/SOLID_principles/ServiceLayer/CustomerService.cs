@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using BusinessObjects;
+using DataAccess;
 
 namespace ServiceLayer
 {
@@ -7,10 +7,16 @@ namespace ServiceLayer
     {
         public List<CustomerDto> GetAllCustomers()
         {
-            var customerManager = new CustomerManager();
-            List<Customer> customers = customerManager.GetAll();
+            var customerDao = new CustomerDataAccessObject();
+            var orderDao = new OrderDataAccessObject();
 
-            var result = new List<CustomerDto>();
+            var customers = customerDao.FindAllCustomers();
+            foreach (var customer in customers)
+            {
+                customer.Orders = orderDao.FindOrdersForCustomer(customer.Id);
+            }
+
+            var customerDtos = new List<CustomerDto>();
             foreach (var customer in customers)
             {
                 var customerDto = new CustomerDto();
@@ -23,9 +29,8 @@ namespace ServiceLayer
                     orderDto.Name = order.Name;
                     customerDto.Orders.Add(orderDto);
                 }
-                result.Add(customerDto);
+                customerDtos.Add(customerDto);
             }
-            List<CustomerDto> customerDtos = result;
 
             return customerDtos;
         }
