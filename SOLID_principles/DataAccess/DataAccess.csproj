@@ -48,19 +48,16 @@
     <Compile Include="CustomerDataAccessObject.cs" />
     <Compile Include="OrderDataAccessObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SqlCommand.cs" />
-    <Compile Include="SqlConnection.cs" />
-    <Compile Include="SqlDataReader.cs" />
-    <Compile Include="SqlTransaction.cs" />
+    <Compile Include="Utilities\SqlCommand.cs" />
+    <Compile Include="Utilities\SqlConnection.cs" />
+    <Compile Include="Utilities\SqlDataReader.cs" />
+    <Compile Include="Utilities\SqlTransaction.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessObjects\BusinessObjects.csproj">
       <Project>{B51298DE-B188-4E1E-A156-6219080CFB72}</Project>
       <Name>BusinessObjects</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Utilities\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

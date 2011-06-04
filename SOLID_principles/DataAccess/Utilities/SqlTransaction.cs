@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 
-namespace DataAccess
+namespace DataAccess.Utilities
 {
     public class SqlTransaction : IDbTransaction
     {
