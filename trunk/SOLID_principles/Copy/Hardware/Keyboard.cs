@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Copy
+namespace Hardware
 {
     public static class Keyboard
     {
