@@ -1,4 +1,3 @@
-using System;
 using Hardware;
 
 namespace Copy
@@ -7,10 +6,10 @@ namespace Copy
     {
         public void Copy()
         {
-            string c;
-            while ((c = Keyboard.Read()) != Environment.NewLine)
+            while (true)
             {
-                Printer.Write(c);
+                var text = Keyboard.Read();
+                Printer.Write(text);
             }
         }
     }
