@@ -2,9 +2,9 @@ using Hardware;
 
 namespace Copy
 {
-    public class Copier
+    public class UserService
     {
-        public void Copy()
+        public void CopyUsers()
         {
             foreach (var userName in CsvFile.Read())
             {
