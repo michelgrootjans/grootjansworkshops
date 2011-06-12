@@ -9,7 +9,7 @@ namespace Copy
             while (true)
             {
                 var text = Keyboard.Read();
-                Printer.Write(text);
+                Printer.Print(text);
             }
         }
     }
