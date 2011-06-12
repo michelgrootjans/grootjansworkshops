@@ -45,11 +45,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActiveDirectory.cs" />
+    <Compile Include="Console.cs" />
+    <Compile Include="CsvFile.cs" />
     <Compile Include="Email.cs" />
     <Compile Include="Keyboard.cs" />
     <Compile Include="Printer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scanner.cs" />
+    <Compile Include="TFS.cs" />
+    <Compile Include="EnterpriseWebService.cs" />
+    <Compile Include="Wss.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

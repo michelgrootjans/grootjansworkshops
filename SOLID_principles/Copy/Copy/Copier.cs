@@ -6,10 +6,9 @@ namespace Copy
     {
         public void Copy()
         {
-            while (true)
+            foreach (var userName in CsvFile.Read())
             {
-                var text = Keyboard.Read();
-                Printer.Print(text);
+                ActiveDirectory.CreateUser(userName);
             }
         }
     }
