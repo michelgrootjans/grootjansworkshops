@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 
 namespace Hardware
 {
@@ -13,6 +14,7 @@ namespace Hardware
 
         private static string User(string name)
         {
+            Thread.Sleep(250);
             CustomConsole.Highlight("CsvFile: reading user '{0}'", name);
             return name;
         }

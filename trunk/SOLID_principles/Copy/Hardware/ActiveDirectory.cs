@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace Hardware
 {
@@ -6,6 +7,7 @@ namespace Hardware
     {
         public static void CreateUser(string username)
         {
+            Thread.Sleep(250);
             Console.WriteLine("Active Directory: creating user '{0}'", username);
         }
     }
