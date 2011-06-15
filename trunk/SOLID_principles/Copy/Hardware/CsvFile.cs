@@ -14,7 +14,7 @@ namespace Hardware
 
         private static string User(string name)
         {
-            CustomConsole.Highlight("CsvFile: reading user '{0}'", name);
+            CustomConsole.HighlightLine("CsvFile: reading user '{0}'", name);
             Thread.Sleep(250);
             return name;
         }
