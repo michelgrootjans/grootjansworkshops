@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 
 namespace Hardware
 {
@@ -6,12 +7,15 @@ namespace Hardware
     {
         public static IEnumerable<string> GetAllUserNames()
         {
-            yield return User("Michel Grootjans");
+            CustomConsole.Highlight("WebService: returning all users...");
+            Thread.Sleep(2000);
+            var allUserNames = new List<string>{"danny", "jan", "koert", "johan", "gitte"};
+            CustomConsole.HighlightLine("done.");
+            return allUserNames;
         }
 
         private static string User(string userName)
         {
-            CustomConsole.Highlight("WebService: returning {0}", userName);
             return userName;
         }
     }
