@@ -6,8 +6,8 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            var copier = new Copier();
-            copier.Copy();
+            var copier = new UserService();
+            copier.CopyUsers();
         }
     }
 }
