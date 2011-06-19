@@ -7,7 +7,7 @@ namespace Hardware
     {
         public static IEnumerable<string> Read()
         {
-            yield return User("grootmi");
+            yield return User("weytsko");
             yield return User("gladida");
             yield return User("grootmi");
         }
