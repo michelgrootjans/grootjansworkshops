@@ -6,9 +6,11 @@ namespace Copy
     {
         public void CopyUsers()
         {
-            foreach (var userName in CsvFile.Read())
+            var csvFile = new CsvFile("users.csv");
+            foreach (var userName in csvFile.ReadAllUsers())
             {
-                ActiveDirectory.CreateUser(userName);
+                var activeDirectory = new ActiveDirectory();
+                activeDirectory.CreateNewUser(userName);
             }
         }
     }

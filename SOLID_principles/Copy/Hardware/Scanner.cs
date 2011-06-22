@@ -4,7 +4,7 @@ namespace Hardware
 {
     public class Scanner
     {
-        public static string Scan()
+        public string Scan()
         {
             Console.Write("Scanner: ");
             return Console.ReadLine();

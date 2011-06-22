@@ -2,7 +2,7 @@
 
 namespace Hardware
 {
-    public static class Wss
+    public class Wss
     {
         public static void AddLogin(string userName)
         {
