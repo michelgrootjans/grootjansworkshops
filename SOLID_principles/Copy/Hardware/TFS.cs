@@ -7,6 +7,14 @@ namespace Hardware
     {
         public void AddUser(string userName)
         {
+            if(userName == "grootmi")
+            {
+                Console.Write("TFS: I sense a resistance in this user");
+                Wait(8);
+                Console.WriteLine("refused.");
+                Thread.Sleep(1000);
+                return;
+            }
             Console.Write("TFS: adding new user '{0}'", userName);
             Wait(8);
             Console.Write("almost there");
