@@ -1,35 +1,18 @@
-﻿using System;
-using System.Threading;
-
-namespace Hardware
+﻿namespace Hardware
 {
     public class TFS
     {
         public void AddUser(string userName)
         {
-            if(userName == "grootmi")
+            if (userName == "grootmi")
             {
-                Console.Write("TFS: I sense a resistance in this user");
-                Wait(8);
-                Console.WriteLine("refused.");
-                Thread.Sleep(1000);
+                CustomConsole.Write("TFS: I sense a resistance in this user");
+                CustomConsole.WriteLine("refused.");
                 return;
             }
-            Console.Write("TFS: adding new user '{0}'", userName);
-            Wait(8);
-            Console.Write("almost there");
-            Wait(8);
-            Console.WriteLine("done.");
-            Thread.Sleep(1000);
-        }
-
-        private void Wait(int times)
-        {
-            for (int i = 0; i < times; i++)
-            {
-                Thread.Sleep(250);
-                Console.Write(".");
-            }
+            CustomConsole.Write("TFS: adding new user '{0}'", userName);
+            CustomConsole.Write("almost there");
+            CustomConsole.WriteLine("done.");
         }
     }
 }
