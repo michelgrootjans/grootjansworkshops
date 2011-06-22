@@ -3,9 +3,9 @@ using System.Threading;
 
 namespace Hardware
 {
-    public static class EnterpriseWebService
+    public class EnterpriseWebService
     {
-        public static IEnumerable<string> GetAllUserNames()
+        public IEnumerable<string> GetAllUserNames()
         {
             CustomConsole.Highlight("WebService: returning all users...");
             Thread.Sleep(2000);
@@ -14,7 +14,7 @@ namespace Hardware
             return allUserNames;
         }
 
-        private static string User(string userName)
+        private string User(string userName)
         {
             return userName;
         }
